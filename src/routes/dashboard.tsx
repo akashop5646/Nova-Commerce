@@ -1,18 +1,32 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useMemo, useState, useEffect } from "react";
 import { ShoppingBag, Check, PartyPopper, X, ChevronDown, ChevronRight } from "lucide-react";
-import { useOnboarding } from "@/lib/onboarding";
+import { useOnboarding, syncProfileFromServer } from "@/lib/onboarding";
 import { DashboardLayout } from "@/components/dashboard-layout";
 
 function DashboardLayoutWrapper() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isParentRoute = location.pathname === "/dashboard" || location.pathname === "/dashboard/";
+  const token = localStorage.getItem("kiln.auth.token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/signup?mode=login");
+      return;
+    }
+    syncProfileFromServer();
+  }, [token, navigate]);
 
   useEffect(() => {
     if (isParentRoute) {
       document.title = "Home · Kiln";
     }
   }, [isParentRoute]);
+
+  if (!token) {
+    return null;
+  }
 
   if (!isParentRoute) {
     return <Outlet />;

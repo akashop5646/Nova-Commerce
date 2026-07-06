@@ -156,6 +156,18 @@ function Sidebar({ currentPath }: { currentPath: string }) {
 }
 
 function TopBar({ storeName, onMenuToggle }: { storeName: string; onMenuToggle: () => void }) {
+  const [avatar, setAvatar] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const rawUser = localStorage.getItem("kiln.auth.user");
+      if (rawUser) {
+        const u = JSON.parse(rawUser);
+        if (u?.avatar) setAvatar(u.avatar);
+      }
+    } catch {}
+  }, []);
+
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-background/80 px-6 backdrop-blur-md">
       <div className="flex items-center gap-2 text-sm">
@@ -179,9 +191,18 @@ function TopBar({ storeName, onMenuToggle }: { storeName: string; onMenuToggle: 
         <button className="rounded-full p-2 text-muted-foreground hover:bg-muted transition-colors">
           <Bell className="h-4 w-4" />
         </button>
-        <div className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-xs font-medium text-background">
-          {storeName.charAt(0).toUpperCase()}
-        </div>
+        {avatar ? (
+          <img
+            src={avatar}
+            alt="User profile"
+            className="h-8 w-8 rounded-full object-cover border border-border"
+            onError={() => setAvatar(null)}
+          />
+        ) : (
+          <div className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-xs font-medium text-background">
+            {storeName.charAt(0).toUpperCase()}
+          </div>
+        )}
       </div>
     </header>
   );

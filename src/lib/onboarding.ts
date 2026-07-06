@@ -44,12 +44,56 @@ export function setOnboarding(patch: Partial<OnboardingState>) {
   state = { ...state, ...patch };
   persist();
   listeners.forEach((l) => l());
+
+  // Sync to backend if authenticated
+  if (typeof window !== "undefined") {
+    const token = window.localStorage.getItem("kiln.auth.token");
+    if (token) {
+      fetch("/api/user/onboarding", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ onboarding: patch }),
+      }).catch((err) => console.error("Failed to sync onboarding state:", err));
+    }
+  }
 }
 
 export function resetOnboarding() {
   state = empty;
   persist();
   listeners.forEach((l) => l());
+  
+  if (typeof window !== "undefined") {
+    window.localStorage.removeItem("kiln.auth.token");
+    window.localStorage.removeItem("kiln.auth.user");
+  }
+}
+
+export async function syncProfileFromServer() {
+  if (typeof window === "undefined") return;
+  const token = window.localStorage.getItem("kiln.auth.token");
+  if (!token) return;
+
+  try {
+    const res = await fetch("/api/user/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.user?.onboarding) {
+        state = { ...state, ...data.user.onboarding };
+        persist();
+        listeners.forEach((l) => l());
+      }
+    }
+  } catch (err) {
+    console.error("Failed to sync profile from server:", err);
+  }
 }
 
 export function useOnboarding(): OnboardingState {

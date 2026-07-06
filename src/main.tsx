@@ -20,6 +20,8 @@ import DashboardSettings from "./routes/dashboard.settings";
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource-variable/inter/index.css";
 import "./styles.css";
+import { syncProfileFromServer } from "./lib/onboarding";
+
 
 const router = createBrowserRouter([
   {
@@ -99,6 +101,8 @@ const router = createBrowserRouter([
     ),
   },
 ]);
+
+syncProfileFromServer();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   ArrowRight,
   Check,
@@ -13,6 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Landing() {
   useEffect(() => {
@@ -456,7 +457,7 @@ function SiteHeader() {
         </nav>
         <div className="flex items-center gap-4">
           <Link
-            to="/signup"
+            to="/signup?mode=login"
             className="hidden text-sm font-medium text-muted-foreground hover:text-foreground md:block transition-colors"
           >
             Log in
@@ -491,57 +492,99 @@ function Logo() {
 
 function Hero() {
   return (
-    <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden px-6 text-center border-b border-border/40 bg-zinc-950">
+    <section className="relative min-h-[90vh] lg:min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-6 pt-32 pb-24 text-center border-b border-border/40 bg-zinc-950">
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 z-0 h-full w-full object-cover select-none pointer-events-none opacity-80"
+        className="absolute inset-0 z-0 h-full w-full object-cover select-none pointer-events-none opacity-20"
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
 
+      {/* Ambient background glowing orbs */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 h-[350px] w-[350px] rounded-full bg-[var(--terracotta)] opacity-[0.06] blur-[110px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 h-[450px] w-[450px] rounded-full bg-emerald-500 opacity-[0.05] blur-[130px] pointer-events-none" />
+
       {/* Dark Overlay Mask */}
-      <div className="absolute inset-0 z-10 bg-black/55" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950/70" />
+      <div className="absolute inset-0 z-10 bg-black/40" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950/60" />
 
       {/* Centered Content Stack */}
       <div className="relative z-20 mx-auto max-w-4xl flex flex-col items-center text-white">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/95 shadow-lg backdrop-blur-md anim-fade-in anim-delay-1 hover-scale">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+          whileHover={{ scale: 1.03 }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/95 shadow-lg backdrop-blur-md cursor-default select-none"
+        >
           <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--terracotta)" }} />
           New — one-click TikTok Shop sync
-        </div>
+        </motion.div>
 
-        <h1 className="font-display text-balance text-5xl leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl text-white anim-fade-in-up anim-delay-2">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 80, damping: 15, delay: 0.4 }}
+          className="font-display text-balance text-5xl leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl text-white"
+        >
           Start, run,{" "}
           <em className="not-italic text-[var(--terracotta)]">
             and grow
           </em>{" "}
           your business.
-        </h1>
+        </motion.h1>
 
-        <p className="mt-6 max-w-2xl text-balance text-lg md:text-xl text-white/85 font-medium leading-relaxed anim-fade-in-up anim-delay-3">
+        <motion.p
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 80, damping: 15, delay: 0.6 }}
+          className="mt-6 max-w-2xl text-balance text-lg md:text-xl text-white/85 font-medium leading-relaxed"
+        >
           From your very first sale to your millionth, Kiln is the shop counter, the register,
           and the marketing team — all in one place. No code, no guesswork.
-        </p>
+        </motion.p>
 
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto anim-fade-in-up anim-delay-4">
-          <Link
-            to="/signup?src=hero"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black hover:bg-white/95 transition-all hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] active:scale-95 hover-scale"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 80, damping: 15, delay: 0.8 }}
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+        >
+          <motion.div
+            whileHover={{ scale: 1.04, rotate: -0.5 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 500, damping: 15 }}
+            className="w-full sm:w-auto"
           >
-            Start free trial
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 backdrop-blur-md px-8 py-4 text-base font-medium text-white hover:bg-white/20 transition-all hover-scale">
+            <Link
+              to="/signup?src=hero"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black hover:bg-white/95 transition-all hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)]"
+            >
+              Start free trial
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+          <motion.button
+            whileHover={{ scale: 1.04, rotate: 0.5 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 500, damping: 15 }}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 backdrop-blur-md px-8 py-4 text-base font-medium text-white hover:bg-white/20 transition-all"
+          >
             Watch demo
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
-        <p className="mt-5 text-xs text-white/60 font-medium anim-fade-in anim-delay-5">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1.0 }}
+          className="mt-5 text-xs text-white/60 font-medium"
+        >
           3-day free trial · then $1/month for 3 months · no credit card required
-        </p>
+        </motion.p>
       </div>
     </section>
   );
@@ -606,6 +649,16 @@ function Pillars() {
       num: "04",
     },
   ];
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <section id="features" className="border-b border-border/80 bg-card/45 py-28">
       <div className="mx-auto max-w-7xl px-6">
@@ -620,26 +673,42 @@ function Pillars() {
             Every tool you need — payments, analytics, themes, and multi-channel selling — built in from the start.
           </p>
         </div>
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((it, i) => (
-            <PillarCard key={it.title} item={it} delay={i} />
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {items.map((it) => (
+            <PillarCard key={it.title} item={it} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function PillarCard({ item, delay }: { item: { icon: typeof Globe; title: string; body: string; gradient: string; num: string }; delay: number }) {
-  const ref = useInView({ rootMargin: "0px 0px -40px 0px" });
+function PillarCard({ item }: { item: { icon: typeof Globe; title: string; body: string; gradient: string; num: string } }) {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 15,
+      },
+    },
+  };
+
   return (
-    <div
-      ref={ref}
-      className={
-        "group relative rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:shadow-2xl hover:border-border/60 hover:-translate-y-1 " +
-        "anim-scroll-blur overflow-hidden"
-      }
-      style={{ transitionDelay: `${delay * 100}ms` }}
+    <motion.div
+      variants={cardVariants}
+      whileHover={{ y: -6, scale: 1.02, boxShadow: "0px 10px 30px rgba(0,0,0,0.05)" }}
+      whileTap={{ scale: 0.98 }}
+      className="group relative rounded-2xl border border-border bg-card p-7 transition-all duration-300 overflow-hidden"
     >
       {/* Number watermark */}
       <span className="absolute top-4 right-5 font-display text-5xl font-bold text-muted-foreground/[0.06] select-none">{item.num}</span>
@@ -654,7 +723,7 @@ function PillarCard({ item, delay }: { item: { icon: typeof Globe; title: string
       <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
       {/* Bottom accent line on hover */}
       <div className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full transition-all duration-500 rounded-b-2xl" style={{ background: item.gradient }} />
-    </div>
+    </motion.div>
   );
 }
 
@@ -1064,6 +1133,15 @@ function Pricing() {
 
 function PricingSection({ tiers }: { tiers: Array<{ name: string; price: string; tagline: string; features: string[]; cta: string; highlight: boolean }> }) {
   const headingRef = useInView();
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <section id="pricing" className="mx-auto max-w-7xl px-6 py-24">
       <div ref={headingRef} className="mx-auto max-w-2xl text-center anim-scroll-blur">
@@ -1077,29 +1155,48 @@ function PricingSection({ tiers }: { tiers: Array<{ name: string; price: string;
           Start free for three days. Then pick a plan that fits — change any time.
         </p>
       </div>
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {tiers.map((t, i) => (
-          <PricingCard key={t.name} tier={t} delay={i} />
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        className="mt-14 grid gap-6 md:grid-cols-3"
+      >
+        {tiers.map((t) => (
+          <PricingCard key={t.name} tier={t} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
 
-function PricingCard({ tier, delay }: { tier: { name: string; price: string; tagline: string; features: string[]; cta: string; highlight: boolean }; delay: number }) {
-  const ref = useInView({ rootMargin: "0px 0px -40px 0px" });
+function PricingCard({ tier }: { tier: { name: string; price: string; tagline: string; features: string[]; cta: string; highlight: boolean } }) {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 15,
+      },
+    },
+  };
+
   return (
-    <div
-      ref={ref}
+    <motion.div
+      variants={cardVariants}
+      whileHover={{ y: -6, scale: 1.02, boxShadow: "0px 10px 30px rgba(0,0,0,0.05)" }}
+      whileTap={{ scale: 0.98 }}
       className={
-        "flex flex-col rounded-2xl border p-8 anim-scroll-blur hover-lift " +
+        "flex flex-col rounded-2xl border p-8 transition-all duration-300 " +
         (tier.highlight
           ? "border-transparent text-background"
           : "border-border bg-card")
       }
       style={{
         ...(tier.highlight ? { background: "var(--ink)" } : undefined),
-        transitionDelay: `${delay * 100}ms`,
       }}
     >
       <div className="flex items-center justify-between">
@@ -1131,19 +1228,25 @@ function PricingCard({ tier, delay }: { tier: { name: string; price: string; tag
           </li>
         ))}
       </ul>
-      <Link
-        to={`/signup?src=${tier.cta}`}
-        className={
-          "mt-8 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm font-medium transition hover-scale " +
-          (tier.highlight
-            ? "bg-background text-foreground hover:opacity-90"
-            : "bg-foreground text-background hover:opacity-90")
-        }
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        className="mt-auto"
       >
-        Start free trial
-        <ArrowRight className="h-3.5 w-3.5" />
-      </Link>
-    </div>
+        <Link
+          to={`/signup?src=${tier.cta}`}
+          className={
+            "w-full mt-8 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm font-medium transition " +
+            (tier.highlight
+              ? "bg-background text-foreground hover:opacity-90"
+              : "bg-foreground text-background hover:opacity-90")
+          }
+        >
+          Start free trial
+          <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+      </motion.div>
+    </motion.div>
   );
 }
 

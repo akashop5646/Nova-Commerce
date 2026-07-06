@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { setOnboarding } from "@/lib/onboarding";
+import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
@@ -30,18 +31,97 @@ const testimonials = [
   },
 ];
 
-type SignupSearch = { src?: string };
+type AuthMode = "signup" | "login" | "otp_verify" | "forgot_password" | "reset_password";
 
 function SignupPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const initialMode = searchParams.get("mode") === "login" ? "login" : "signup";
+  const [mode, setMode] = useState<AuthMode>(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [otp, setOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const handleCredentialResponse = async (response: any) => {
+    try {
+      setLoading(true);
+      setErr(null);
+      const res = await fetch("/api/auth/google/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ credential: response.credential }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Google verification failed");
+      }
+
+      localStorage.setItem("kiln.auth.token", data.token);
+      localStorage.setItem("kiln.auth.user", JSON.stringify(data.user));
+
+      setOnboarding(data.user.onboarding || {});
+
+      if (data.user.onboarding?.storeName) {
+        navigate("/dashboard/analytics");
+      } else {
+        navigate("/onboarding");
+      }
+    } catch (e: any) {
+      console.error(e);
+      setErr(e.message || "Failed to log in with Google.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleMockSignIn = () => {
+    console.log("Google API not loaded. Falling back to mock authentication.");
+    handleCredentialResponse({ credential: "mock_developer" });
+  };
+
   useEffect(() => {
-    document.title = "Create your account · Kiln";
+    const initGoogleSignIn = () => {
+      const g = (window as any).google;
+      if (g?.accounts?.id) {
+        g.accounts.id.initialize({
+          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "your_google_client_id.apps.googleusercontent.com",
+          callback: handleCredentialResponse,
+        });
+
+        g.accounts.id.renderButton(
+          document.getElementById("google-signin-btn"),
+          {
+            theme: "outline",
+            size: "large",
+            width: "380",
+            shape: "pill",
+          }
+        );
+      } else {
+        setTimeout(initGoogleSignIn, 100);
+      }
+    };
+
+    initGoogleSignIn();
   }, []);
+
+  useEffect(() => {
+    document.title = 
+      mode === "signup" ? "Create your account · Kiln" : 
+      mode === "login" ? "Log in to your account · Kiln" :
+      mode === "otp_verify" ? "Verify your email · Kiln" :
+      "Reset your password · Kiln";
+  }, [mode]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -50,12 +130,189 @@ function SignupPage() {
     return () => clearInterval(timer);
   }, []);
 
-  const submit = (e: React.FormEvent) => {
+  const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!/^\S+@\S+\.\S+$/.test(email)) return setErr("Enter a valid email address.");
     if (password.length < 8) return setErr("Use at least 8 characters.");
-    setOnboarding({ email });
-    navigate("/onboarding");
+    
+    setLoading(true);
+    setErr(null);
+    setSuccessMsg(null);
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, name }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to sign up.");
+      }
+
+      setSuccessMsg("Verification code dispatched to your email!");
+      setMode("otp_verify");
+    } catch (e: any) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyOtpSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otp.length !== 6) return setErr("Please enter the 6-digit code.");
+
+    setLoading(true);
+    setErr(null);
+
+    try {
+      const res = await fetch("/api/auth/signup/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Verification failed.");
+      }
+
+      localStorage.setItem("kiln.auth.token", data.token);
+      localStorage.setItem("kiln.auth.user", JSON.stringify(data.user));
+      setOnboarding(data.user.onboarding || {});
+
+      navigate("/onboarding");
+    } catch (e: any) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLoginSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!/^\S+@\S+\.\S+$/.test(email)) return setErr("Enter a valid email address.");
+    if (!password) return setErr("Please enter your password.");
+
+    setLoading(true);
+    setErr(null);
+    setSuccessMsg(null);
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        if (data.code === "UNVERIFIED") {
+          // Send a new OTP automatically for verification
+          await fetch("/api/auth/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+          setSuccessMsg("Account unverified. New OTP sent!");
+          setMode("otp_verify");
+          return;
+        }
+        throw new Error(data.error || "Login failed.");
+      }
+
+      localStorage.setItem("kiln.auth.token", data.token);
+      localStorage.setItem("kiln.auth.user", JSON.stringify(data.user));
+      setOnboarding(data.user.onboarding || {});
+
+      if (data.user.onboarding?.storeName) {
+        navigate("/dashboard/analytics");
+      } else {
+        navigate("/onboarding");
+      }
+    } catch (e: any) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleForgotPasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!/^\S+@\S+\.\S+$/.test(email)) return setErr("Enter a valid email address.");
+
+    setLoading(true);
+    setErr(null);
+
+    try {
+      const res = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to trigger reset flow.");
+      }
+
+      setSuccessMsg("Password reset code sent to your email!");
+      setMode("reset_password");
+    } catch (e: any) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResetPasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otp.length !== 6) return setErr("Enter the 6-digit verification code.");
+    if (newPassword.length < 8) return setErr("New password must be at least 8 characters.");
+
+    setLoading(true);
+    setErr(null);
+
+    try {
+      const res = await fetch("/api/auth/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp, newPassword }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to reset password.");
+      }
+
+      setSuccessMsg("Password updated successfully! Please log in.");
+      setMode("login");
+    } catch (e: any) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const requestNewSignupOtp = async () => {
+    setLoading(true);
+    setErr(null);
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, name }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      setSuccessMsg("A fresh code has been sent!");
+    } catch (e: any) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -88,13 +345,11 @@ function SignupPage() {
                 >
                   {/* Browser Header Bar */}
                   <div className="flex items-center gap-2 px-4 py-3 bg-white/5 border-b border-white/10 select-none">
-                    {/* Circle buttons */}
                     <div className="flex gap-1.5">
                       <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
                       <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
                       <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
                     </div>
-                    {/* Address bar */}
                     <div className="mx-auto flex items-center justify-center rounded-md bg-white/5 px-4 py-1 text-[11px] font-mono text-white/50 w-2/3 border border-white/5 truncate">
                       {item.domain}
                     </div>
@@ -107,10 +362,9 @@ function SignupPage() {
                       alt={item.company}
                       className="absolute top-0 left-0 w-full object-cover origin-top animate-storefront-scroll"
                       style={{
-                        height: "140%", // Taller than container to support scroll keyframes
+                        height: "140%",
                       }}
                     />
-                    {/* Overlay to blend mockup nicely */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                   </div>
                 </div>
@@ -142,7 +396,6 @@ function SignupPage() {
           {/* Footer Copyright */}
           <div className="relative z-10 mt-8 flex items-center justify-between text-xs opacity-60">
             <span>© 2026 Kiln, Inc.</span>
-            {/* Dots navigation to show slider progress */}
             <div className="flex gap-1.5">
               {testimonials.map((_, idx) => (
                 <button
@@ -158,100 +411,381 @@ function SignupPage() {
           </div>
         </aside>
 
-        <main className="flex items-center justify-center p-6 sm:p-12">
+        <main className="flex items-center justify-center p-6 sm:p-12 relative overflow-hidden bg-background">
           <div className="w-full max-w-sm">
-            <Link to="/" className="flex items-center gap-2 lg:hidden anim-fade-in-down">
+            <Link to="/" className="flex items-center gap-2 lg:hidden anim-fade-in-down mb-6">
               <span
                 className="grid h-8 w-8 place-items-center rounded-lg"
                 style={{ background: "var(--terracotta)" }}
               >
                 <Sparkles className="h-4 w-4 text-background" />
               </span>
-              <span className="font-display text-xl">Kiln</span>
+              <span className="font-display text-xl text-foreground">Kiln</span>
             </Link>
-            <h1 className="mt-6 font-display text-4xl leading-tight anim-fade-in-up anim-delay-1">
-              Create your account
-            </h1>
-            <p className="mt-2 text-sm text-muted-foreground anim-fade-in-up anim-delay-2">
-              Free for three days. No credit card required.
-            </p>
 
-            <div className="mt-8 grid gap-2 anim-fade-in-up anim-delay-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setOnboarding({ email: "you@gmail.com" });
-                  navigate("/onboarding");
-                }}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-3 text-sm font-medium hover:bg-muted hover-lift"
-              >
-                <GoogleIcon /> Continue with Google
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setOnboarding({ email: "you@icloud.com" });
-                  navigate("/onboarding");
-                }}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-3 text-sm font-medium hover:bg-muted hover-lift"
-              >
-                <AppleIcon /> Continue with Apple
-              </button>
-            </div>
+            {/* Success / Error notification alerts */}
+            <AnimatePresence mode="wait">
+              {successMsg && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mb-4 p-3.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-xs text-emerald-600 flex items-center gap-2"
+                >
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                  <span>{successMsg}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-            <div className="my-6 flex items-center gap-3 text-xs text-muted-foreground anim-fade-in anim-delay-4">
-              <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
-            </div>
+            <AnimatePresence mode="wait">
+              {err && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mb-4 p-3.5 bg-destructive/10 border border-destructive/20 rounded-xl text-xs text-destructive flex items-center gap-2"
+                >
+                  <AlertCircle className="h-4 w-4 shrink-0 text-destructive" />
+                  <span>{err}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-            <form onSubmit={submit} className="grid gap-3">
-              <label className="grid gap-1.5 anim-fade-in-up" style={{ animationDelay: "360ms" }}>
-                <span className="text-xs font-medium text-muted-foreground">Email</span>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setErr(null);
-                  }}
-                  placeholder="you@shop.com"
-                  className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow"
-                />
-              </label>
-              <label className="grid gap-1.5 anim-fade-in-up" style={{ animationDelay: "440ms" }}>
-                <span className="text-xs font-medium text-muted-foreground">Password</span>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setErr(null);
-                  }}
-                  placeholder="At least 8 characters"
-                  className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow"
-                />
-              </label>
-              {err && <p className="text-xs text-destructive">{err}</p>}
-              <button
-                type="submit"
-                className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background hover:opacity-90 hover-scale anim-fade-in-up"
-                style={{ animationDelay: "520ms" }}
-              >
-                Create account <ArrowRight className="h-3.5 w-3.5" />
-              </button>
-            </form>
+            {/* --- SIGN UP MODE --- */}
+            {mode === "signup" && (
+              <div className="anim-fade-in">
+                <h1 className="font-display text-4xl leading-tight text-foreground">Create your account</h1>
+                <p className="mt-2 text-sm text-muted-foreground">Free for three days. No credit card required.</p>
 
-            <p className="mt-6 text-xs text-muted-foreground anim-fade-in anim-delay-6">
-              By continuing you agree to Kiln's{" "}
-              <a className="underline" href="#">Terms</a> and{" "}
-              <a className="underline" href="#">Privacy Policy</a>.
-            </p>
+                {/* Google Sign In Container */}
+                <div className="mt-8 grid gap-2">
+                  <div className="relative overflow-hidden w-full group">
+                    <button
+                      type="button"
+                      disabled={loading}
+                      onClick={handleMockSignIn}
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-3 text-sm font-medium hover:bg-muted transition-all active:scale-98 text-foreground"
+                    >
+                      <GoogleIcon /> Continue with Google
+                    </button>
+                    <div
+                      id="google-signin-btn"
+                      className="absolute inset-0 opacity-0 cursor-pointer pointer-events-auto [&>div]:w-full [&>div]:h-full [&_iframe]:cursor-pointer"
+                    />
+                  </div>
+                </div>
 
-            <p className="mt-6 text-sm text-muted-foreground anim-fade-in anim-delay-7">
-              Already have an account?{" "}
-              <Link to="/signup" className="font-medium text-foreground underline">
-                Log in
-              </Link>
-            </p>
+                <div className="my-6 flex items-center gap-3 text-xs text-muted-foreground">
+                  <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
+                </div>
+
+                <form onSubmit={handleSignupSubmit} className="grid gap-4">
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">Full Name</span>
+                    <input
+                      type="text"
+                      required
+                      disabled={loading}
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Jane Doe"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">Email</span>
+                    <input
+                      type="email"
+                      required
+                      disabled={loading}
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setErr(null);
+                      }}
+                      placeholder="you@shop.com"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">Password</span>
+                    <input
+                      type="password"
+                      required
+                      disabled={loading}
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        setErr(null);
+                      }}
+                      placeholder="At least 8 characters"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background hover:opacity-90 active:scale-95 transition-all w-full"
+                  >
+                    {loading ? <Loader2 className="h-4 w-4 animate-spin text-background" /> : "Create account"}
+                    {!loading && <ArrowRight className="h-3.5 w-3.5" />}
+                  </button>
+                </form>
+
+                <p className="mt-6 text-sm text-muted-foreground">
+                  Already have an account?{" "}
+                  <button onClick={() => { setMode("login"); setErr(null); setSuccessMsg(null); }} className="font-semibold text-foreground underline hover:opacity-80">
+                    Log in
+                  </button>
+                </p>
+              </div>
+            )}
+
+            {/* --- LOG IN MODE --- */}
+            {mode === "login" && (
+              <div className="anim-fade-in">
+                <h1 className="font-display text-4xl leading-tight text-foreground">Log in to Kiln</h1>
+                <p className="mt-2 text-sm text-muted-foreground">Access your store dashboard instantly.</p>
+
+                {/* Google Sign In Container */}
+                <div className="mt-8 grid gap-2">
+                  <div className="relative overflow-hidden w-full group">
+                    <button
+                      type="button"
+                      disabled={loading}
+                      onClick={handleMockSignIn}
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-3 text-sm font-medium hover:bg-muted transition-all active:scale-98 text-foreground"
+                    >
+                      <GoogleIcon /> Continue with Google
+                    </button>
+                    <div
+                      id="google-signin-btn"
+                      className="absolute inset-0 opacity-0 cursor-pointer pointer-events-auto [&>div]:w-full [&>div]:h-full [&_iframe]:cursor-pointer"
+                    />
+                  </div>
+                </div>
+
+                <div className="my-6 flex items-center gap-3 text-xs text-muted-foreground">
+                  <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
+                </div>
+
+                <form onSubmit={handleLoginSubmit} className="grid gap-4">
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">Email</span>
+                    <input
+                      type="email"
+                      required
+                      disabled={loading}
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setErr(null);
+                      }}
+                      placeholder="you@shop.com"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <label className="grid gap-1.5">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs font-medium text-muted-foreground">Password</span>
+                      <button
+                        type="button"
+                        onClick={() => { setMode("forgot_password"); setErr(null); setSuccessMsg(null); }}
+                        className="text-xs text-muted-foreground underline hover:text-foreground"
+                      >
+                        Forgot password?
+                      </button>
+                    </div>
+                    <input
+                      type="password"
+                      required
+                      disabled={loading}
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        setErr(null);
+                      }}
+                      placeholder="Password"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background hover:opacity-90 active:scale-95 transition-all w-full"
+                  >
+                    {loading ? <Loader2 className="h-4 w-4 animate-spin text-background" /> : "Log in"}
+                    {!loading && <ArrowRight className="h-3.5 w-3.5" />}
+                  </button>
+                </form>
+
+                <p className="mt-6 text-sm text-muted-foreground">
+                  New to Kiln?{" "}
+                  <button onClick={() => { setMode("signup"); setErr(null); setSuccessMsg(null); }} className="font-semibold text-foreground underline hover:opacity-80">
+                    Create account
+                  </button>
+                </p>
+              </div>
+            )}
+
+            {/* --- OTP VERIFICATION MODE --- */}
+            {mode === "otp_verify" && (
+              <div className="anim-fade-in">
+                <h1 className="font-display text-4xl leading-tight text-foreground">Verify your email</h1>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Enter the 6-digit confirmation code we sent to <strong className="text-foreground">{email}</strong>.
+                </p>
+
+                <form onSubmit={handleVerifyOtpSubmit} className="grid gap-4 mt-8">
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">6-Digit Code</span>
+                    <input
+                      type="text"
+                      maxLength={6}
+                      required
+                      disabled={loading}
+                      value={otp}
+                      onChange={(e) => {
+                        setOtp(e.target.value.replace(/\D/g, ""));
+                        setErr(null);
+                      }}
+                      placeholder="123456"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-center text-xl font-mono tracking-[0.4em] outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background hover:opacity-90 active:scale-95 transition-all w-full"
+                  >
+                    {loading ? <Loader2 className="h-4 w-4 animate-spin text-background" /> : "Verify Code"}
+                    {!loading && <ArrowRight className="h-3.5 w-3.5" />}
+                  </button>
+                </form>
+
+                <div className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
+                  <span>
+                    Didn't receive the email?{" "}
+                    <button
+                      type="button"
+                      disabled={loading}
+                      onClick={requestNewSignupOtp}
+                      className="font-semibold text-foreground underline hover:opacity-80 disabled:opacity-50"
+                    >
+                      Resend Code
+                    </button>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => { setMode("signup"); setErr(null); setSuccessMsg(null); }}
+                    className="text-xs text-muted-foreground underline text-left hover:text-foreground"
+                  >
+                    Change email address
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* --- FORGOT PASSWORD MODE --- */}
+            {mode === "forgot_password" && (
+              <div className="anim-fade-in">
+                <h1 className="font-display text-4xl leading-tight text-foreground">Reset password</h1>
+                <p className="mt-2 text-sm text-muted-foreground">Enter your email and we'll dispatch a 6-digit reset code.</p>
+
+                <form onSubmit={handleForgotPasswordSubmit} className="grid gap-4 mt-8">
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">Email Address</span>
+                    <input
+                      type="email"
+                      required
+                      disabled={loading}
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setErr(null);
+                      }}
+                      placeholder="you@shop.com"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background hover:opacity-90 active:scale-95 transition-all w-full"
+                  >
+                    {loading ? <Loader2 className="h-4 w-4 animate-spin text-background" /> : "Send Reset Code"}
+                    {!loading && <ArrowRight className="h-3.5 w-3.5" />}
+                  </button>
+                </form>
+
+                <p className="mt-6 text-sm text-muted-foreground">
+                  Remember your credentials?{" "}
+                  <button onClick={() => { setMode("login"); setErr(null); setSuccessMsg(null); }} className="font-semibold text-foreground underline hover:opacity-80">
+                    Log in
+                  </button>
+                </p>
+              </div>
+            )}
+
+            {/* --- RESET PASSWORD MODE --- */}
+            {mode === "reset_password" && (
+              <div className="anim-fade-in">
+                <h1 className="font-display text-4xl leading-tight text-foreground">Choose new password</h1>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Enter the 6-digit code sent to <strong className="text-foreground">{email}</strong> and pick a new password.
+                </p>
+
+                <form onSubmit={handleResetPasswordSubmit} className="grid gap-4 mt-8">
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">Reset Code</span>
+                    <input
+                      type="text"
+                      maxLength={6}
+                      required
+                      disabled={loading}
+                      value={otp}
+                      onChange={(e) => {
+                        setOtp(e.target.value.replace(/\D/g, ""));
+                        setErr(null);
+                      }}
+                      placeholder="123456"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-center text-xl font-mono tracking-[0.4em] outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <label className="grid gap-1.5">
+                    <span className="text-xs font-medium text-muted-foreground">New Password</span>
+                    <input
+                      type="password"
+                      required
+                      disabled={loading}
+                      value={newPassword}
+                      onChange={(e) => {
+                        setNewPassword(e.target.value);
+                        setErr(null);
+                      }}
+                      placeholder="At least 8 characters"
+                      className="rounded-lg border border-border bg-card px-4 py-3 text-sm outline-none ring-ring/30 focus:ring-2 transition-shadow text-foreground"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background hover:opacity-90 active:scale-95 transition-all w-full"
+                  >
+                    {loading ? <Loader2 className="h-4 w-4 animate-spin text-background" /> : "Reset Password"}
+                    {!loading && <ArrowRight className="h-3.5 w-3.5" />}
+                  </button>
+                </form>
+
+                <p className="mt-6 text-sm text-muted-foreground">
+                  Cancel and go back to{" "}
+                  <button onClick={() => { setMode("login"); setErr(null); setSuccessMsg(null); }} className="font-semibold text-foreground underline hover:opacity-80">
+                    Log In
+                  </button>
+                </p>
+              </div>
+            )}
           </div>
         </main>
       </div>
