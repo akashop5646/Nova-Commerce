@@ -10,6 +10,10 @@
     "test": "echo 'No tests'"
   },
   "dependencies": {
-    "@klin/core": "*"
+    "@klin/core": "*",
+    "@klin/registry": "*",
+    "@klin/event-bus": "*",
+    "@klin/command-engine": "*",
+    "@klin/theme": "*"
   }
 }
