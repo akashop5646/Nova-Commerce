@@ -7,7 +7,14 @@ export type { PageState } from "./core/PageState";
 export { createDefaultPageState } from "./core/PageState";
 export { PageInstance, PageFactory } from "./core/PageFactory";
 export { PageManager } from "./core/PageManager";
+export type { RenderNode } from "./render-tree/RenderNode";
+export type { RenderTree } from "./render-tree/RenderTree";
+export type { RenderProps } from "./render-tree/RenderProps";
+export type { RenderSlots } from "./render-tree/RenderSlots";
+export type { RenderContext } from "./render-tree/RenderContext";
+export { RenderTreeOptimizer } from "./render-tree/RenderTreeOptimizer";
 export { WebsiteManager } from "./core/WebsiteManager";
+
 export { DraftManager } from "./core/DraftManager";
 export type { PageDraft } from "./core/DraftManager";
 export { DraftComparer } from "./core/DraftComparer";
