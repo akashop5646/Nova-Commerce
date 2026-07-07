@@ -551,6 +551,190 @@ const TEMPLATES: Array<{
       },
     ],
   },
+  
+  // ── 7. Classic Denim ──────────────────────────────────
+  {
+    id: "classic-denim",
+    name: "Classic Denim",
+    description: "Timeless indigo tones and structured layouts. Ideal for heritage clothing and denim brands.",
+    category: "Fashion & Clothing",
+    theme: {
+      colors: {
+        primary: "#1E3A8A",
+        secondary: "#475569",
+        accent: "#2563EB",
+        background: "#FCFDFE",
+        surface: "#F1F5F9",
+        text: "#0F172A",
+      },
+      typography: {
+        headingFont: "Playfair Display",
+        bodyFont: "Inter",
+        headingSize: "default",
+        bodySize: "default",
+      },
+      buttons: { style: "rounded", shadow: true },
+      cards: { radius: 8, shadow: true, border: false },
+      animations: "fade",
+    },
+    pages: [
+      {
+        id: generateId("pg"),
+        title: "Home",
+        slug: "home",
+        isVisible: true,
+        sections: [
+          makeHeader({ logoText: "Denim Co." }),
+          {
+            id: generateId("sec"),
+            type: "hero",
+            isVisible: true,
+            config: {
+              headline: "Built to Wear. Made to Last.",
+              subtitle: "Explore our collection of premium raw selvage denim, shirts, and heritage outerwear.",
+              ctaText: "Shop Denim",
+              ctaLink: "/products",
+              backgroundImage: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=1600",
+              overlayOpacity: 0.4,
+              alignment: "center",
+              height: "large",
+            },
+          },
+          {
+            id: generateId("sec"),
+            type: "featured-products",
+            isVisible: true,
+            config: {
+              title: "The Denim Shop",
+              subtitle: "Handcrafted selvage fits",
+              productCount: 4,
+              layout: "grid",
+              columns: 4,
+            },
+          },
+          {
+            id: generateId("sec"),
+            type: "image-banner",
+            isVisible: true,
+            config: {
+              imageUrl: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=1600",
+              headline: "Heritage Craftsmanship",
+              subtitle: "Woven on traditional shuttle looms and stitched by master craftsmen.",
+              ctaText: "Learn Our Process",
+              ctaLink: "/about",
+              alignment: "right",
+              height: "medium",
+            },
+          },
+          {
+            id: generateId("sec"),
+            type: "features",
+            isVisible: true,
+            config: {
+              title: "The Selvage Promise",
+              items: [
+                { icon: "Shield", title: "Lifetime Warranty", description: "Free repairs on all hardware and seams." },
+                { icon: "Truck", title: "Free Global Shipping", description: "Delivered to your doorstep in 3-5 days." },
+                { icon: "RotateCcw", title: "Fit Guarantee", description: "Exchange for any size or cut free of charge." },
+              ],
+              columns: 3,
+            },
+          },
+          makeFooter({ companyName: "Denim Co." }),
+        ],
+      },
+    ],
+  },
+
+  // ── 8. Streetwear Capsule ─────────────────────────────
+  {
+    id: "streetwear-capsule",
+    name: "Streetwear Drop",
+    description: "High contrast dark mode with neon accents and bold layouts. Tailored for capsule clothing drops.",
+    category: "Streetwear & Fashion",
+    theme: {
+      colors: {
+        primary: "#000000",
+        secondary: "#71717A",
+        accent: "#A3E635",
+        background: "#09090B",
+        surface: "#18181B",
+        text: "#FAFAFA",
+      },
+      typography: {
+        headingFont: "Inter",
+        bodyFont: "Inter",
+        headingSize: "large",
+        bodySize: "default",
+      },
+      buttons: { style: "square", shadow: false },
+      cards: { radius: 0, shadow: false, border: true },
+      animations: "modern",
+    },
+    pages: [
+      {
+        id: generateId("pg"),
+        title: "Home",
+        slug: "home",
+        isVisible: true,
+        sections: [
+          makeHeader({ logoText: "DROP.01", showAnnouncement: true, announcementText: "⚡ CAPSULE 01 DROPPING NOW. LIMITED QUANTITIES." }),
+          {
+            id: generateId("sec"),
+            type: "hero",
+            isVisible: true,
+            config: {
+              headline: "CAPSULE.01",
+              subtitle: "Heavyweight cotton, oversized fits, custom hardware. Engineered for the street.",
+              ctaText: "SHOP DROP",
+              ctaLink: "/products",
+              backgroundImage: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1600",
+              overlayOpacity: 0.55,
+              alignment: "left",
+              height: "full",
+            },
+          },
+          {
+            id: generateId("sec"),
+            type: "featured-products",
+            isVisible: true,
+            config: {
+              title: "CURRENT DROP",
+              subtitle: "Capsule 01: Core basics",
+              productCount: 4,
+              layout: "grid",
+              columns: 2,
+            },
+          },
+          {
+            id: generateId("sec"),
+            type: "testimonials",
+            isVisible: true,
+            config: {
+              title: "COMMUNITY FEEDBACK",
+              items: [
+                { quote: "Best heavyweight tee I've ever owned. The collar stays tight.", author: "Marcus T.", role: "Verified Buyer" },
+                { quote: "Incredible fit and premium stitching. Fits oversized perfectly.", author: "Elena R.", role: "Collector" },
+                { quote: "Fast shipping and high quality custom packaging.", author: "Jin W.", role: "Verified Buyer" },
+              ],
+            },
+          },
+          {
+            id: generateId("sec"),
+            type: "newsletter",
+            isVisible: true,
+            config: {
+              title: "GET DROPS FIRST",
+              subtitle: "Sign up to receive early access codes for future drops.",
+              buttonText: "JOIN SYSTEM",
+              placeholder: "system@email.com",
+            },
+          },
+          makeFooter({ companyName: "DROP.01" }),
+        ],
+      },
+    ],
+  },
 ];
 
 export function getTemplates() {
