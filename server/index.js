@@ -7,6 +7,8 @@ import dns from "dns";
 import { randomBytes, scryptSync, timingSafeEqual } from "crypto";
 import { OAuth2Client } from "google-auth-library";
 import User from "./models/User.js";
+import StoreDesign from "./models/StoreDesign.js";
+import Product from "./models/Product.js";
 
 // Fix DNS resolution issues on Windows for MongoDB Atlas SRV records
 dns.setDefaultResultOrder("ipv4first");
@@ -547,6 +549,150 @@ app.post("/api/user/onboarding", authenticateToken, async (req, res) => {
   } catch (error) {
     console.error("Onboarding sync error:", error);
     res.status(500).json({ error: "Failed to sync onboarding state" });
+  }
+});
+
+// ─── Store Design API ────────────────────────────────────
+
+// GET: Fetch user's draft design
+app.get("/api/store-design", authenticateToken, async (req, res) => {
+  try {
+    const design = await StoreDesign.findOne({ userId: req.user.id });
+    if (!design) {
+      return res.status(404).json({ error: "No design found" });
+    }
+    res.json({ design });
+  } catch (error) {
+    console.error("Fetch design error:", error);
+    res.status(500).json({ error: "Failed to fetch design" });
+  }
+});
+
+// POST: Create initial design (from template)
+app.post("/api/store-design", authenticateToken, async (req, res) => {
+  try {
+    // Check if design already exists
+    const existing = await StoreDesign.findOne({ userId: req.user.id });
+    if (existing) {
+      return res.status(409).json({ error: "Design already exists. Use PATCH to update." });
+    }
+    const { templateId, theme, pages } = req.body;
+    const design = await StoreDesign.create({
+      userId: req.user.id,
+      templateId: templateId || "",
+      theme,
+      pages,
+    });
+    res.status(201).json({ design });
+  } catch (error) {
+    console.error("Create design error:", error);
+    res.status(500).json({ error: "Failed to create design" });
+  }
+});
+
+// PATCH: Auto-save draft changes
+app.patch("/api/store-design", authenticateToken, async (req, res) => {
+  try {
+    const design = await StoreDesign.findOne({ userId: req.user.id });
+    if (!design) {
+      return res.status(404).json({ error: "No design found" });
+    }
+    const { theme, pages } = req.body;
+    if (theme) design.theme = theme;
+    if (pages) design.pages = pages;
+    await design.save();
+    res.json({ design });
+  } catch (error) {
+    console.error("Save design error:", error);
+    res.status(500).json({ error: "Failed to save design" });
+  }
+});
+
+// POST: Publish draft → live
+app.post("/api/store-design/publish", authenticateToken, async (req, res) => {
+  try {
+    const design = await StoreDesign.findOne({ userId: req.user.id });
+    if (!design) {
+      return res.status(404).json({ error: "No design found" });
+    }
+    design.published = {
+      theme: design.theme,
+      pages: design.pages,
+    };
+    design.publishedAt = new Date();
+    design.version += 1;
+    await design.save();
+    res.json({
+      message: "Published successfully",
+      publishedAt: design.publishedAt,
+      version: design.version,
+    });
+  } catch (error) {
+    console.error("Publish error:", error);
+    res.status(500).json({ error: "Failed to publish" });
+  }
+});
+
+// GET: Fetch published design (public storefront)
+app.get("/api/store-design/published/:userId", async (req, res) => {
+  try {
+    const design = await StoreDesign.findOne({ userId: req.params.userId });
+    if (!design || !design.published) {
+      return res.status(404).json({ error: "No published design found" });
+    }
+    res.json({ design: design.published });
+  } catch (error) {
+    console.error("Fetch published error:", error);
+    res.status(500).json({ error: "Failed to fetch published design" });
+  }
+});
+
+// DELETE: Delete design (reset)
+app.delete("/api/store-design", authenticateToken, async (req, res) => {
+  try {
+    await StoreDesign.deleteOne({ userId: req.user.id });
+    res.json({ message: "Design deleted" });
+  } catch (error) {
+    console.error("Delete design error:", error);
+    res.status(500).json({ error: "Failed to delete design" });
+  }
+});
+
+// ─── Product API ─────────────────────────────────────────
+
+// GET: Fetch products for a specific user (public storefront)
+app.get("/api/products/public/:userId", async (req, res) => {
+  try {
+    const products = await Product.find({ userId: req.params.userId, status: { $ne: "archived" } }).sort({ createdAt: -1 });
+    res.json({ products });
+  } catch (error) {
+    console.error("Fetch public products error:", error);
+    res.status(500).json({ error: "Failed to fetch products" });
+  }
+});
+
+// GET: Fetch user's products
+app.get("/api/products", authenticateToken, async (req, res) => {
+  try {
+    const products = await Product.find({ userId: req.user.id }).sort({ createdAt: -1 });
+    res.json({ products });
+  } catch (error) {
+    console.error("Fetch products error:", error);
+    res.status(500).json({ error: "Failed to fetch products" });
+  }
+});
+
+// POST: Create product
+app.post("/api/products", authenticateToken, async (req, res) => {
+  try {
+    const product = await Product.create({
+      userId: req.user.id,
+      ...req.body,
+    });
+    res.status(201).json({ product });
+  } catch (error) {
+    console.error("Create product error:", error);
+    res.status(500).json({ error: "Failed to create product" });
   }
 });
 

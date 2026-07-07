@@ -16,6 +16,9 @@ import DashboardMarketing from "./routes/dashboard.marketing";
 import DashboardOnlineStore from "./routes/dashboard.online-store";
 import DashboardDiscounts from "./routes/dashboard.discounts";
 import DashboardSettings from "./routes/dashboard.settings";
+import DesignStudioPage from "./routes/dashboard.online-store.builder";
+import StorefrontPreviewPage from "./routes/storefront-preview";
+import StorefrontPublicPage from "./routes/storefront-public";
 
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource-variable/inter/index.css";
@@ -69,6 +72,10 @@ const router = createBrowserRouter([
         element: <DashboardOnlineStore />,
       },
       {
+        path: "online-store/builder",
+        element: <DesignStudioPage />,
+      },
+      {
         path: "discounts",
         element: <DashboardDiscounts />,
       },
@@ -77,6 +84,14 @@ const router = createBrowserRouter([
         element: <DashboardSettings />,
       },
     ],
+  },
+  {
+    path: "/store/:userId",
+    element: <StorefrontPublicPage />,
+  },
+  {
+    path: "/storefront-preview",
+    element: <StorefrontPreviewPage />,
   },
   {
     path: "*",
