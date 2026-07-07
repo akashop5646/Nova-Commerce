@@ -58,3 +58,6 @@ export class TemplateDeserializer {
     }
   }
 }
+
+// Force sync language server
+

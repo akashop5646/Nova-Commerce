@@ -37,3 +37,6 @@ export { MigrationEngine } from "./version/MigrationEngine";
 export type { MigrationStep, MigrationFn } from "./version/MigrationEngine";
 export { TemplateSerializer } from "./serialization/TemplateSerializer";
 export { TemplateDeserializer } from "./serialization/TemplateDeserializer";
+
+// Force trigger language server refresh
+
