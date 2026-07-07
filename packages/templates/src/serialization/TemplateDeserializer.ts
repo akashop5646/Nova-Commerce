@@ -1,6 +1,6 @@
 import type { TemplateContext } from "../core/TemplateContext";
 import { TemplateInstance, TemplateFactory } from "../core/TemplateFactory";
-import type { VersionedTemplate } from "../version/TemplateVersion";
+import type { VersionedTemplate } from "../version/TemplateVersion.ts";
 import { MigrationEngine } from "../version/MigrationEngine";
 import type { TemplateManifest } from "../contracts/TemplateManifest";
 import { Result, Ok, Err } from "@klin/core";

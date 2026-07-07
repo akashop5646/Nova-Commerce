@@ -1,5 +1,5 @@
 import { TemplateInstance } from "../core/TemplateFactory";
-import type { VersionedTemplate } from "../version/TemplateVersion";
+import type { VersionedTemplate } from "../version/TemplateVersion.ts";
 import { Result, Ok, Err } from "@klin/core";
 
 export class TemplateSerializer {

@@ -1,5 +1,5 @@
 import { Result, Ok, Err } from "@klin/core";
-import type { VersionedTemplate, TemplateVersionDescriptor } from "./TemplateVersion";
+import type { VersionedTemplate, TemplateVersionDescriptor } from "./TemplateVersion.ts";
 
 export type MigrationFn = (data: Record<string, unknown>) => Record<string, unknown> | Promise<Record<string, unknown>>;
 
