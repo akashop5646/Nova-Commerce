@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import type { DesignState } from "@/lib/design-engine/types";
 import { StorefrontRenderer } from "@/lib/design-engine/renderer";
+import { getTemplates, templateToDesignState } from "@/lib/design-engine/templates";
 
 /**
  * StorefrontPreviewPage
@@ -34,8 +35,20 @@ export default function StorefrontPreviewPage() {
     fetchProducts();
   }, []);
 
-  // Listen for UPDATE_DESIGN messages from parent
+  // Listen for UPDATE_DESIGN messages from parent, or load template directly from query param
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const presetId = params.get("preset");
+    if (presetId) {
+      const tpl = getTemplates().find((t) => t.id === presetId);
+      if (tpl) {
+        const ds = templateToDesignState(tpl);
+        setDesign(ds);
+        setCurrentPageId(ds.pages[0]?.id || "");
+      }
+      return;
+    }
+
     const handler = (e: MessageEvent) => {
       if (e.data?.type === "UPDATE_DESIGN") {
         setDesign(e.data.design);
