@@ -402,8 +402,11 @@ export function useDesignEngine() {
 
   const load = useCallback(async () => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) return;
+      const token = localStorage.getItem("kiln.auth.token");
+      if (!token) {
+        setIsLoaded(true);
+        return;
+      }
       const res = await fetch("/api/store-design", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -434,7 +437,7 @@ export function useDesignEngine() {
 
   const save = useCallback(async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("kiln.auth.token");
       if (!token) return;
       setEditor((e) => ({ ...e, isSaving: true }));
       const res = await fetch("/api/store-design", {
@@ -466,7 +469,7 @@ export function useDesignEngine() {
   const createFromTemplate = useCallback(
     async (templateDesign: DesignState) => {
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("kiln.auth.token");
         if (!token) return;
         const res = await fetch("/api/store-design", {
           method: "POST",
@@ -500,7 +503,7 @@ export function useDesignEngine() {
 
   const publish = useCallback(async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("kiln.auth.token");
       if (!token) return;
       // Save first
       await save();
