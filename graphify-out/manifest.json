@@ -370,8 +370,8 @@
     "semantic_hash": ""
   },
   "tsconfig.json": {
-    "mtime": 1783252659.5838478,
-    "ast_hash": "994abf64c2b9f78b568879f80ed0170e",
+    "mtime": 1783446035.475059,
+    "ast_hash": "6140c0eb9d37c0e3cba67e01289fdb52",
     "semantic_hash": ""
   },
   "vite.config.ts": {
@@ -600,13 +600,13 @@
     "semantic_hash": ""
   },
   "packages/builder-core/package.json": {
-    "mtime": 1783444382.3669367,
-    "ast_hash": "4b804131c647048f14aad5541387babc",
+    "mtime": 1783446449.7568097,
+    "ast_hash": "fe83a218f1aaa49405cfaf84dc7703ee",
     "semantic_hash": ""
   },
   "packages/builder-core/src/index.ts": {
-    "mtime": 1783444382.3679566,
-    "ast_hash": "d407d170a4b01b2b542d91dd0333e8de",
+    "mtime": 1783446651.0823574,
+    "ast_hash": "2d1370c015c43b6ad6bd21c8222f9f95",
     "semantic_hash": ""
   },
   "packages/builder-core/tsconfig.json": {
@@ -1265,13 +1265,13 @@
     "semantic_hash": ""
   },
   "packages/puck-adapter/package.json": {
-    "mtime": 1783444382.4792216,
-    "ast_hash": "07b023a7fd51e0160f2d77ca3043bc1c",
+    "mtime": 1783445456.6642807,
+    "ast_hash": "62ac065f20477a0e13001fe7dc08fc95",
     "semantic_hash": ""
   },
   "packages/puck-adapter/src/index.ts": {
-    "mtime": 1783444382.4792216,
-    "ast_hash": "a66aa89e8ca94f2570ac9781df722fc5",
+    "mtime": 1783445772.2761047,
+    "ast_hash": "52daba02953a1eb7cce03dc3d209a4bf",
     "semantic_hash": ""
   },
   "packages/puck-adapter/tsconfig.json": {
@@ -2632,6 +2632,401 @@
   "standards/theme.md": {
     "mtime": 1783444382.6694095,
     "ast_hash": "667439a261ba3f7a09e6f955aec06f32",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/api/BuilderAPI.ts": {
+    "mtime": 1783446609.378711,
+    "ast_hash": "848319b49bbcbb07c7464da156dc3164",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/api/ClipboardAPI.ts": {
+    "mtime": 1783446602.339545,
+    "ast_hash": "8ef05eb26d3b300259ab19806e6f5f2c",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/api/HistoryAPI.ts": {
+    "mtime": 1783446595.4622562,
+    "ast_hash": "0992f61d35afaadf1983e705bdcb99bf",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/api/WorkspaceAPI.ts": {
+    "mtime": 1783446587.9230368,
+    "ast_hash": "91b4193c7949aba1b8ee7b0080acc25b",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/core/BuilderBootstrap.ts": {
+    "mtime": 1783446624.4047015,
+    "ast_hash": "f7c3dab40be1d4ad0a436a5a9109844b",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/core/BuilderContainer.ts": {
+    "mtime": 1783446503.1147275,
+    "ast_hash": "a1eff4185af06d2552400c7ef4c40e62",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/core/BuilderContext.ts": {
+    "mtime": 1783446508.6030414,
+    "ast_hash": "15a62b74cbe1feb174e0f6dd73b7b15f",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/core/BuilderCore.ts": {
+    "mtime": 1783446616.704968,
+    "ast_hash": "4b2a5f5ee185a623bf150923b88fba52",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/core/BuilderKernel.ts": {
+    "mtime": 1783446580.2749457,
+    "ast_hash": "b1f18ba9d064ecf0c5ff65ff627c7d08",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/core/BuilderLifecycle.ts": {
+    "mtime": 1783446513.3037212,
+    "ast_hash": "0b9f46af5b0e0226162b7a6306ebacf0",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/core/BuilderStateMachine.ts": {
+    "mtime": 1783446518.7755482,
+    "ast_hash": "53cf5335c786caac3a773d15d25712ff",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/debug/Inspector.ts": {
+    "mtime": 1783446645.2945387,
+    "ast_hash": "99c9c990dc6fa0da1f464544e432652b",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/events/BuilderCoreEvents.ts": {
+    "mtime": 1783446630.7793753,
+    "ast_hash": "fd214b75e378537d920ef9c17e6f7c1b",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/autosave/AutosaveManager.ts": {
+    "mtime": 1783446559.2639096,
+    "ast_hash": "0c9f80b0f71d0376cb98d295773bb2f8",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/clipboard/ClipboardManager.ts": {
+    "mtime": 1783446539.517538,
+    "ast_hash": "99b587538276653f390f5a1190956a92",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/guides/GuideManager.ts": {
+    "mtime": 1783446553.2208385,
+    "ast_hash": "da72e631b3fff4313ddf916f244f1ff6",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/history/HistoryManager.ts": {
+    "mtime": 1783446534.1959221,
+    "ast_hash": "11911d6fe81dc8c8a5886623ba68847c",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/inspector/InspectorManager.ts": {
+    "mtime": 1783446573.9670317,
+    "ast_hash": "b638e52d958172016a4cef5821ba013b",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/plugins/PluginHost.ts": {
+    "mtime": 1783446568.9383142,
+    "ast_hash": "ccc0f264f2ac2c292dd0b8fd2f83fd6d",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/selection/SelectionManager.ts": {
+    "mtime": 1783446529.3660216,
+    "ast_hash": "17563676b1c7fffd57ce48afe8c67dd3",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/shortcuts/ShortcutManager.ts": {
+    "mtime": 1783446563.9904811,
+    "ast_hash": "bd8e014da1c32f835d73a900c04bce6c",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/viewport/ViewportManager.ts": {
+    "mtime": 1783446544.5819218,
+    "ast_hash": "a1b9f7aed01365c93f99a2c1392d4f44",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/managers/workspace/WorkspaceManager.ts": {
+    "mtime": 1783446524.1870234,
+    "ast_hash": "a54f753c2cfa3647dbf9e8b1afc75c62",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/metrics/MetricsCollector.ts": {
+    "mtime": 1783446638.287841,
+    "ast_hash": "15885fe0933d4466d1ce45374ab80ef7",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/services/CommandService.ts": {
+    "mtime": 1783446497.6257284,
+    "ast_hash": "52d07767833296b2572878bbff7574ff",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/services/EventService.ts": {
+    "mtime": 1783446472.842389,
+    "ast_hash": "2dd8d7227d417916f53f5e9b0a344eef",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/services/RegistryService.ts": {
+    "mtime": 1783446492.7373252,
+    "ast_hash": "1c740f0ffc026059b5040146e9d686a6",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/services/ThemeService.ts": {
+    "mtime": 1783446488.488544,
+    "ast_hash": "9e1d9de2cd021416f75a9479f7552033",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/state/BuilderSnapshot.ts": {
+    "mtime": 1783446465.6551929,
+    "ast_hash": "4738d5993a3ba003529a795ab18c07f8",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/state/BuilderState.ts": {
+    "mtime": 1783446455.6495895,
+    "ast_hash": "0e95223ad49798a18feaf25bb6f55a52",
+    "semantic_hash": ""
+  },
+  "packages/builder-core/src/state/BuilderStore.ts": {
+    "mtime": 1783446461.235582,
+    "ast_hash": "8da8dcd39e6ca05a817742457cd2b30c",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/ai/AIBridge.ts": {
+    "mtime": 1783445560.5156846,
+    "ast_hash": "96f344267b6422251e0d24e194185f5b",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/commands/CommandBridge.ts": {
+    "mtime": 1783445677.236257,
+    "ast_hash": "f506ce8e240b31de710dbf49edcd4a67",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/core/BuilderAdapter.ts": {
+    "mtime": 1783445767.187328,
+    "ast_hash": "858fa4246f27ec72aba612b50ebfa690",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/core/BuilderContext.ts": {
+    "mtime": 1783445468.437596,
+    "ast_hash": "913f9dd4ee30d0fe2c9afe8014964e41",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/core/BuilderLifecycle.ts": {
+    "mtime": 1783445473.20118,
+    "ast_hash": "21a8d1c9d75f57b5efc8e9c0f9cb2f69",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/core/IBuilderAdapter.ts": {
+    "mtime": 1783446039.6899867,
+    "ast_hash": "1a5be9d604305343390c37deb824d434",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/debug/Inspector.ts": {
+    "mtime": 1783445758.6329472,
+    "ast_hash": "38b30e9d2671bba70d5fa0a5aa455c93",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/deserializer/Deserializer.ts": {
+    "mtime": 1783445697.0579798,
+    "ast_hash": "b7075c8cc934b425268c5a8fc58097f0",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/events/BuilderEvents.ts": {
+    "mtime": 1783445743.0360022,
+    "ast_hash": "e572e0ecc70eeb7d4c9e4bc03b7040be",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/export/ExportPipeline.ts": {
+    "mtime": 1783445570.7639272,
+    "ast_hash": "10dc953479547fe2872db5e90e7714d9",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/import/ImportPipeline.ts": {
+    "mtime": 1783445565.8618689,
+    "ast_hash": "549f28e1c185efac554b2f61d16a50d5",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/mapper/BuilderSchemaMapper.ts": {
+    "mtime": 1783445483.598764,
+    "ast_hash": "e3bc0b548b958bbc81a4a40f82d839d5",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/mapper/ComponentMapper.ts": {
+    "mtime": 1783445520.724093,
+    "ast_hash": "42dff44a51aeaa415ef58178dd3e6497",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/mapper/PuckFieldMapper.ts": {
+    "mtime": 1783445489.4958243,
+    "ast_hash": "b4610ed3184d5531052e1c6583fd30e9",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/mapper/types.ts": {
+    "mtime": 1783445478.623891,
+    "ast_hash": "9ab72c1c3ab2ab6d8f5ed8cdd0ea99ff",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/metadata/BuilderMetadata.ts": {
+    "mtime": 1783445682.3220873,
+    "ast_hash": "54c105b7d4973e6a08a701282f776d5d",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/metrics/MetricsCollector.ts": {
+    "mtime": 1783445753.3233068,
+    "ast_hash": "d216f686e1e47c711318fa279c67c9ef",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/panels/PanelManager.ts": {
+    "mtime": 1783445542.2861338,
+    "ast_hash": "b1d05836c5a20d791b42282617560d60",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/panels/PanelRegistry.ts": {
+    "mtime": 1783445535.3689418,
+    "ast_hash": "d026846e906699c808e2780fea2bbe75",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/preview/PreviewEngine.ts": {
+    "mtime": 1783445686.547619,
+    "ast_hash": "59ebcb7a2003424dd8d11daa6ad078a8",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/registry/ComponentLoader.ts": {
+    "mtime": 1783445647.7713852,
+    "ast_hash": "da75488f5df86bd7fb06b0bbd1778fe9",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/registry/Discovery.ts": {
+    "mtime": 1783445630.4959233,
+    "ast_hash": "1d155e07bd74167962dd14baf22c8a5a",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/registry/ManifestLoader.ts": {
+    "mtime": 1783445643.4447148,
+    "ast_hash": "28601b82c2235394e43b8c969a305bc4",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/registry/RegistryWatcher.ts": {
+    "mtime": 1783445806.2275054,
+    "ast_hash": "1268de7bc73c645247666ce314cd3132",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/renderer/ReactRenderer.ts": {
+    "mtime": 1783445514.291403,
+    "ast_hash": "81ed550a9bd9e189e2adebebfe692231",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/renderer/RendererAdapter.ts": {
+    "mtime": 1783445494.7272496,
+    "ast_hash": "e03d1fff460d43f4bb731ded0a878898",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/ClipboardManager.ts": {
+    "mtime": 1783445712.2338443,
+    "ast_hash": "83a6d2b9a2ad862b826caec634fccf7d",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/DragDropManager.ts": {
+    "mtime": 1783445717.1569555,
+    "ast_hash": "903d29c9224ae85290c4d2270def5b04",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/DropCalculator.ts": {
+    "mtime": 1783445731.654711,
+    "ast_hash": "57354ac589d990d18ebf818b8816e9e0",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/DropIndicator.ts": {
+    "mtime": 1783445727.0008965,
+    "ast_hash": "6f5f38e4cec3daf52f10154130ff591b",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/DropRules.ts": {
+    "mtime": 1783445722.405666,
+    "ast_hash": "c7ff68e6c11586d8d308aadf049002dd",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/RuntimeBridge.ts": {
+    "mtime": 1783445736.790088,
+    "ast_hash": "46540a639ed7407ccc95a176399cdf75",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/SelectionManager.ts": {
+    "mtime": 1783445702.372589,
+    "ast_hash": "5eded27e6816e958d619f9233b19583c",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/runtime/SelectionOverlay.ts": {
+    "mtime": 1783445707.0516112,
+    "ast_hash": "be675bc377d7a89fd03493ed3899eb3b",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/sdk/BuilderAPI.ts": {
+    "mtime": 1783445575.2663455,
+    "ast_hash": "71e1312dd66628907c1d0a896e20381d",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/sdk/BuilderExtension.ts": {
+    "mtime": 1783445585.3676307,
+    "ast_hash": "d136463a24449301f014e82310904f15",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/sdk/BuilderPlugin.ts": {
+    "mtime": 1783445580.2814102,
+    "ast_hash": "be343950518dd7fd791bbe74654dbbc6",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/sdk/Hooks.ts": {
+    "mtime": 1783445589.9304557,
+    "ast_hash": "090162cfd733d1c1a676a86c3cd71c10",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/serializer/Serializer.ts": {
+    "mtime": 1783445691.356058,
+    "ast_hash": "afe56773a04404f3e09dfcfdbcb0fd17",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/shortcuts/ShortcutManager.ts": {
+    "mtime": 1783445555.9629016,
+    "ast_hash": "dd33f3822944a96e9324d80ad692a81e",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/state/BuilderSession.ts": {
+    "mtime": 1783445529.8214338,
+    "ast_hash": "9c94e790f2aaf0cdc954c54a128341cc",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/state/EditorState.ts": {
+    "mtime": 1783445525.4772587,
+    "ast_hash": "7925411d77be5c9e0fd6180bd8c9bfd0",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/toolbar/ToolbarAction.ts": {
+    "mtime": 1783445546.958073,
+    "ast_hash": "e22ada2764bc8dfd7042ab28de7f926f",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/toolbar/ToolbarRegistry.ts": {
+    "mtime": 1783445551.065415,
+    "ast_hash": "b62d86b66af869c6ecf55d18062481f5",
+    "semantic_hash": ""
+  },
+  "packages/puck-adapter/src/validation/AdapterValidator.ts": {
+    "mtime": 1783445748.0648994,
+    "ast_hash": "13fbb54b8172960bb0308996fb63df7d",
+    "semantic_hash": ""
+  },
+  "docs/BUILDER_ARCHITECTURE.md": {
+    "mtime": 1783445777.4027317,
+    "ast_hash": "9e076d0b25958bbf00773bc1fb93fbd0",
+    "semantic_hash": ""
+  },
+  "docs/BUILDER_CORE_ARCHITECTURE.md": {
+    "mtime": 1783446659.3019173,
+    "ast_hash": "1c24363426e1485949e72f64743ddd0c",
+    "semantic_hash": ""
+  },
+  "docs/DATA_FLOW_ARCHITECTURE.md": {
+    "mtime": 1783445782.7929025,
+    "ast_hash": "de0f50a6e0968f7b7378135eff46e2fd",
     "semantic_hash": ""
   }
 }

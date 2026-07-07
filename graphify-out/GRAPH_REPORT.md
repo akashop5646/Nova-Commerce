@@ -1,16 +1,16 @@
 # Graph Report - Kiln  (2026-07-07)
 
 ## Corpus Check
-- 516 files · ~154,144 words
+- 595 files · ~161,699 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2930 nodes · 3759 edges · 306 communities (257 shown, 49 thin omitted)
+- 3332 nodes · 4516 edges · 335 communities (274 shown, 61 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fb811698`
+- Built from commit: `fced720c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -265,6 +265,8 @@
 - [[_COMMUNITY_Community 263|Community 263]]
 - [[_COMMUNITY_Community 264|Community 264]]
 - [[_COMMUNITY_Community 265|Community 265]]
+- [[_COMMUNITY_Community 271|Community 271]]
+- [[_COMMUNITY_Community 281|Community 281]]
 - [[_COMMUNITY_Community 287|Community 287]]
 - [[_COMMUNITY_Community 291|Community 291]]
 - [[_COMMUNITY_Community 292|Community 292]]
@@ -273,18 +275,45 @@
 - [[_COMMUNITY_Community 295|Community 295]]
 - [[_COMMUNITY_Community 296|Community 296]]
 - [[_COMMUNITY_Community 297|Community 297]]
+- [[_COMMUNITY_Community 306|Community 306]]
+- [[_COMMUNITY_Community 307|Community 307]]
+- [[_COMMUNITY_Community 308|Community 308]]
+- [[_COMMUNITY_Community 309|Community 309]]
+- [[_COMMUNITY_Community 310|Community 310]]
+- [[_COMMUNITY_Community 311|Community 311]]
+- [[_COMMUNITY_Community 312|Community 312]]
+- [[_COMMUNITY_Community 313|Community 313]]
+- [[_COMMUNITY_Community 314|Community 314]]
+- [[_COMMUNITY_Community 315|Community 315]]
+- [[_COMMUNITY_Community 316|Community 316]]
+- [[_COMMUNITY_Community 317|Community 317]]
+- [[_COMMUNITY_Community 318|Community 318]]
+- [[_COMMUNITY_Community 319|Community 319]]
+- [[_COMMUNITY_Community 320|Community 320]]
+- [[_COMMUNITY_Community 321|Community 321]]
+- [[_COMMUNITY_Community 322|Community 322]]
+- [[_COMMUNITY_Community 323|Community 323]]
+- [[_COMMUNITY_Community 324|Community 324]]
+- [[_COMMUNITY_Community 325|Community 325]]
+- [[_COMMUNITY_Community 326|Community 326]]
+- [[_COMMUNITY_Community 327|Community 327]]
+- [[_COMMUNITY_Community 328|Community 328]]
+- [[_COMMUNITY_Community 329|Community 329]]
+- [[_COMMUNITY_Community 331|Community 331]]
+- [[_COMMUNITY_Community 332|Community 332]]
+- [[_COMMUNITY_Community 333|Community 333]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `cn()` - 69 edges
-2. `Command` - 53 edges
-3. `Result` - 52 edges
+1. `Result` - 88 edges
+2. `cn()` - 69 edges
+3. `Command` - 55 edges
 4. `CommandContext` - 46 edges
 5. `KlinEvent` - 39 edges
-6. `DesignState` - 31 edges
-7. `Ok` - 23 edges
-8. `ThemeHookManager` - 20 edges
-9. `BaseCatalog` - 19 edges
-10. `EventBus` - 18 edges
+6. `BuilderStore` - 37 edges
+7. `EventBus` - 35 edges
+8. `Ok` - 32 edges
+9. `DesignState` - 31 edges
+10. `EventService` - 30 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `EventRecord` --references--> `KlinEvent`  [EXTRACTED]
@@ -320,7 +349,7 @@
 - 1-file cycle: `packages/observability/src/index.ts -> packages/observability/src/index.ts`
 - 1-file cycle: `packages/permissions/src/index.ts -> packages/permissions/src/index.ts`
 
-## Communities (306 total, 49 thin omitted)
+## Communities (335 total, 61 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.03
@@ -419,8 +448,8 @@ Cohesion: 0.20
 Nodes (9): DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut(), DropdownMenuSubContent (+1 more)
 
 ### Community 24 - "Community 24"
-Cohesion: 0.07
-Nodes (38): buttonBuilderConfig, buttonDefaults, ButtonProps, buttonMetadata, buttonSchema, ButtonShape, ButtonShapeType, ButtonSize (+30 more)
+Cohesion: 0.08
+Nodes (35): buttonBuilderConfig, buttonDefaults, ButtonProps, buttonMetadata, buttonSchema, ButtonShape, ButtonShapeType, ButtonSize (+27 more)
 
 ### Community 25 - "Community 25"
 Cohesion: 0.22
@@ -467,8 +496,8 @@ Cohesion: 0.50
 Nodes (3): TabsContent, TabsList, TabsTrigger
 
 ### Community 39 - "Community 39"
-Cohesion: 0.08
-Nodes (10): AddSectionCommand, DeleteSectionCommand, MoveSectionCommand, UpdatePropsCommand, CommandContext, HookManager, PublishProjectCommand, Result (+2 more)
+Cohesion: 0.12
+Nodes (6): CommandContext, CommandHooks, HookManager, PublishProjectCommand, UpdateThemeCommand, RenameWorkspaceCommand
 
 ### Community 47 - "Community 47"
 Cohesion: 0.07
@@ -479,8 +508,8 @@ Cohesion: 0.07
 Nodes (27): author, category, dependencies, @klin/theme, deprecated, description, documentation, examples (+19 more)
 
 ### Community 49 - "Community 49"
-Cohesion: 0.13
-Nodes (4): Command, HistoryManager, Inspector, CommandQueue
+Cohesion: 0.12
+Nodes (4): Command, HistoryManager, CommandQueue, CommandRegistry
 
 ### Community 50 - "Community 50"
 Cohesion: 0.10
@@ -491,12 +520,12 @@ Cohesion: 0.12
 Nodes (5): RegistryBootstrap, RegistryContext, RegistryEngine, RegistryLifecycle, RegistryLifecycleState
 
 ### Community 52 - "Community 52"
-Cohesion: 0.14
-Nodes (9): ComponentManifest, ComponentContext, defaultComponentContext, ComponentFactory, ComponentInstance, ComponentLifecycle, ComponentLifecycleState, ComponentRuntimeState (+1 more)
+Cohesion: 0.11
+Nodes (11): ComponentManifest, SchemaField, SchemaFieldType, ComponentContext, defaultComponentContext, ComponentFactory, ComponentInstance, ComponentLifecycle (+3 more)
 
 ### Community 53 - "Community 53"
 Cohesion: 0.10
-Nodes (6): ICON_MAP, SECTION_RENDERERS, StorefrontRenderer(), themeToCSS(), DesignState, S
+Nodes (5): ICON_MAP, SECTION_RENDERERS, StorefrontRenderer(), themeToCSS(), S
 
 ### Community 54 - "Community 54"
 Cohesion: 0.09
@@ -507,24 +536,20 @@ Cohesion: 0.14
 Nodes (13): DEFAULT_CONFIG, getEnvironmentConfig(), DEFAULT_FEATURES, FeatureFlags, loadConfigFromEnv(), config, AppConfig, AuthConfig (+5 more)
 
 ### Community 56 - "Community 56"
-Cohesion: 0.15
-Nodes (14): empty, hydrate(), listeners, OnboardingState, persist(), resetOnboarding(), setOnboarding(), syncProfileFromServer() (+6 more)
+Cohesion: 0.11
+Nodes (16): empty, hydrate(), listeners, OnboardingState, persist(), resetOnboarding(), setOnboarding(), syncProfileFromServer() (+8 more)
 
 ### Community 57 - "Community 57"
 Cohesion: 0.10
 Nodes (20): dependencies, @klin/config, @klin/core, @klin/event-bus, @klin/registry, @klin/schemas, @klin/shared, @klin/theme (+12 more)
-
-### Community 58 - "Community 58"
-Cohesion: 0.24
-Nodes (3): CommandHooks, generateId(), Ok
 
 ### Community 59 - "Community 59"
 Cohesion: 0.10
 Nodes (19): 10. Accessibility Rules, 11. Animation System, 12. Preview System, 13. Public API Contract, 14. Testing Requirements, 15. Marketplace Compatibility, 1. Component Lifecycle, 2. Component Runtime State Machine (+11 more)
 
 ### Community 60 - "Community 60"
-Cohesion: 0.11
-Nodes (5): ManifestLoader, PackageManifest, Err, ManifestValidator, ThemeValidator
+Cohesion: 0.06
+Nodes (10): Deserializer, ImportPipeline, ManifestLoader, PackageManifest, Err, SerializedPage, Serializer, AdapterValidator (+2 more)
 
 ### Community 61 - "Community 61"
 Cohesion: 0.19
@@ -535,16 +560,16 @@ Cohesion: 0.16
 Nodes (9): BaseCatalog, BlockCatalog, CommandCatalog, ComponentCatalog, ExtensionCatalog, MarketplaceCatalog, PluginCatalog, TemplateCatalog (+1 more)
 
 ### Community 63 - "Community 63"
-Cohesion: 0.16
-Nodes (4): EventBus, EventRegistry, MemoryTransport, Transport
+Cohesion: 0.23
+Nodes (3): EventRegistry, MemoryTransport, Transport
 
 ### Community 64 - "Community 64"
-Cohesion: 0.12
-Nodes (15): AnimationPreset, InspectorField, PreviewClickMessage, PreviewMessage, Product, PublishResponse, SectionDefinition, SectionType (+7 more)
+Cohesion: 0.11
+Nodes (19): DEFAULT_DESIGN, DEFAULT_EDITOR, DEFAULT_THEME, DesignEngine, AnimationPreset, DeviceMode, EditorState, PageConfig (+11 more)
 
 ### Community 65 - "Community 65"
-Cohesion: 0.16
-Nodes (5): EventChannel, EventDispatcher, RetryStrategy, EventFilter, Subscription
+Cohesion: 0.13
+Nodes (5): EventChannel, RetryStrategy, EventFilter, Subscription, SubscriptionManager
 
 ### Community 66 - "Community 66"
 Cohesion: 0.16
@@ -555,16 +580,16 @@ Cohesion: 0.17
 Nodes (8): KlinStateManager, state, KlinPluginManager, pluginManager, KlinConfig, KlinRegistryEntry, KlinPlugin, PluginRegistry
 
 ### Community 68 - "Community 68"
-Cohesion: 0.14
-Nodes (9): useDesignEngine(), AddSectionModal(), DesignStudioPage(), ICON_MAP, InspectorPanel(), S, timeAgo(), getAllSections() (+1 more)
+Cohesion: 0.11
+Nodes (13): useDesignEngine(), InspectorField, SectionDefinition, SectionType, AddSectionModal(), DesignStudioPage(), ICON_MAP, InspectorPanel() (+5 more)
 
 ### Community 70 - "Community 70"
 Cohesion: 0.23
 Nodes (9): BlockContract, ComponentContract, RegistryContract, StoreContract, TemplateContract, ThemeContract, WorkspaceContract, ComponentStatus (+1 more)
 
 ### Community 71 - "Community 71"
-Cohesion: 0.24
-Nodes (5): CommandEngine, CommandExecutor, ExecutionPipeline, CommandLifecycleState, CommandResult
+Cohesion: 0.28
+Nodes (4): CommandExecutor, ExecutionPipeline, CommandLifecycleState, CommandResult
 
 ### Community 72 - "Community 72"
 Cohesion: 0.13
@@ -579,16 +604,16 @@ Cohesion: 0.12
 Nodes (16): dependencies, @klin/config, @klin/core, @klin/event-bus, @klin/registry, @klin/schemas, @klin/shared, main (+8 more)
 
 ### Community 75 - "Community 75"
-Cohesion: 0.13
-Nodes (8): CSSVariablesAdapter, ThemeAdapter, luxuryTheme, modernTheme, defaultSemanticTokens, SemanticTokens, defaultFoundationTokens, FoundationTokens
+Cohesion: 0.18
+Nodes (6): CSSVariablesAdapter, ThemeAdapter, defaultSemanticTokens, SemanticTokens, defaultFoundationTokens, FoundationTokens
 
 ### Community 76 - "Community 76"
-Cohesion: 0.17
+Cohesion: 0.15
 Nodes (4): EventHistory, EventRecord, Inspector, ReplayEngine
 
 ### Community 77 - "Community 77"
-Cohesion: 0.18
-Nodes (10): generateId(), getTemplates(), makeFooter(), makeHeader(), TEMPLATES, templateToDesignState(), PageConfig, ThemeConfig (+2 more)
+Cohesion: 0.19
+Nodes (10): generateId(), getTemplates(), makeFooter(), makeHeader(), TEMPLATES, templateToDesignState(), DesignState, ThemeConfig (+2 more)
 
 ### Community 78 - "Community 78"
 Cohesion: 0.19
@@ -599,8 +624,8 @@ Cohesion: 0.13
 Nodes (14): dependencies, @klin/core, @klin/event-bus, @klin/schemas, @klin/shared, main, name, private (+6 more)
 
 ### Community 81 - "Community 81"
-Cohesion: 0.33
-Nodes (3): Middleware, ValidationMiddleware, Priority
+Cohesion: 0.22
+Nodes (5): EventBus, EventDispatcher, Middleware, BuilderContext, EventPublisher
 
 ### Community 82 - "Community 82"
 Cohesion: 0.13
@@ -667,8 +692,8 @@ Cohesion: 0.17
 Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
 
 ### Community 99 - "Community 99"
-Cohesion: 0.17
-Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
+Cohesion: 0.12
+Nodes (15): dependencies, @klin/command-engine, @klin/core, @klin/event-bus, @klin/registry, @klin/theme, main, name (+7 more)
 
 ### Community 100 - "Community 100"
 Cohesion: 0.17
@@ -683,8 +708,8 @@ Cohesion: 0.17
 Nodes (11): main, types, dependencies, @klin/core, name, private, scripts, build (+3 more)
 
 ### Community 103 - "Community 103"
-Cohesion: 0.26
-Nodes (5): EventContext, EventMetadata, EventPublisher, PublishOptions, deepFreeze()
+Cohesion: 0.27
+Nodes (5): EventContext, EventMetadata, Priority, PublishOptions, deepFreeze()
 
 ### Community 104 - "Community 104"
 Cohesion: 0.17
@@ -719,8 +744,8 @@ Cohesion: 0.17
 Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
 
 ### Community 112 - "Community 112"
-Cohesion: 0.17
-Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
+Cohesion: 0.11
+Nodes (18): dependencies, @klin/command-engine, @klin/core, @klin/event-bus, @klin/registry, @measured/puck, main, name (+10 more)
 
 ### Community 113 - "Community 113"
 Cohesion: 0.17
@@ -783,8 +808,8 @@ Cohesion: 0.18
 Nodes (10): 1. Platform Vision, 2. Platform Layers, 3. Dependency Rules, 4. Package Responsibilities Matrix, 5. Event Flow Pipeline, 6. Command Execution Flow, 7. Registry Flow, 8. Golden Rules (+2 more)
 
 ### Community 128 - "Community 128"
-Cohesion: 0.27
-Nodes (3): KlinEvent, LoggingMiddleware, MetricsMiddleware
+Cohesion: 0.22
+Nodes (4): KlinEvent, LoggingMiddleware, MetricsMiddleware, ValidationMiddleware
 
 ### Community 129 - "Community 129"
 Cohesion: 0.18
@@ -797,6 +822,14 @@ Nodes (10): 3. Per-Page Animation Spec, 3c. Signup (`/signup`), 3d. Onboarding (
 ### Community 133 - "Community 133"
 Cohesion: 0.22
 Nodes (9): 8. Implementation Checklist, Phase 1 — Foundation (styles.css), Phase 2 — Scroll-Triggered Entrances (Landing Page), Phase 3 — Hero Entrance (Landing Page), Phase 4 — Micro-Interactions, Phase 5 — Dashboard Animations, Phase 6 — Signup & Onboarding, Phase 7 — Page Transitions (+1 more)
+
+### Community 135 - "Community 135"
+Cohesion: 0.09
+Nodes (5): BuilderContainer, BuilderKernel, ThemeEngine, RegistryService, ThemeService
+
+### Community 136 - "Community 136"
+Cohesion: 0.08
+Nodes (10): ShortcutManager, PanelManager, PanelDefinition, PanelRegistry, BuilderAPI, BuilderExtension, BuilderPlugin, ShortcutCallback (+2 more)
 
 ### Community 139 - "Community 139"
 Cohesion: 0.25
@@ -815,8 +848,8 @@ Cohesion: 0.25
 Nodes (7): name, private, scripts, build, lint, test, version
 
 ### Community 143 - "Community 143"
-Cohesion: 0.25
-Nodes (7): DEFAULT_DESIGN, DEFAULT_EDITOR, DEFAULT_THEME, DesignEngine, DeviceMode, EditorState, SectionInstance
+Cohesion: 0.08
+Nodes (11): AddSectionCommand, DeleteSectionCommand, MoveSectionCommand, UpdatePropsCommand, CommandBridge, ExportOutput, ExportPipeline, ComponentLoader (+3 more)
 
 ### Community 144 - "Community 144"
 Cohesion: 0.25
@@ -853,6 +886,10 @@ Nodes (7): name, private, scripts, build, lint, test, version
 ### Community 152 - "Community 152"
 Cohesion: 0.25
 Nodes (7): name, private, scripts, build, lint, test, version
+
+### Community 153 - "Community 153"
+Cohesion: 0.11
+Nodes (6): AutosaveManager, ShortcutManager, SelectionManager, EventService, ShortcutHandler, ViewportManager
 
 ### Community 154 - "Community 154"
 Cohesion: 0.25
@@ -1054,6 +1091,10 @@ Nodes (5): Deliverables, Exit Criteria, Goal, Phase 01: Workspace Setup, Tooling
 Cohesion: 0.33
 Nodes (5): Playbook: Create Component, Step 1: Initialize Package Folder, Step 2: Create Configurations, Step 3: Implement Visual Code, Step 4: Validate
 
+### Community 208 - "Community 208"
+Cohesion: 0.12
+Nodes (5): Inspector, DragDropManager, DropIndicator, SelectionOverlay, EditorState
+
 ### Community 209 - "Community 209"
 Cohesion: 0.33
 Nodes (6): 8.1 Shopify Polaris (Motion System), 8.2 Stripe, 8.3 Linear, 8.4 Vercel, 8.5 Comparison Matrix, 8. Competitor Analysis
@@ -1158,22 +1199,78 @@ Nodes (3): Guidelines, Package File Structure, UI Component Standard
 Cohesion: 0.50
 Nodes (3): AccordionContent, AccordionItem, AccordionTrigger
 
+### Community 271 - "Community 271"
+Cohesion: 0.27
+Nodes (3): BuilderCoreEvents, BuilderPluginInstance, StoreListener
+
+### Community 281 - "Community 281"
+Cohesion: 0.23
+Nodes (4): BuilderEvents, BuilderEventType, EditorStateData, EditorStateListener
+
+### Community 306 - "Community 306"
+Cohesion: 0.12
+Nodes (5): GuideManager, InspectorManager, Inspector, PluginHost, BuilderStore
+
+### Community 307 - "Community 307"
+Cohesion: 0.15
+Nodes (3): CommandEngine, HistoryManager, CommandService
+
+### Community 308 - "Community 308"
+Cohesion: 0.21
+Nodes (9): ComponentSchema, BuilderSchemaMapper, PuckFieldMapper, BuilderField, BuilderFieldType, BuilderSchema, BuilderUIHints, BuilderValidation (+1 more)
+
+### Community 309 - "Community 309"
+Cohesion: 0.18
+Nodes (4): BuilderAPI, HistoryAPI, BuilderBootstrap, BuilderCore
+
+### Community 310 - "Community 310"
+Cohesion: 0.18
+Nodes (3): BuilderAdapter, IBuilderAdapter, RegistryWatcher
+
+### Community 312 - "Community 312"
+Cohesion: 0.24
+Nodes (6): BuilderContext, BuilderSnapshot, BuilderState, HistoryState, SelectionState, ViewportState
+
+### Community 315 - "Community 315"
+Cohesion: 0.29
+Nodes (3): ComponentMapper, ReactRenderer, RendererAdapter
+
+### Community 316 - "Community 316"
+Cohesion: 0.28
+Nodes (3): BuilderLifecycle, LifecycleListener, LifecycleState
+
+### Community 317 - "Community 317"
+Cohesion: 0.28
+Nodes (3): BuilderLifecycle, LifecycleListener, LifecycleState
+
+### Community 318 - "Community 318"
+Cohesion: 0.25
+Nodes (7): 1. Modular Architecture Overview, 2. Boot & Shutdown Sequences, 3. Decoupled Service Wrappers, 4. Single Store State Management, Boot Pipeline, Builder Core Architecture, Shutdown Pipeline
+
+### Community 319 - "Community 319"
+Cohesion: 0.29
+Nodes (6): 1. IBuilderAdapter & BuilderAdapter, 2. EditorState & BuilderSession, 3. Builder Schema Mapper & Puck Field Mapper, 4. Renderer Adapter, Builder Architecture, Key Subsystems
+
+### Community 320 - "Community 320"
+Cohesion: 0.29
+Nodes (6): 1. Ingestion & Discovery, 2. Schema Transformation, 3. Editor Interaction, 4. Serialization, Data Flow Architecture, Lifecycle Stages
+
 ## Knowledge Gaps
-- **1382 isolated node(s):** `name`, `version`, `private`, `build`, `lint` (+1377 more)
+- **1427 isolated node(s):** `name`, `version`, `private`, `build`, `lint` (+1422 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **49 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **61 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Result` connect `Community 39` to `Community 65`, `Community 66`, `Community 130`, `Community 134`, `Community 71`, `Community 135`, `Community 51`, `Community 58`, `Community 60`, `Community 62`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `EventBus` connect `Community 63` to `Community 65`, `Community 39`, `Community 103`, `Community 81`, `Community 83`, `Community 52`, `Community 51`, `Community 58`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **Why does `Ok` connect `Community 58` to `Community 65`, `Community 66`, `Community 130`, `Community 71`, `Community 60`, `Community 62`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `Result` connect `Community 143` to `Community 65`, `Community 66`, `Community 130`, `Community 134`, `Community 71`, `Community 135`, `Community 39`, `Community 81`, `Community 307`, `Community 51`, `Community 309`, `Community 310`, `Community 58`, `Community 60`, `Community 62`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Why does `EventBus` connect `Community 81` to `Community 128`, `Community 153`, `Community 135`, `Community 39`, `Community 76`, `Community 271`, `Community 307`, `Community 83`, `Community 309`, `Community 52`, `Community 51`, `Community 312`, `Community 310`, `Community 58`, `Community 63`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `Ok` connect `Community 58` to `Community 65`, `Community 66`, `Community 143`, `Community 309`, `Community 310`, `Community 60`, `Community 62`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _1382 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1427 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.03278688524590164 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
