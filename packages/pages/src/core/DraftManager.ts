@@ -1,5 +1,5 @@
-import type { PageDefinition } from "./PageDefinition.ts";
-import type { PageInstance } from "./PageFactory.ts";
+import type { PageDefinition } from "./PageDefinition";
+import type { PageInstance } from "./PageFactory";
 import { Result, Ok, Err } from "@klin/core";
 
 export interface PageDraft {

@@ -1,8 +1,8 @@
-import type { PageContext } from "../core/PageContext.ts";
-import { PageInstance, PageFactory } from "../core/PageFactory.ts";
-import type { VersionedDocument } from "../version/DocumentVersion.ts";
-import { MigrationEngine } from "../version/MigrationEngine.ts";
-import type { PageDefinition } from "../core/PageDefinition.ts";
+import type { PageContext } from "../core/PageContext";
+import { PageInstance, PageFactory } from "../core/PageFactory";
+import type { VersionedDocument } from "../version/DocumentVersion";
+import { MigrationEngine } from "../version/MigrationEngine";
+import type { PageDefinition } from "../core/PageDefinition";
 import { Result, Ok, Err } from "@klin/core";
 
 export class PageDeserializer {

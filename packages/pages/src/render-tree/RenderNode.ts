@@ -1,5 +1,5 @@
-import type { RenderProps } from "./RenderProps.ts";
-import type { RenderSlots } from "./RenderSlots.ts";
+import type { RenderProps } from "./RenderProps";
+import type { RenderSlots } from "./RenderSlots";
 
 export interface RenderNode {
   id: string;

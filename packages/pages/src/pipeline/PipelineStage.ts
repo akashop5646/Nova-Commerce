@@ -1,7 +1,8 @@
-import type { PipelineContext } from "./PipelineContext.ts";
+import type { PipelineContext } from "./PipelineContext";
 import { Result } from "@klin/core";
 
 export interface PipelineStage {
-  name: string;
+  id: string;
+  priority: number;
   execute(context: PipelineContext): Promise<Result<PipelineContext, Error>>;
 }

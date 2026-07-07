@@ -1,5 +1,5 @@
-import type { RenderTree } from "./RenderTree.ts";
-import type { RenderNode } from "./RenderNode.ts";
+import type { RenderTree } from "./RenderTree";
+import type { RenderNode } from "./RenderNode";
 
 export class RenderTreeOptimizer {
   optimize(tree: RenderTree): RenderTree {
@@ -45,7 +45,8 @@ export class RenderTreeOptimizer {
         let hasSlots = false;
         
         for (const [key, value] of Object.entries(node.slots)) {
-          const optimizedSlotNodes = this.optimizeNodes(value);
+          const slotNodes = value as RenderNode[];
+          const optimizedSlotNodes = this.optimizeNodes(slotNodes);
           if (optimizedSlotNodes.length > 0) {
             optimizedSlots[key] = optimizedSlotNodes;
             hasSlots = true;

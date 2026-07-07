@@ -1,4 +1,4 @@
-import type { NavigationGraph } from "../composition/NavigationGraph.ts";
+import type { NavigationGraph } from "../composition/NavigationGraph";
 
 export interface WebsiteContext {
   websiteId: string;

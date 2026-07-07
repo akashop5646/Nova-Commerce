@@ -1,3 +1,3 @@
-import type { RenderNode } from "./RenderNode.ts";
+import type { RenderNode } from "./RenderNode";
 
 export type RenderSlots = Record<string, RenderNode[]>;

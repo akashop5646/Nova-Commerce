@@ -1,4 +1,4 @@
-import type { SEOPayload } from "./SEOManager.ts";
+import type { SEOPayload } from "./SEOManager";
 
 export interface MetaTag {
   tagName: "meta" | "link" | "title" | "script";

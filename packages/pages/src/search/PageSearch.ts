@@ -1,4 +1,4 @@
-import type { PageIndex, PageIndexEntry } from "./PageIndex.ts";
+import type { PageIndex, PageIndexEntry } from "./PageIndex";
 
 export interface SearchFilter {
   category?: string;

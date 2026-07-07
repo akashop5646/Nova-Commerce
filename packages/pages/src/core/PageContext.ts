@@ -1,10 +1,10 @@
-import type { WebsiteContext } from "./WebsiteContext.ts";
-import type { PageDefinition } from "./PageDefinition.ts";
+import type { WebsiteContext } from "./WebsiteContext";
+import type { PageDefinition } from "./PageDefinition";
 import type { TemplateInstance } from "@klin/templates";
 import type { Registry } from "@klin/registry";
 import type { EventBus } from "@klin/event-bus";
 import type { CommandEngine } from "@klin/command-engine";
-import type { AssetManager } from "../assets/AssetManager.ts";
+import type { AssetManager } from "../assets/AssetManager";
 
 export interface PageContext {
   websiteContext: WebsiteContext;

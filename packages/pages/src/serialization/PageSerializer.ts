@@ -1,5 +1,5 @@
-import type { PageInstance } from "../core/PageFactory.ts";
-import type { VersionedDocument } from "../version/DocumentVersion.ts";
+import type { PageInstance } from "../core/PageFactory";
+import type { VersionedDocument } from "../version/DocumentVersion";
 import { Result, Ok, Err } from "@klin/core";
 
 export class PageSerializer {

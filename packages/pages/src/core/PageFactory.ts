@@ -1,7 +1,7 @@
-import type { PageContext } from "./PageContext.ts";
-import type { PageDefinition } from "./PageDefinition.ts";
-import { PageLifecycle } from "./PageLifecycle.ts";
-import { PageState, createDefaultPageState } from "./PageState.ts";
+import type { PageContext } from "./PageContext";
+import type { PageDefinition } from "./PageDefinition";
+import { PageLifecycle } from "./PageLifecycle";
+import { PageState, createDefaultPageState } from "./PageState";
 import { Result, Ok, Err } from "@klin/core";
 
 export class PageInstance {

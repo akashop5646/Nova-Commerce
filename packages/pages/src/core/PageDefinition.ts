@@ -1,6 +1,6 @@
-import type { PageManifest } from "../contracts/PageManifest.ts";
-import type { PageMetadata } from "../contracts/PageMetadata.ts";
-import type { AIPageMetadata } from "../contracts/AIPageMetadata.ts";
+import type { PageManifest } from "../contracts/PageManifest";
+import type { PageMetadata } from "../contracts/PageMetadata";
+import type { AIPageMetadata } from "../contracts/AIPageMetadata";
 
 export interface PageDefinition {
   manifest: PageManifest;

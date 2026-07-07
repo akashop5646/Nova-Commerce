@@ -1,5 +1,5 @@
-import type { VersionedDocument, DocumentVersion } from "./DocumentVersion.ts";
-import { compareSemver } from "./DocumentVersion.ts";
+import type { VersionedDocument, DocumentVersion } from "./DocumentVersion";
+import { compareSemver } from "./DocumentVersion";
 import { Result, Ok, Err } from "@klin/core";
 
 export type PageMigrationFn = (data: Record<string, unknown>) => Record<string, unknown> | Promise<Record<string, unknown>>;
@@ -13,55 +13,38 @@ export interface PageMigrationStep {
 export class MigrationEngine {
   private steps: PageMigrationStep[] = [];
 
-  registerMigration(fromVersion: string, toVersion: string, migrate: PageMigrationFn) {
-    this.steps.push({ fromVersion, toVersion, migrate });
-    this.steps.sort((a, b) => compareSemver(a.fromVersion, b.fromVersion));
+  registerStep(step: PageMigrationStep): void {
+    this.steps.push(step);
   }
 
   async migrate(
     document: VersionedDocument,
     targetVersion: DocumentVersion
   ): Promise<Result<VersionedDocument, Error>> {
-    let currentData = { ...document.data };
-    let currentSchemaVersion = document.version.schemaVersion;
+    let currentDoc = { ...document, data: { ...document.data } };
+    
+    // Sort steps based on semver ordering of fromVersion
+    const sortedSteps = [...this.steps].sort((a, b) => compareSemver(a.fromVersion, b.fromVersion));
 
-    const targetSchemaVersion = targetVersion.schemaVersion;
-
-    if (compareSemver(currentSchemaVersion, targetSchemaVersion) === 0) {
-      return new Ok(document);
-    }
-
-    if (compareSemver(currentSchemaVersion, targetSchemaVersion) > 0) {
-      return new Err(new Error(`Downgrades from version ${currentSchemaVersion} to ${targetSchemaVersion} are not supported.`));
-    }
-
-    let migrationPathFound = true;
-    while (compareSemver(currentSchemaVersion, targetSchemaVersion) < 0 && migrationPathFound) {
-      const step = this.steps.find((s) => compareSemver(s.fromVersion, currentSchemaVersion) === 0);
-      if (!step) {
-        migrationPathFound = false;
-        break;
-      }
-
-      try {
-        currentData = await step.migrate(currentData);
-        currentSchemaVersion = step.toVersion;
-      } catch (err) {
-        return new Err(new Error(`Page migration from ${step.fromVersion} to ${step.toVersion} failed: ${(err as Error).message}`));
+    for (const step of sortedSteps) {
+      if (
+        compareSemver(currentDoc.version.schemaVersion, step.fromVersion) >= 0 &&
+        compareSemver(currentDoc.version.schemaVersion, step.toVersion) < 0
+      ) {
+        try {
+          const migratedData = await step.migrate(currentDoc.data as Record<string, unknown>);
+          currentDoc.data = migratedData;
+          currentDoc.version.schemaVersion = step.toVersion;
+        } catch (err) {
+          return new Err(new Error(`Migration step failed from ${step.fromVersion} to ${step.toVersion}: ${(err as Error).message}`));
+        }
       }
     }
 
-    if (compareSemver(currentSchemaVersion, targetSchemaVersion) < 0) {
-      return new Err(new Error(`No page migration path found from version ${currentSchemaVersion} to ${targetSchemaVersion}.`));
+    if (currentDoc.version.schemaVersion !== targetVersion.schemaVersion) {
+      return new Err(new Error(`No migration path found to reach target schema version ${targetVersion.schemaVersion}`));
     }
 
-    return new Ok({
-      version: {
-        ...targetVersion,
-        pageVersion: document.version.pageVersion,
-      },
-      pageId: document.pageId,
-      data: currentData,
-    });
+    return new Ok(currentDoc);
   }
 }

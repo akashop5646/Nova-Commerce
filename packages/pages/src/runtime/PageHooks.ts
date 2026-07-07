@@ -1,4 +1,4 @@
-import type { PageLifecycleState } from "../core/PageLifecycle.ts";
+import type { PageLifecycleState } from "../core/PageLifecycle";
 
 export type PageHookFn = (context: PageHookContext) => Promise<void> | void;
 

@@ -1,4 +1,4 @@
-import type { PageDefinition } from "./PageDefinition.ts";
+import type { PageDefinition } from "./PageDefinition";
 
 export interface UserAccessContext {
   userId?: string;

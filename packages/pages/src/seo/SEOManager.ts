@@ -1,4 +1,4 @@
-import type { PageDefinition } from "../core/PageDefinition.ts";
+import type { PageDefinition } from "../core/PageDefinition";
 
 export interface SEOPayload {
   title: string;
@@ -10,6 +10,7 @@ export interface SEOPayload {
   twitterCard?: Record<string, string>;
   hreflang?: Array<{ lang: string; url: string }>;
 }
+
 export class SEOManager {
   getSEO(definition: PageDefinition, domain: string = ""): SEOPayload {
     return {

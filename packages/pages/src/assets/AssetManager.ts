@@ -1,35 +1,41 @@
+import type { AssetProvider } from "./AssetProvider";
+import { LocalProvider } from "./LocalProvider";
+
 export interface AssetReference {
   id: string;
   type: "image" | "video" | "font" | "file";
   provider: string; // e.g. "cloudinary", "s3", "local"
   path: string;
   metadata?: Record<string, unknown>;
+  tags?: string[];
 }
 
-export type AssetResolverFn = (reference: AssetReference) => string | Promise<string>;
-
 export class AssetManager {
-  private resolvers: Map<string, AssetResolverFn> = new Map();
+  private providers: Map<string, AssetProvider> = new Map();
 
   constructor() {
-    // Default local fallback resolver
-    this.registerResolver("local", (ref) => ref.path);
+    // Default fallback local provider
+    this.registerProvider(new LocalProvider());
   }
 
-  registerResolver(provider: string, resolver: AssetResolverFn): void {
-    this.resolvers.set(provider, resolver);
+  registerProvider(provider: AssetProvider): void {
+    this.providers.set(provider.providerId, provider);
+  }
+
+  unregisterProvider(providerId: string): void {
+    this.providers.delete(providerId);
   }
 
   async resolveAssetUrl(reference: AssetReference): Promise<string> {
-    const resolver = this.resolvers.get(reference.provider);
-    if (!resolver) {
+    const provider = this.providers.get(reference.provider);
+    if (!provider) {
       // Fallback path url direct mapping
       return reference.path;
     }
     try {
-      return await resolver(reference);
+      return await provider.resolveUrl(reference);
     } catch (err) {
-      console.error(`AssetResolver error for provider [${reference.provider}]:`, err);
+      console.error(`AssetProvider error for provider [${reference.provider}]:`, err);
       return reference.path;
     }
   }

@@ -1,10 +1,10 @@
-import type { PageInstance } from "../core/PageFactory.ts";
-import type { RenderTree } from "../render-tree/RenderTree.ts";
-import { PagePipeline } from "../pipeline/PagePipeline.ts";
-import { PageDependencyResolver } from "../composition/PageDependencyResolver.ts";
-import { OverrideResolver } from "../composition/OverrideResolver.ts";
-import { RenderTreeOptimizer } from "../render-tree/RenderTreeOptimizer.ts";
-import { PageValidator } from "./PageValidator.ts";
+import type { PageInstance } from "../core/PageFactory";
+import type { RenderTree } from "../render-tree/RenderTree";
+import { PagePipeline } from "../pipeline/PagePipeline";
+import { PageDependencyResolver } from "../composition/PageDependencyResolver";
+import { OverrideResolver } from "../composition/OverrideResolver";
+import { RenderTreeOptimizer } from "../render-tree/RenderTreeOptimizer";
+import { PageValidator } from "./PageValidator";
 import { Result, Ok, Err } from "@klin/core";
 
 export class PageRenderer {
@@ -15,7 +15,8 @@ export class PageRenderer {
 
     // Stage 1: Dependency resolution
     this.pipeline.addStage({
-      name: "DependencyResolution",
+      id: "DependencyResolution",
+      priority: 10,
       execute: async (ctx) => {
         const resolver = new PageDependencyResolver(ctx.pageInstance.context.registry);
         const depRes = await resolver.resolve(ctx.pageInstance.definition);
@@ -26,7 +27,8 @@ export class PageRenderer {
 
     // Stage 2: Merge overrides and build initial tree
     this.pipeline.addStage({
-      name: "OverrideResolution",
+      id: "OverrideResolution",
+      priority: 20,
       execute: async (ctx) => {
         const resolver = new OverrideResolver();
         const templateId = ctx.pageInstance.definition.templateId;
@@ -52,6 +54,14 @@ export class PageRenderer {
         }));
 
         const initialTree: RenderTree = {
+          version: "1.0.0",
+          generatedAt: Date.now(),
+          pageId: ctx.pageInstance.definition.manifest.id,
+          templateId: templateId,
+          themeId: ctx.pageInstance.context.page.permissions.visibility === "public" ? "default-theme" : "draft-theme",
+          locale: ctx.pageInstance.context.locale || "en",
+          rendererVersion: "1.0.0",
+          pipelineVersion: "1.0.0",
           root: rootNodes,
         };
 
@@ -61,7 +71,8 @@ export class PageRenderer {
 
     // Stage 3: Validation report
     this.pipeline.addStage({
-      name: "Validation",
+      id: "Validation",
+      priority: 30,
       execute: async (ctx) => {
         const validator = new PageValidator();
         const reportRes = await validator.validate(ctx.pageInstance);
@@ -72,7 +83,8 @@ export class PageRenderer {
 
     // Stage 4: Render Tree Optimization
     this.pipeline.addStage({
-      name: "Optimization",
+      id: "Optimization",
+      priority: 40,
       execute: async (ctx) => {
         if (!ctx.renderTree) {
           return new Err(new Error("RenderTree not found for optimization stage."));

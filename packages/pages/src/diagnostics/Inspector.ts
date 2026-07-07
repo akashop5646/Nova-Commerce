@@ -1,5 +1,5 @@
-import type { PageInstance } from "../core/PageFactory.ts";
-import type { ValidationReport } from "../runtime/PageValidator.ts";
+import type { PageInstance } from "../core/PageFactory";
+import type { ValidationReport } from "../runtime/PageValidator";
 
 export interface DiagnosticsReport {
   pageId: string;

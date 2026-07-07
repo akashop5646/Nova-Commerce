@@ -1,4 +1,4 @@
-import type { PageDefinition } from "../core/PageDefinition.ts";
+import type { PageDefinition } from "../core/PageDefinition";
 
 export interface PageVariant {
   id: string;
@@ -12,70 +12,69 @@ export interface PageVariant {
 export interface PageVariantDefinition {
   pageId: string;
   variants: PageVariant[];
-  defaultVariantId: string;
 }
 
 export class PageVariantEngine {
-  private definitions: Map<string, PageVariantDefinition> = new Map();
-  private activeVariants: Map<string, string> = new Map();
+  private variantMap: Map<string, PageVariant[]> = new Map();
 
-  registerVariants(pageId: string, definition: PageVariantDefinition): void {
-    this.definitions.set(pageId, definition);
-    this.activeVariants.set(pageId, definition.defaultVariantId);
+  registerVariants(pageId: string, variants: PageVariant[]): void {
+    this.variantMap.set(pageId, variants);
   }
 
-  getVariant(pageId: string, variantId: string): PageVariant | undefined {
-    const def = this.definitions.get(pageId);
-    if (!def) return undefined;
-    return def.variants.find((v) => v.id === variantId);
+  getVariants(pageId: string): PageVariant[] {
+    return this.variantMap.get(pageId) ?? [];
   }
 
-  getActiveVariant(pageId: string): PageVariant | undefined {
-    const activeId = this.activeVariants.get(pageId);
-    if (!activeId) return undefined;
-    return this.getVariant(pageId, activeId);
+  selectVariant(pageId: string, context?: { locale?: string; region?: string; userBucket?: number }): PageVariant | null {
+    const variants = this.getVariants(pageId);
+    if (variants.length === 0) {
+      return null;
+    }
+
+    // 1. Filter variants by locale/region matching
+    if (context?.locale) {
+      const localeMatch = variants.find(
+        (v) => v.localeOverrides && Object.keys(v.localeOverrides).includes(context.locale!)
+      );
+      if (localeMatch) return localeMatch;
+    }
+
+    if (context?.region) {
+      const regionMatch = variants.find(
+        (v) => v.regionalOverrides && Object.keys(v.regionalOverrides).includes(context.region!)
+      );
+      if (regionMatch) return regionMatch;
+    }
+
+    // 2. Traffic allocation fallback (A/B testing)
+    const bucket = context?.userBucket ?? Math.floor(Math.random() * 100);
+    let cumulativeWeight = 0;
+    
+    for (const variant of variants) {
+      cumulativeWeight += variant.weight;
+      if (bucket < cumulativeWeight) {
+        return variant;
+      }
+    }
+
+    return variants[0];
   }
 
-  switchVariant(pageId: string, variantId: string): boolean {
-    const def = this.definitions.get(pageId);
-    if (!def) return false;
-    const variant = def.variants.find((v) => v.id === variantId);
-    if (!variant) return false;
-    this.activeVariants.set(pageId, variantId);
-    return true;
-  }
-
-  listVariants(pageId: string): PageVariant[] {
-    const def = this.definitions.get(pageId);
-    return def?.variants ?? [];
-  }
-
-  applyVariantOverrides(
-    definition: PageDefinition,
-    pageId: string
-  ): PageDefinition {
-    const variant = this.getActiveVariant(pageId);
-    if (!variant) return definition;
-
+  applyVariantOverrides(baseDefinition: PageDefinition, variant: PageVariant): PageDefinition {
     const mergedOverrides = {
-      ...definition.overrides,
+      ...baseDefinition.overrides,
     };
 
-    for (const [blockId, diff] of Object.entries(variant.overrides)) {
+    for (const [blockId, blockDiff] of Object.entries(variant.overrides)) {
       mergedOverrides[blockId] = {
         ...(mergedOverrides[blockId] ?? {}),
-        ...diff,
+        ...blockDiff,
       };
     }
 
     return {
-      ...definition,
+      ...baseDefinition,
       overrides: mergedOverrides,
     };
-  }
-
-  unregister(pageId: string) {
-    this.definitions.delete(pageId);
-    this.activeVariants.delete(pageId);
   }
 }

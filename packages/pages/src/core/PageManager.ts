@@ -1,6 +1,6 @@
-import type { PageDefinition } from "./PageDefinition.ts";
-import type { PageContext } from "./PageContext.ts";
-import { PageFactory, PageInstance } from "./PageFactory.ts";
+import type { PageDefinition } from "./PageDefinition";
+import type { PageContext } from "./PageContext";
+import { PageFactory, PageInstance } from "./PageFactory";
 import { Result, Ok, Err } from "@klin/core";
 
 export class PageManager {

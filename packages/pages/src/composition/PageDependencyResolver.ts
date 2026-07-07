@@ -1,4 +1,4 @@
-import type { PageDefinition } from "../core/PageDefinition.ts";
+import type { PageDefinition } from "../core/PageDefinition";
 import type { Registry } from "@klin/registry";
 import { Result, Ok, Err } from "@klin/core";
 

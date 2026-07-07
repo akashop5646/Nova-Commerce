@@ -1,4 +1,4 @@
-# Page Engine Architecture
+# Page Engine Architecture (v4.1)
 
 This document defines the composition rules, lifecycles, and serialization standards of the Klin Page Engine (`@klin/pages`).
 
@@ -7,51 +7,75 @@ This document defines the composition rules, lifecycles, and serialization stand
 ## 1. Package Responsibility
 The Page Engine serves as the core coordinator mapping Website templates, layouts, routing rules, drafts, and SEO headers to agnostic Render Tree definitions. It decouples customizer content editing from visual output render technologies.
 
-## 2. Lifecycle
-The page lifecycle transitions through the following stages:
-`Created` → `Loading` → `Resolving Template` → `Resolving Blocks` → `Resolving Theme` → `Validating` → `Ready` → `Editing` → `Saving` → `Publishing` → `Archived` → `Disposed`.
+## 2. Core Hierarchy
 
-## 3. Render Tree
-Render trees are platform-independent JSON graphs constructed from `RenderNode` and `RenderTree` schemas. They carry the element's id, component properties, slots, and device viewports context.
+```mermaid
+graph TD
+    Workspace --> Project
+    Project --> Website
+    Website --> Pages
+    Website --> NavigationManager
+```
 
-## 4. Override Resolution
-The `OverrideResolver` takes template layouts and merges override diffs (e.g. customized hero copy) without modifying the original template. Property values are combined recursively.
+## 3. WebsiteManager
+The `WebsiteManager` orchestrates website definitions at the project level, managing multiple independent web applications within the same workspace.
+Key operations:
+- `createWebsite()`, `deleteWebsite()`, `renameWebsite()`
+- `changeDomain()`
+- `setTheme()`
+- `setDefaultLocale()`
+- `addPage()`, `removePage()`
+- `publishWebsite()`, `archiveWebsite()`, `exportWebsite()`
 
-## 5. Route Resolution
-The `RouteManager` matches static, nested, and parameter paths (e.g., `/blog/:slug`), and reports overlapping path conflicts. It also handles redirects (301/302).
+## 4. PipelineRegistry
+Transformation processes are orchestrated via `PipelineRegistry`. Instead of a static pipeline stage list, stages can be registered dynamically by plugins with priority weights.
+Standard priority order:
+1. **DependencyResolution** (priority: 10)
+2. **OverrideResolution** (priority: 20)
+3. **Validation** (priority: 30)
+4. **Optimization** (priority: 40)
 
-## 6. Navigation Graph
-The `NavigationGraph` manages the site navigation nodes tree to dynamically assemble menus, internal linking anchors, breadcrumbs, and index pathways.
+## 5. RenderTree Cache
+To support high-traffic websites, rendering outputs arecached dynamically:
+- **`RenderTreeCache`**: Caches compiled JSON trees.
+- **`DependencyCache`**: Caches resolved layout dependency graphs.
+- **`ValidationCache`**: Caches validation reports.
+- **`PipelineCache`**: Coordinates cache checks to bypass pipeline computation.
 
-## 7. Dependency Graph
-The `PageDependencyGraph` tracks templates, blocks, themes, components, and assets. The `PageDependencyResolver` recursively maps this tree.
+## 6. Website Navigation Manager
+Separates content routes from custom layout links:
+- **`NavigationManager`**: Manages the navigation node structure.
+- **`BreadcrumbBuilder`**: Compiles hierarchical path arrays.
+- **`MenuBuilder`**: Produces structured headers and footers menu trees.
 
-## 8. SEO Pipeline
-The `SEOManager` configures meta descriptions, canonical URLs, robot index instructions, and multilingual hreflang paths. `MetaGenerator` renders these to target header elements.
+## 7. Abstract Asset Providers
+Asset rendering supports multiple backend providers:
+- **`AssetProvider`**: Base interface contract.
+- **`CloudinaryProvider`**, **`S3Provider`**, **`SupabaseProvider`**, **`VercelBlobProvider`**, **`LocalProvider`** (standard local storage fallback).
 
-## 9. Serialization
-The `PageSerializer` and `PageDeserializer` marshal and unmarshal Page definitions into structured JSON payloads.
+## 8. Draft Comparison Engine
+`DraftComparer` calculates differences between volatile page drafts and published versions, returning a detailed change log.
+Supports granular rollbacks:
+- `restoreSection()`
+- `restoreBlock()`
+- `restoreProperty()`
 
-## 10. Versioning
-The self-describing `DocumentVersion` tracks schema, page, template, block, and theme versions, allowing deterministic parsing of stored content.
+## 9. Publishing Pipeline
+Publishes compiled render trees to multiple export targets:
+- **`PublishingPipeline`**: Manages publish stages.
+- **`PublishingStage`**: Executable interface.
+- **`PublishContext`**: Specifies targets (`static`, `nextjs`, `wordpress`, `email`, `shopify`, `native`).
 
-## 11. Migration
-The `MigrationEngine` upgrades legacy page schemas up to target versions before loading definitions into the factory.
+## 10. Validation Pipeline
+`ValidationPipeline` runs sequential audits:
+- **`SchemaValidator`**
+- **`RouteValidator`**
+- **`SEOValidator`**
+- **`ThemeValidator`**
+- **`ComponentValidator`**
+- **`AccessibilityValidator`**
+- **`PerformanceValidator`**
 
-## 12. Public APIs
-APIs are exposed via `PageManager` (for page CRUD operations), `PageRenderer` (compiling render trees), and `RouteManager` (address resolution).
-
-## 13. Events
-Emits workspace events (`page.created`, `page.published`, `page.route.changed`, etc.) over the Event Bus for logging, caching, and analytics.
-
-## 14. Performance
-`MetricsCollector` monitors validation delays, render tree compilation speeds, and serialization overhead.
-
-## 15. Extension Guide
-Developers can register lifecycle hook listeners (`beforeSave`, `afterPublish`) using `PageHooks` to run custom compilation logic.
-
-## 16. AI Integration
-AI layout generations are guided by `AIPageMetadata` detailing tone preferences, target business types, and block composition guidelines.
-
-## 17. Renderer Interface
-The compiled Render Tree is passed to `@klin/renderer` for final HTML/CSS compilation.
+## 11. AI Readiness Contracts
+Pre-allocates contracts for layout prompt parsing:
+- `PromptContext`, `PromptBuilder`, `LayoutIntent`, `GenerationHints`.

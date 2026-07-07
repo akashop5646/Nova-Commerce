@@ -1,4 +1,4 @@
-import type { PageDefinition } from "../core/PageDefinition.ts";
+import type { PageDefinition } from "../core/PageDefinition";
 
 export class BlockOverrideManager {
   private overrides: Record<string, Record<string, unknown>> = {};
