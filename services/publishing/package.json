@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-publishing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service publishing built.'",
+    "lint": "echo 'Service publishing linted.'",
+    "test": "echo 'Service publishing tested.'"
+  }
+}

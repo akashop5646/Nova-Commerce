@@ -1,0 +1,16 @@
+{
+  "name": "@klin/app-storefront",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "echo 'Linting storefront...'",
+    "test": "echo 'No tests'",
+    "dev": "echo 'Dev storefront'"
+  },
+  "dependencies": {
+    "@klin/core": "*",
+    "@klin/renderer": "*",
+    "@klin/theme": "*"
+  }
+}

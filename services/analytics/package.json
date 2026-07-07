@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service analytics built.'",
+    "lint": "echo 'Service analytics linted.'",
+    "test": "echo 'Service analytics tested.'"
+  }
+}

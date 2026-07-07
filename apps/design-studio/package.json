@@ -1,0 +1,16 @@
+{
+  "name": "@klin/app-design-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "echo 'Linting design studio...'",
+    "test": "echo 'No tests'",
+    "dev": "echo 'Dev design-studio'"
+  },
+  "dependencies": {
+    "@klin/core": "*",
+    "@klin/puck-adapter": "*",
+    "@klin/builder-core": "*"
+  }
+}

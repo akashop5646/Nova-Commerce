@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service ai built.'",
+    "lint": "echo 'Service ai linted.'",
+    "test": "echo 'Service ai tested.'"
+  }
+}

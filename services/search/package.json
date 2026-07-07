@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-search",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service search built.'",
+    "lint": "echo 'Service search linted.'",
+    "test": "echo 'Service search tested.'"
+  }
+}

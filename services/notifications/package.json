@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-notifications",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service notifications built.'",
+    "lint": "echo 'Service notifications linted.'",
+    "test": "echo 'Service notifications tested.'"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@klin/app-docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "echo 'Linting docs...'",
+    "test": "echo 'No tests'",
+    "dev": "echo 'Dev docs'"
+  },
+  "dependencies": {
+    "@klin/core": "*"
+  }
+}

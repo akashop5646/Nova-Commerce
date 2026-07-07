@@ -1,0 +1,14 @@
+{
+  "name": "@klin/app-marketing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "echo 'Linting marketing...'",
+    "test": "echo 'No tests'",
+    "dev": "echo 'Dev marketing'"
+  },
+  "dependencies": {
+    "@klin/core": "*"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Gateway service built.'",
+    "lint": "echo 'Gateway service linted.'",
+    "test": "echo 'Gateway service tested.'"
+  }
+}

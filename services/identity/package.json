@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-identity",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service identity built.'",
+    "lint": "echo 'Service identity linted.'",
+    "test": "echo 'Service identity tested.'"
+  }
+}

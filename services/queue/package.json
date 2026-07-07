@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-queue",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service queue built.'",
+    "lint": "echo 'Service queue linted.'",
+    "test": "echo 'Service queue tested.'"
+  }
+}

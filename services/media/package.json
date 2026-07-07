@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-media",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service media built.'",
+    "lint": "echo 'Service media linted.'",
+    "test": "echo 'Service media tested.'"
+  }
+}

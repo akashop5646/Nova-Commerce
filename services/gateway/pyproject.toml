@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "klin-service-gateway"
+version = "1.0.0"
+description = "FastAPI gateway routing for Klin visual customizer and layout databases."
+authors = ["Klin Team"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.100.0"
+uvicorn = "^0.22.0"

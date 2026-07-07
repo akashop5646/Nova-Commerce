@@ -1,0 +1,10 @@
+{
+  "name": "@klin/service-commerce",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Service commerce built.'",
+    "lint": "echo 'Service commerce linted.'",
+    "test": "echo 'Service commerce tested.'"
+  }
+}

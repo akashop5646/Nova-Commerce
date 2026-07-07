@@ -9,6 +9,9 @@ import { OAuth2Client } from "google-auth-library";
 import User from "./models/User.js";
 import StoreDesign from "./models/StoreDesign.js";
 import Product from "./models/Product.js";
+import KlinDraft from "./models/KlinDraft.js";
+import KlinTemplate from "./models/KlinTemplate.js";
+import KlinTheme from "./models/KlinTheme.js";
 
 // Fix DNS resolution issues on Windows for MongoDB Atlas SRV records
 dns.setDefaultResultOrder("ipv4first");
@@ -608,42 +611,80 @@ app.patch("/api/store-design", authenticateToken, async (req, res) => {
   }
 });
 
-// POST: Publish draft → live
+// POST: Publish draft → live (both systems integrated)
 app.post("/api/store-design/publish", authenticateToken, async (req, res) => {
   try {
+    let publishedAt = new Date();
+    let version = 1;
+    let publishMsg = "";
+
+    // 1. Original StoreDesign publishing
     const design = await StoreDesign.findOne({ userId: req.user.id });
-    if (!design) {
-      return res.status(404).json({ error: "No design found" });
+    if (design) {
+      design.published = {
+        theme: design.theme,
+        pages: design.pages,
+      };
+      design.publishedAt = publishedAt;
+      design.version += 1;
+      version = design.version;
+      await design.save();
+      publishMsg += "StoreDesign published. ";
     }
-    design.published = {
-      theme: design.theme,
-      pages: design.pages,
-    };
-    design.publishedAt = new Date();
-    design.version += 1;
-    await design.save();
+
+    // 2. KlinDraft / KlinTemplate publishing
+    const draft = await KlinDraft.findOne({ userId: req.user.id });
+    if (draft) {
+      const publishId = `user-store-${req.user.id}`;
+      let template = await KlinTemplate.findOne({ id: publishId });
+      if (!template) {
+        template = new KlinTemplate({
+          id: publishId,
+          name: `${req.user.email}'s Storefront`,
+          description: "Merchant published storefront layout",
+        });
+      }
+      template.theme = draft.theme;
+      template.pages = draft.pages;
+      template.version = draft.version;
+      template.publishedAt = publishedAt;
+      await template.save();
+      publishMsg += "KlinDraft published. ";
+    }
+
     res.json({
-      message: "Published successfully",
-      publishedAt: design.publishedAt,
-      version: design.version,
+      message: publishMsg || "Published successfully",
+      publishedAt,
+      version,
     });
   } catch (error) {
-    console.error("Publish error:", error);
-    res.status(500).json({ error: "Failed to publish" });
+    console.error("Publish storefront error:", error);
+    res.status(500).json({ error: "Failed to publish storefront design" });
   }
 });
 
-// GET: Fetch published design (public storefront)
-app.get("/api/store-design/published/:userId", async (req, res) => {
+// GET: Fetch published storefront design (both systems integrated)
+app.get("/api/store-design/published/:id", async (req, res) => {
+  const { id } = req.params;
   try {
-    const design = await StoreDesign.findOne({ userId: req.params.userId });
-    if (!design || !design.published) {
-      return res.status(404).json({ error: "No published design found" });
+    // 1. Try to search by templateId in KlinTemplate first (Klin framework)
+    let template = await KlinTemplate.findOne({ id: id });
+    if (template) {
+      return res.json({ design: template });
     }
-    res.json({ design: design.published });
+
+    // 2. Fall back to search by userId in StoreDesign (original system)
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      const design = await StoreDesign.findOne({ userId: id });
+      if (design && design.published) {
+        return res.json({ design: design.published });
+      }
+    }
+
+    res.status(404).json({ error: "Published storefront design not found" });
   } catch (error) {
-    console.error("Fetch published error:", error);
-    res.status(500).json({ error: "Failed to fetch published design" });
+    console.error("Fetch published storefront error:", error);
+    res.status(500).json({ error: "Failed to fetch published storefront design" });
   }
 });
 
@@ -693,6 +734,123 @@ app.post("/api/products", authenticateToken, async (req, res) => {
   } catch (error) {
     console.error("Create product error:", error);
     res.status(500).json({ error: "Failed to create product" });
+  }
+});
+
+// --- Store Design & Klin Framework Endpoints ---
+
+// Get current design draft
+app.get("/api/store-design/draft", authenticateToken, async (req, res) => {
+  try {
+    let draft = await KlinDraft.findOne({ userId: req.user.id });
+    if (!draft) {
+      // Return a default blank draft configuration
+      draft = new KlinDraft({
+        userId: req.user.id,
+        templateId: "default",
+        theme: {
+          colors: {
+            primary: "#18181B",
+            secondary: "#71717A",
+            accent: "#18181B",
+            background: "#FFFFFF",
+            surface: "#FAFAFA",
+            text: "#18181B",
+          },
+          typography: {
+            headingFont: "Inter",
+            bodyFont: "Inter",
+            headingSize: "default",
+            bodySize: "default",
+          },
+          buttons: { style: "rounded", shadow: false },
+          cards: { radius: 8, shadow: true, border: false },
+          animations: "fade",
+        },
+        pages: [
+          {
+            id: "home",
+            title: "Home",
+            slug: "home",
+            isVisible: true,
+            sections: [],
+          },
+        ],
+      });
+      await draft.save();
+    }
+    res.json({ design: draft });
+  } catch (error) {
+    console.error("Fetch draft error:", error);
+    res.status(500).json({ error: "Failed to fetch store design draft" });
+  }
+});
+
+// Update/autosave draft
+app.patch("/api/store-design/draft", authenticateToken, async (req, res) => {
+  const { theme, pages, historyStack } = req.body;
+  try {
+    let draft = await KlinDraft.findOne({ userId: req.user.id });
+    if (!draft) {
+      draft = new KlinDraft({ userId: req.user.id, templateId: "default" });
+    }
+    if (theme) draft.theme = theme;
+    if (pages) draft.pages = pages;
+    if (historyStack) draft.historyStack = historyStack;
+    draft.version = (draft.version || 1) + 1;
+    draft.updatedAt = new Date();
+    await draft.save();
+    res.json({ success: true, design: draft });
+  } catch (error) {
+    console.error("Update draft error:", error);
+    res.status(500).json({ error: "Failed to update store design draft" });
+  }
+});
+
+// Get registered themes
+app.get("/api/store-design/themes", async (req, res) => {
+  try {
+    const themes = await KlinTheme.find({});
+    res.json({ themes });
+  } catch (error) {
+    console.error("Fetch themes error:", error);
+    res.status(500).json({ error: "Failed to fetch theme presets" });
+  }
+});
+
+// Create theme preset
+app.post("/api/store-design/themes", async (req, res) => {
+  const { id, name, description, colors, typography, buttons, cards, animations } = req.body;
+  try {
+    const theme = new KlinTheme({ id, name, description, colors, typography, buttons, cards, animations });
+    await theme.save();
+    res.json({ success: true, theme });
+  } catch (error) {
+    console.error("Create theme error:", error);
+    res.status(500).json({ error: "Failed to register theme preset" });
+  }
+});
+
+// Get registered templates
+app.get("/api/store-design/templates", async (req, res) => {
+  try {
+    const templates = await KlinTemplate.find({});
+    res.json({ templates });
+  } catch (error) {
+    console.error("Fetch templates error:", error);
+    res.status(500).json({ error: "Failed to fetch templates" });
+  }
+});
+
+app.post("/api/store-design/templates", async (req, res) => {
+  const { id, name, description, category, thumbnail, theme, pages } = req.body;
+  try {
+    const template = new KlinTemplate({ id, name, description, category, thumbnail, theme, pages });
+    await template.save();
+    res.json({ success: true, template });
+  } catch (error) {
+    console.error("Create template error:", error);
+    res.status(500).json({ error: "Failed to register template" });
   }
 });
 
