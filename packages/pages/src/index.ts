@@ -14,6 +14,7 @@ export type { RenderSlots } from "./render-tree/RenderSlots";
 export type { RenderContext } from "./render-tree/RenderContext";
 export { RenderTreeOptimizer } from "./render-tree/RenderTreeOptimizer";
 export { WebsiteManager } from "./core/WebsiteManager";
+export { PagesEngine } from "./core/PagesEngine";
 
 export { DraftManager } from "./core/DraftManager";
 export type { PageDraft } from "./core/DraftManager";

@@ -7,6 +7,7 @@ const storeDesignSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  websiteId: { type: String, default: "default", index: true },
   templateId: { type: String, default: "" },
 
   theme: {

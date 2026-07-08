@@ -1,56 +1,194 @@
 # Klin Platform Architecture & Dependency Guidelines
 
-This document outlines the core structural principles and dependency rules governing the **Klin** monorepo codebase.
+This document details the architectural specifications, engine interactions, and dependency rules governing the **Klin Framework**.
 
 ---
 
-## The Klin Golden Rules
+## 1. Engine Diagram
 
-1. **Everything is a Package.** — All code components, engines, and services must exist as self-contained packages.
-2. **Everything is Versioned.** — Every package, template, block, and schema preserves semantic versioning.
-3. **Everything is Discoverable.** — Registry layers scan and index package manifests automatically.
-4. **Everything is Typed.** — Zero-tolerance policy for loose or untyped Javascript.
-5. **Everything is Theme Token Based.** — No hardcoded spacing, typography size or hex color values.
-6. **Everything is AI Compatible.** — Structural schema interfaces enable safe and optimized LLM generation.
-7. **Everything is Puck Compatible.** — Packages expose mapping adapters to mount editor canvas.
-8. **Everything is Testable.** — Each package maintains native validation test definitions.
-9. **Everything is Replaceable.** — Abstract adapters enable core engines to function regardless of canvas integrations.
-10. **Nothing is Hardcoded.** — Config engines compile JSON templates into visual views.
+```mermaid
+graph TD
+    subgraph UI/Client Layer
+        A[React App / CLI] --> B[KlinSDK]
+    end
+
+    subgraph SDK Orchestrator
+        B --> C[Platform SDK]
+        B --> D[Builder SDK]
+        B --> E[Renderer SDK]
+        B --> F[CMS / Commerce / Theme SDKs]
+    end
+
+    subgraph Runtime Core
+        C & D & E & F --> G[KlinRuntime]
+        G --> H[EngineRegistry]
+        G --> I[PluginRegistry]
+        G --> J[RuntimeContainer]
+    end
+
+    subgraph Engines Subsystem
+        H --> K[PlatformEngine]
+        H --> L[BuilderEngine]
+        H --> M[RendererEngine]
+        H --> N[CommerceEngine]
+        H --> O[ThemeEngine]
+    end
+
+    subgraph Storage Layer
+        K & L & M & N & O --> P[(MongoDB / Local Cache)]
+    end
+```
 
 ---
 
-## Allowed Dependency Mappings
+## 2. Dependency Graph
 
-To prevent circular reference loops and design drifts, package imports are restricted:
+Framework packages must adhere strictly to a top-down dependency design. Reverse imports from `apps/` or other restricted packages are forbidden.
 
-| Package Namespace | Permitted Imports | Notes |
-|:---|:---|:---|
-| `@klin/core` | None | Deepest core logic (logging, state lifecycle) |
-| `@klin/shared` | `@klin/core` | Basic shared types, converters, and constants |
-| `@klin/ui` | `@klin/core`, `@klin/shared`, `@klin/theme` | Design system elements (e.g. `@klin/ui/button`) |
-| `@klin/blocks` | `@klin/ui`, `@klin/core`, `@klin/shared` | Ecommerce section grids (e.g. `@klin/blocks/hero`) |
-| `@klin/templates` | `@klin/blocks`, `@klin/ui` | Composed template setups |
-| `@klin/renderer` | `@klin/templates`, `@klin/blocks` | Server/Client rendering compiler |
-| `apps/*` | `packages/*` | Top-level applications. Apps never import from other apps |
-
-*Strict rule*: Packages never reference folders outside their designated dependency direction (e.g., `@klin/ui` must never import from `@klin/templates`).
+```mermaid
+graph TD
+    core[@klin/core] --> data[@klin/data]
+    data --> theme[@klin/theme]
+    theme --> blocks[@klin/blocks]
+    blocks --> builder[@klin/builder]
+    builder --> renderer[@klin/renderer]
+    renderer --> platform[@klin/platform]
+    platform --> commerce[@klin/commerce]
+    commerce --> devtools[@klin/devtools]
+    
+    subgraph Framework Boundary
+        core
+        data
+        theme
+        blocks
+        builder
+        renderer
+        platform
+        commerce
+        devtools
+    end
+    
+    apps[apps/web, apps/studio] --> sdk[@klin/sdk]
+    sdk --> core
+```
 
 ---
 
-## 15-Phase Development Roadmap
+## 3. Runtime Flow
 
-1. **Phase 1: Workspace & Tooling** (Current phase)
-2. **Phase 2: Core + Registry + Commands**
-3. **Phase 3: UI Package (Button POC)**
-4. **Phase 4: Hero Block**
-5. **Phase 5: Renderer**
-6. **Phase 6: Puck Adapter**
-7. **Phase 7: Builder Core**
-8. **Phase 8: Store Engine**
-9. **Phase 9: Dashboard**
-10. **Phase 10: Design Studio**
-11. **Phase 11: Templates**
-12. **Phase 12: Marketplace**
-13. **Phase 13: Billing**
-14. **Phase 14: Extensions**
-15. **Phase 15: AI Website Generator**
+```mermaid
+sequenceDiagram
+    participant App as Client Application
+    participant R as KlinRuntime
+    participant ER as EngineRegistry
+    participant PE as PlatformEngine
+    participant RE as RendererEngine
+
+    App->>R: KlinRuntime.getInstance()
+    App->>R: registerPlatformEngine(new PlatformEngine())
+    App->>R: registerRendererEngine(new RendererEngine())
+    App->>R: boot()
+    activate R
+    R->>ER: Initialize PlatformEngine
+    R->>ER: Initialize RendererEngine
+    R: State transition -> READY
+    R-->>App: Boot Completed
+    deactivate R
+```
+
+---
+
+## 4. Builder Flow
+
+```mermaid
+sequenceDiagram
+    participant UI as Studio Customizer
+    participant SDK as KlinSDK
+    participant BE as BuilderEngine
+    participant DB as MongoDB
+
+    UI->>SDK: klin.builder.load(websiteId)
+    SDK->>DB: Fetch layout document
+    DB-->>SDK: Return JSON document
+    SDK->>BE: loadDesignState(JSON)
+    BE->>BE: Generate layout tree node references
+    BE-->>UI: Return layout tree structure
+    
+    Note over UI,BE: User inserts element / edits properties
+    UI->>BE: addNode(nodeId, blockType)
+    BE->>BE: Update node children lists
+    BE->>BE: pushHistoryState()
+    BE-->>UI: Refresh layout tree preview
+```
+
+---
+
+## 5. Renderer Flow
+
+```mermaid
+sequenceDiagram
+    participant C as Client Request
+    participant R as RendererEngine
+    participant T as ThemeEngine
+    participant D as DataEngine
+
+    C->>R: renderPage(pageId)
+    activate R
+    R->>T: Resolve theme styles & font tokens
+    T-->>R: Return Compiled CSS
+    R->>D: Resolve CMS bindings & product values
+    D-->>R: Return bound dynamic data
+    R->>R: Hydrate block trees & compile virtual elements
+    R-->>C: Return HTML Document & Hydration Scripts
+    deactivate R
+```
+
+---
+
+## 6. Publishing Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User Click
+    participant SDK as KlinSDK
+    participant PE as PlatformEngine
+    participant R as RendererEngine
+    participant CDN as Deployed Edge
+
+    U->>SDK: klin.platform.publish(websiteId)
+    SDK->>PE: publishWebsiteDesign(websiteId)
+    activate PE
+    PE->>PE: Freeze draft layout to snapshot
+    PE->>R: Compile production static assets
+    R-->>PE: Return bundled HTML/CSS/JS files
+    PE->>CDN: Push assets to distribution endpoint
+    PE-->>SDK: Return live subdomain URL
+    deactivate PE
+    SDK-->>U: Show success dialog & subdomain link
+```
+
+---
+
+## 7. Workspace Flow
+
+```mermaid
+sequenceDiagram
+    participant CLI as Klin CLI
+    participant SDK as KlinSDK
+    participant PE as PlatformEngine
+    participant S as Starters
+
+    CLI->>SDK: klin create my-shop --template ecommerce
+    SDK->>PE: cloneTemplate(ecommerce)
+    PE->>S: Copy template assets & dependency profiles
+    PE-->>SDK: Cloned successfully (returns site ID)
+    SDK-->>CLI: Scaffolded my-shop target workspace
+```
+
+---
+
+## 8. Dependency Rules
+
+1. **Framework Isolation:** Sibling engine dependencies under `packages/` must go strictly downwards. Sibling packages may only query other sibling APIs via `KlinRuntime.getInstance().engines` or public export entries.
+2. **Reverse imports are strictly forbidden:** Sibling engines or framework layers must never import code from `apps/` (such as `apps/web/` or custom dashboard pages).
+3. **No direct instantiation:** Sibling packages must not directly call `new OtherEngine()`. They must resolve engines via the runtime service locator.

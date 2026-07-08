@@ -28,10 +28,16 @@ export class ThemeEngine {
 
   private activeTheme: any | null = null;
 
+  public readonly name = "theme";
+
   async initialize(): Promise<void> {
     this.lifecycle.transitionTo("Initializing");
     this.lifecycle.transitionTo("Ready");
   }
+
+  public async start(): Promise<void> {}
+  public async stop(): Promise<void> {}
+  public async dispose(): Promise<void> {}
 
   async load(rawTheme: any): Promise<Result<any, Error>> {
     this.lifecycle.transitionTo("Loading");

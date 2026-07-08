@@ -8,6 +8,9 @@ import type {
   SectionType,
   DeviceMode,
 } from "./types";
+import { PlatformEngine, WebsiteManager, WebsiteClone, PlatformSDK } from "@klin/platform";
+import { getTemplates, templateToDesignState } from "./templates";
+import { BuilderIntegration, HistoryBridge } from "@klin/web";
 
 // ─── Default Theme ─────────────────────────────────────────
 
@@ -370,35 +373,27 @@ export function useDesignEngine() {
     [mutateDesign]
   );
 
-  // ── Editor state setters ──────────────────────────────
-
   const setDevice = useCallback((device: DeviceMode) => {
     setEditor((e) => ({ ...e, device }));
   }, []);
 
-  const setSidebarTab = useCallback(
-    (tab: EditorState["sidebarTab"]) => {
-      setEditor((e) => ({ ...e, sidebarTab: tab }));
-    },
-    []
-  );
-
-  const setInspectorTab = useCallback(
-    (tab: EditorState["inspectorTab"]) => {
-      setEditor((e) => ({ ...e, inspectorTab: tab }));
-    },
-    []
-  );
-
-  const setShowAddSectionModal = useCallback((show: boolean) => {
-    setEditor((e) => ({ ...e, showAddSectionModal: show }));
+  const setSidebarTab = useCallback((sidebarTab: EditorState["sidebarTab"]) => {
+    setEditor((e) => ({ ...e, sidebarTab }));
   }, []);
 
-  const setShowTemplatePickerModal = useCallback((show: boolean) => {
-    setEditor((e) => ({ ...e, showTemplatePickerModal: show }));
+  const setInspectorTab = useCallback((inspectorTab: EditorState["inspectorTab"]) => {
+    setEditor((e) => ({ ...e, inspectorTab }));
   }, []);
 
-  // ── API: Load ─────────────────────────────────────────
+  const setShowAddSectionModal = useCallback((showAddSectionModal: boolean) => {
+    setEditor((e) => ({ ...e, showAddSectionModal }));
+  }, []);
+
+  const setShowTemplatePickerModal = useCallback((showTemplatePickerModal: boolean) => {
+    setEditor((e) => ({ ...e, showTemplatePickerModal }));
+  }, []);
+
+  // �  // ── API: Load ─────────────────────────────────────────
 
   const load = useCallback(async () => {
     try {
@@ -407,28 +402,57 @@ export function useDesignEngine() {
         setIsLoaded(true);
         return;
       }
-      const res = await fetch("/api/store-design", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.status === 404) {
-        // No design yet — show template picker
-        setEditor((e) => ({ ...e, showTemplatePickerModal: true }));
+      const params = new URLSearchParams(window.location.search);
+      const websiteId = params.get("websiteId") || "default";
+      const presetId = params.get("preset");
+
+      const sdk = new PlatformSDK();
+
+      // 1. Load existing design
+      const d = await sdk.loadWebsite(websiteId);
+      if (d) {
+        setDesign(d);
+        if (d.pages.length > 0) {
+          setEditor((e) => ({
+            ...e,
+            currentPageId: d.pages[0].id,
+            showTemplatePickerModal: false,
+          }));
+        }
         setIsLoaded(true);
         return;
       }
-      if (!res.ok) throw new Error("Failed to load design");
-      const { design: d } = await res.json();
-      setDesign(d);
-      if (d.pages.length > 0) {
-        setEditor((e) => ({
-          ...e,
-          currentPageId: d.pages[0].id,
-          showTemplatePickerModal: false,
-        }));
+
+      // 2. If no existing design but presetId is provided, initialize from preset
+      if (presetId) {
+        const tpl = getTemplates().find((t) => t.id === presetId);
+        if (tpl) {
+          const ds = templateToDesignState(tpl);
+          const newDesign = await sdk.createWebsiteDesign(
+            websiteId,
+            ds.templateId,
+            ds.theme,
+            ds.pages
+          );
+          setDesign(newDesign);
+          if (newDesign.pages.length > 0) {
+            setEditor((e) => ({
+              ...e,
+              currentPageId: newDesign.pages[0].id,
+              showTemplatePickerModal: false,
+            }));
+          }
+          setIsLoaded(true);
+          return;
+        }
       }
+
+      // 3. Fallback: show template picker modal
+      setEditor((e) => ({ ...e, showTemplatePickerModal: true }));
       setIsLoaded(true);
     } catch (err) {
       console.error("Failed to load design:", err);
+      setEditor((e) => ({ ...e, showTemplatePickerModal: true }));
       setIsLoaded(true);
     }
   }, []);
@@ -437,21 +461,17 @@ export function useDesignEngine() {
 
   const save = useCallback(async () => {
     try {
-      const token = localStorage.getItem("kiln.auth.token");
-      if (!token) return;
       setEditor((e) => ({ ...e, isSaving: true }));
-      const res = await fetch("/api/store-design", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          theme: design.theme,
-          pages: design.pages,
-        }),
-      });
-      if (!res.ok) throw new Error("Save failed");
+      const params = new URLSearchParams(window.location.search);
+      const websiteId = params.get("websiteId") || "default";
+
+      const sdk = new PlatformSDK();
+      const success = await sdk.saveWebsite(websiteId, design);
+      if (!success) throw new Error("Save failed");
+      
+      const manager = new WebsiteManager();
+      manager.editLayout(design.templateId || "site", editor.currentPageId, design.pages);
+      console.log("[Platform Engine Integration] WebsiteManager.editLayout tracked draft state changes!");
       setEditor((e) => ({
         ...e,
         isDirty: false,
@@ -462,7 +482,7 @@ export function useDesignEngine() {
       console.error("Save error:", err);
       setEditor((e) => ({ ...e, isSaving: false }));
     }
-  }, [design]);
+  }, [design, editor.currentPageId]);
 
   // ── API: Create from template ─────────────────────────
 
@@ -471,20 +491,21 @@ export function useDesignEngine() {
       try {
         const token = localStorage.getItem("kiln.auth.token");
         if (!token) return;
-        const res = await fetch("/api/store-design", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            templateId: templateDesign.templateId,
-            theme: templateDesign.theme,
-            pages: templateDesign.pages,
-          }),
-        });
-        if (!res.ok) throw new Error("Create failed");
-        const { design: d } = await res.json();
+        const params = new URLSearchParams(window.location.search);
+        const websiteId = params.get("websiteId") || "default";
+
+        const sdk = new PlatformSDK();
+        const d = await sdk.createWebsiteDesign(
+          websiteId,
+          templateDesign.templateId,
+          templateDesign.theme,
+          templateDesign.pages
+        );
+
+        const cloner = new WebsiteClone();
+        const cloneId = cloner.cloneWebsiteInstance(templateDesign.templateId || "template");
+        console.log("[Platform Engine Integration] WebsiteClone cloned template instance:", cloneId);
+        
         setDesign(d);
         setEditor((e) => ({
           ...e,
@@ -492,12 +513,14 @@ export function useDesignEngine() {
           showTemplatePickerModal: false,
           isDirty: false,
         }));
+        setIsLoaded(true);
       } catch (err) {
         console.error("Create error:", err);
       }
     },
     []
   );
+
 
   // ── API: Publish ──────────────────────────────────────
 
@@ -507,12 +530,13 @@ export function useDesignEngine() {
       if (!token) return;
       // Save first
       await save();
-      const res = await fetch("/api/store-design/publish", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (!res.ok) throw new Error("Publish failed");
-      const data = await res.json();
+
+      const params = new URLSearchParams(window.location.search);
+      const websiteId = params.get("websiteId") || "default";
+
+      const sdk = new PlatformSDK();
+      const data = await sdk.publish(websiteId);
+
       setDesign((d) => ({
         ...d,
         publishedAt: data.publishedAt,

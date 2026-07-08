@@ -1,53 +1,44 @@
-import type { IRenderer } from "../core/IRenderer";
+import { IRenderer } from "../core/IRenderer";
 
 export class RendererRegistry {
-  private renderers: Map<string, IRenderer> = new Map();
-  private defaultRendererId: string | null = null;
+  private _registries: Map<string, any> = new Map();
+  private _renderers: Map<string, IRenderer> = new Map();
+  private _isFrozen: boolean = false;
 
-  registerRenderer(renderer: IRenderer): void {
-    this.renderers.set(renderer.id, renderer);
-    if (!this.defaultRendererId) {
-      this.defaultRendererId = renderer.id;
+  public freeze(): void {
+    this._isFrozen = true;
+  }
+
+  private checkFrozen(): void {
+    if (this._isFrozen && process.env.NODE_ENV !== "development") {
+      throw new Error("Cannot register items: RendererRegistry has been frozen after initialization.");
     }
   }
 
-  removeRenderer(id: string): void {
-    this.renderers.delete(id);
-    if (this.defaultRendererId === id) {
-      this.defaultRendererId = Array.from(this.renderers.keys())[0] ?? null;
-    }
+  public register(key: string, item: any): void {
+    this.checkFrozen();
+    this._registries.set(key, item);
   }
 
-  findRenderer(target: string): IRenderer | undefined {
-    // 1. Look for exact id match
-    if (this.renderers.has(target)) {
-      return this.renderers.get(target);
-    }
-    // 2. Look for renderer supporting target
-    for (const renderer of this.renderers.values()) {
-      if (renderer.supports(target)) {
-        return renderer;
-      }
-    }
-    return undefined;
+  public get(key: string): any {
+    return this._registries.get(key);
   }
 
-  getDefault(): IRenderer | undefined {
-    if (!this.defaultRendererId) return undefined;
-    return this.renderers.get(this.defaultRendererId);
+  public registerRenderer(renderer: IRenderer): void {
+    this.checkFrozen();
+    this._renderers.set(renderer.id, renderer);
   }
 
-  setDefault(id: string): void {
-    if (this.renderers.has(id)) {
-      this.defaultRendererId = id;
-    }
+  public removeRenderer(id: string): void {
+    this.checkFrozen();
+    this._renderers.delete(id);
   }
 
-  supports(target: string): boolean {
-    return this.findRenderer(target) !== undefined;
+  public findRenderer(id: string): IRenderer | undefined {
+    return this._renderers.get(id);
   }
 
-  list(): IRenderer[] {
-    return Array.from(this.renderers.values());
+  public list(): IRenderer[] {
+    return Array.from(this._renderers.values());
   }
 }

@@ -1,0 +1,29 @@
+{
+  "name": "@klin/web",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "echo 'Linting web app...'",
+    "test": "echo 'No tests'",
+    "dev": "echo 'Dev web app'"
+  },
+  "dependencies": {
+    "@klin/core": "*",
+    "@klin/data": "*",
+    "@klin/platform": "*",
+    "@klin/builder": "*",
+    "@klin/renderer": "*",
+    "@klin/templates": "*",
+    "@klin/pages": "*",
+    "@klin/theme": "*",
+    "@klin/blocks": "*",
+    "@klin/commerce": "*",
+    "@klin/event-bus": "*",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.0.0"
+  }
+}

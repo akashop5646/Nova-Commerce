@@ -9,4 +9,10 @@ export interface PipelineContext {
   resolvedAssets: Map<string, string>; // assetId -> URL path
   compiledStyles: string;
   metadata: Record<string, unknown>;
+
+  // Enterprise v2.1 Expansions
+  data?: Record<string, any>;
+  variables?: Record<string, any>;
+  layoutTree?: any;
+  output?: string;
 }

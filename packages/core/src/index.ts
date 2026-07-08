@@ -14,3 +14,4 @@ export * from "./infrastructure/version";
 export * from "./platform/constants";
 export * from "./platform/errors";
 export * from "./package";
+export * from "./core/CoreEngine";

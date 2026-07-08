@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Sparkles, Globe, Store, Instagram, ShoppingCart, Package, Download, Wrench, HelpCircle, TrendingUp, Check, Loader2, ArrowRight } from "lucide-react";
 import { setOnboarding, useOnboarding } from "@/lib/onboarding";
+import { PlatformEngine } from "@klin/platform";
 
 // UI Helpers inside onboarding.tsx for maximum self-containment
 function StepTitle({ eyebrow, title, subtitle }: { eyebrow?: string; title: string; subtitle?: string }) {
@@ -81,6 +82,10 @@ function OnboardingLayout() {
   const navigate = useNavigate();
   const onboardingState = useOnboarding();
   const { storeName, sellingStatus, revenue, productType, channels } = onboardingState;
+
+  useEffect(() => {
+    console.log("[Platform Engine Integration] OnboardingLayout loaded using platform runtime engine:", PlatformEngine);
+  }, []);
 
   // We manage the wizard's active view index in state:
   // 0: Name, 1: Selling, 2: Revenue, 3: Products, 4: Channels, 5: Building

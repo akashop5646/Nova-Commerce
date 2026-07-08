@@ -5,13 +5,21 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "services/*"
+    "services/*",
+    "sdk",
+    "cli",
+    "starters/*",
+    "examples/*"
   ],
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "build:framework": "node scripts/build-all.js",
+    "doctor": "node scripts/doctor.js",
+    "package": "node scripts/package.js",
+    "release": "node scripts/release.js",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "format": "prettier --write ."

@@ -14,6 +14,7 @@ import DashboardCustomers from "./routes/dashboard.customers";
 import DashboardContent from "./routes/dashboard.content";
 import DashboardMarketing from "./routes/dashboard.marketing";
 import DashboardOnlineStore from "./routes/dashboard.online-store";
+import DashboardOnlineStoreDetail from "./routes/dashboard.online-store.detail";
 import DashboardDiscounts from "./routes/dashboard.discounts";
 import DashboardSettings from "./routes/dashboard.settings";
 import DesignStudioPage from "./routes/dashboard.online-store.builder";
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "online-store",
         element: <DashboardOnlineStore />,
+      },
+      {
+        path: "online-store/:websiteId",
+        element: <DashboardOnlineStoreDetail />,
       },
       {
         path: "online-store/builder",

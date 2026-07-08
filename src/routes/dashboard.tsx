@@ -1,8 +1,9 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useMemo, useState, useEffect } from "react";
-import { ShoppingBag, Check, PartyPopper, X, ChevronDown, ChevronRight } from "lucide-react";
+import { ShoppingBag, Check, PartyPopper, X, ChevronDown, ChevronRight, Layout, Globe, Activity, Plus, RefreshCw, BarChart2, Layers } from "lucide-react";
 import { useOnboarding, syncProfileFromServer } from "@/lib/onboarding";
 import { DashboardLayout } from "@/components/dashboard-layout";
+import { PlatformEngine } from "@klin/platform";
 
 function DashboardLayoutWrapper() {
   const location = useLocation();
@@ -35,219 +36,188 @@ function DashboardLayoutWrapper() {
   return <DashboardComponent />;
 }
 
-type ChecklistItem = {
+type DashboardWebsite = {
   id: string;
-  title: string;
-  desc: string;
-  cta: string;
-  show?: boolean;
+  name: string;
+  status: "Draft" | "Published";
+  theme: string;
+  domain: string;
+  lastEdited: string;
+};
+
+type DeploymentLog = {
+  id: string;
+  version: string;
+  website: string;
+  status: "Active" | "Superseded";
+  timestamp: string;
+};
+
+type ActivityLog = {
+  id: string;
+  action: string;
+  target: string;
+  time: string;
 };
 
 function DashboardComponent() {
-  const { storeName, productType, channels } = useOnboarding();
-  const displayName = storeName.trim() || "Your store";
+  const navigate = useNavigate();
+  const { storeName } = useOnboarding();
+  const displayName = storeName.trim() || "Terracotta Shop";
 
-  const items = useMemo<ChecklistItem[]>(() => {
-    const hasPhysical = productType === "physical" || productType === "unsure" || productType === "";
-    const channelLabel =
-      channels.includes("social")
-        ? "Connect a social channel"
-        : channels.includes("marketplace")
-          ? "Connect a marketplace"
-          : channels.includes("inperson")
-            ? "Set up in-person selling"
-            : "Share your store";
-    return [
-      { id: "product", title: "Add your first product", desc: "Give your store something to sell. You can always add more later.", cta: "Add product" },
-      { id: "theme", title: "Customize your theme", desc: "Pick colors, fonts, and layout that feel like you.", cta: "Customize theme" },
-      { id: "domain", title: "Set up a custom domain", desc: "Point yourshop.com at your Kiln store.", cta: "Add domain" },
-      { id: "payments", title: "Set up payments", desc: "Accept cards, wallets, and BNPL out of the box.", cta: "Set up payments" },
-      { id: "shipping", title: "Set your shipping rates", desc: "Decide how much to charge, where you deliver.", cta: "Set up shipping", show: hasPhysical },
-      { id: "channel", title: channelLabel, desc: "Reach customers where they already spend time.", cta: "Connect channel" },
-    ].filter((i) => i.show !== false);
-  }, [productType, channels]);
+  // State
+  const [websites, setWebsites] = useState<DashboardWebsite[]>([
+    { id: "site-101", name: "Fashion Essentials Hub", status: "Published", theme: "Modern Dark", domain: "fashion.klin.site", lastEdited: "2 mins ago" },
+    { id: "site-102", name: "Wellness Lounge", status: "Draft", theme: "Pastel Warm", domain: "wellness.klin.site", lastEdited: "1 hour ago" },
+    { id: "site-103", name: "Terracotta Clay Artistry", status: "Published", theme: "Classic Serif", domain: "terracotta.klin.site", lastEdited: "Yesterday" },
+  ]);
 
-  const [done, setDone] = useState<Record<string, boolean>>({});
-  const [expanded, setExpanded] = useState<string | null>(items[0]?.id ?? null);
-  const [dismissed, setDismissed] = useState(false);
+  const [deployments] = useState<DeploymentLog[]>([
+    { id: "d-1", version: "v2.0.4", website: "Fashion Essentials Hub", status: "Active", timestamp: "5 mins ago" },
+    { id: "d-2", version: "v2.0.3", website: "Terracotta Clay Artistry", status: "Active", timestamp: "1 day ago" },
+    { id: "d-3", version: "v1.9.0", website: "Fashion Essentials Hub", status: "Superseded", timestamp: "3 days ago" },
+  ]);
 
-  const total = items.length;
-  const completed = items.filter((i) => done[i.id]).length;
-  const percent = total ? (completed / total) * 100 : 0;
-  const allDone = completed === total;
+  const [activities] = useState<ActivityLog[]>([
+    { id: "act-1", action: "Cloned Template", target: "Standard Clothing Preset", time: "1 hour ago" },
+    { id: "act-2", action: "Published Release", target: "v2.0.4 - CDN Edge", time: "5 mins ago" },
+    { id: "act-3", action: "Added Product", target: "Terracotta Artisan Pitcher", time: "2 hours ago" },
+  ]);
+
+  const stats = useMemo(() => {
+    const total = websites.length;
+    const published = websites.filter(w => w.status === "Published").length;
+    const draft = total - published;
+    return {
+      total,
+      published,
+      draft,
+      deploymentsCount: deployments.length,
+      visitors: "1,248",
+      orders: 24,
+      revenue: "$1,840.00"
+    };
+  }, [websites, deployments]);
 
   return (
     <DashboardLayout>
-      <h1 className="font-display text-3xl anim-fade-in-up anim-delay-1">Good morning, {displayName}.</h1>
-      <p className="mt-1 text-sm text-muted-foreground anim-fade-in-up anim-delay-2">
-        Here's what to do next. You'll be open for business in no time.
-      </p>
-
-      {!dismissed && (
-        <section className="mt-8 overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)] anim-fade-in-up anim-delay-3">
-          <div className="flex items-start justify-between gap-4 border-b border-border bg-muted/30 p-6">
-            <div>
-              <div className="text-xs uppercase tracking-[0.15em]" style={{ color: "var(--terracotta)" }}>
-                Setup guide
-              </div>
-              <h2 className="mt-1 font-display text-2xl">
-                {allDone ? "Setup complete." : `${completed} of ${total} tasks completed`}
-              </h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {allDone
-                  ? "Nice work. Your shop is ready to open."
-                  : "Use this guide to get your store ready to sell."}
-              </p>
-            </div>
-            {allDone ? (
-              <button
-                onClick={() => setDismissed(true)}
-                className="rounded-full p-2 text-muted-foreground hover:bg-muted"
-                aria-label="Dismiss"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            ) : (
-              <PartyPopper className="h-5 w-5 text-muted-foreground" style={{ opacity: percent > 50 ? 1 : 0.35 }} />
-            )}
-          </div>
-          <div className="h-1.5 w-full bg-muted">
-            <div
-              className="h-full rounded-full"
-              style={{
-                width: `${percent}%`,
-                background: "var(--terracotta)",
-                transition: "width 800ms cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-            />
-          </div>
-          <ul className="divide-y divide-border">
-            {items.map((item, i) => {
-              const isDone = !!done[item.id];
-              const isOpen = expanded === item.id;
-              return (
-                <ChecklistRow key={item.id} item={item} isDone={isDone} isOpen={isOpen} index={i} onToggle={() => setExpanded(isOpen ? null : item.id)} onCheck={() => setDone((d) => ({ ...d, [item.id]: !d[item.id] }))} onComplete={() => setDone((d) => ({ ...d, [item.id]: true }))} />
-              );
-            })}
-          </ul>
-        </section>
-      )}
-
-      <section className="mt-10 grid gap-4 md:grid-cols-3">
-        <EmptyStat title="Total sales" value="$0.00" hint="Sales will appear here once you make one." delay={0} />
-        <EmptyStat title="Sessions" value="0" hint="Visitors show up after you share your store." delay={1} />
-        <EmptyStat title="Orders" value="0" hint="Your first order is closer than you think." delay={2} />
-      </section>
-
-      <section className="mt-10 rounded-2xl border border-border bg-card p-8 text-center anim-fade-in-up anim-delay-5">
-        <div
-          className="mx-auto grid h-12 w-12 place-items-center rounded-xl"
-          style={{ background: "oklch(0.94 0.03 55)" }}
-        >
-          <ShoppingBag className="h-5 w-5" style={{ color: "var(--terracotta)" }} />
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-border/60 anim-fade-in-up anim-delay-1">
+        <div>
+          <h1 className="font-display text-3xl tracking-tight text-foreground">
+            Workspace: {displayName}
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">General overview of your workspace websites, deployments, and storefront transactions.</p>
         </div>
-        <h3 className="mt-4 font-display text-2xl">No orders yet</h3>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Orders will show up here once customers start buying.
-        </p>
-        <Link
-          to="/dashboard/products"
-          className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 hover-scale"
-        >
-          Add a product
-        </Link>
-      </section>
+        <div className="flex gap-2 flex-wrap">
+          <button
+            onClick={() => navigate("/dashboard/online-store")}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition cursor-pointer"
+          >
+            <Plus className="h-4 w-4" />
+            Create Website
+          </button>
+          <button
+            onClick={() => navigate("/dashboard/analytics")}
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-white transition cursor-pointer hover:opacity-90"
+            style={{ background: "var(--terracotta)" }}
+          >
+            <BarChart2 className="h-4 w-4" />
+            View Analytics
+          </button>
+        </div>
+      </div>
 
-      <div className="mt-10 flex justify-center pb-16">
-        <Link to="/" className="text-xs text-muted-foreground underline hover:text-foreground transition-colors">
-          ← Back to landing page (demo)
-        </Link>
+      {/* Metrics Cards */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 anim-fade-in-up anim-delay-2">
+        <StatCard title="Total Websites" value={stats.total} hint={`${stats.published} Live / ${stats.draft} Draft`} />
+        <StatCard title="Deployments" value={stats.deploymentsCount} hint="CDN Deployments registered" />
+        <StatCard title="Total Visitors" value={stats.visitors} hint="+12% since last week" />
+        <StatCard title="Total Revenue" value={stats.revenue} hint="From store checkouts" />
+      </div>
+
+      {/* Main Tables Grid */}
+      <div className="mt-8 grid gap-6 lg:grid-cols-3 anim-fade-in-up anim-delay-3">
+        {/* Recent Websites */}
+        <div className="lg:col-span-2 rounded-2xl border border-border bg-card overflow-hidden">
+          <div className="flex items-center justify-between border-b border-border bg-muted/20 px-6 py-4">
+            <h3 className="font-display text-lg text-foreground">Recent Websites</h3>
+            <Link to="/dashboard/online-store" className="text-xs font-semibold text-primary hover:underline">
+              View all
+            </Link>
+          </div>
+          <div className="divide-y divide-border">
+            {websites.map(w => (
+              <div key={w.id} className="flex items-center justify-between px-6 py-4 hover:bg-muted/5 transition-colors">
+                <div>
+                  <h4 className="font-semibold text-sm text-foreground">{w.name}</h4>
+                  <p className="text-xs text-muted-foreground mt-0.5">{w.domain}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-semibold uppercase ${w.status === "Published" ? "bg-emerald-500/10 text-emerald-600" : "bg-yellow-500/10 text-yellow-600"}`}>
+                    {w.status}
+                  </span>
+                  <button 
+                    onClick={() => navigate(`/dashboard/online-store/builder?preset=business&websiteId=${w.id}`)}
+                    className="text-xs font-bold text-primary hover:underline cursor-pointer"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Sidebar logs */}
+        <div className="space-y-6">
+          {/* Recent Deployments */}
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-4">
+            <h3 className="font-display text-lg text-foreground">Recent Deployments</h3>
+            <div className="space-y-3">
+              {deployments.map(d => (
+                <div key={d.id} className="flex items-start justify-between text-xs">
+                  <div>
+                    <span className="font-mono font-bold bg-muted px-1.5 py-0.5 rounded text-foreground">{d.version}</span>
+                    <span className="ml-2 font-medium text-muted-foreground">{d.website}</span>
+                  </div>
+                  <span className="text-muted-foreground">{d.timestamp}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Recent Activity */}
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-4">
+            <h3 className="font-display text-lg text-foreground">Recent Activity</h3>
+            <div className="space-y-3">
+              {activities.map(a => (
+                <div key={a.id} className="flex gap-3 text-xs">
+                  <Activity className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-foreground">{a.action}</span>
+                    <span className="text-muted-foreground"> - {a.target}</span>
+                    <div className="text-[10px] text-muted-foreground mt-0.5">{a.time}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   );
 }
 
-function ChecklistRow({
-  item,
-  isDone,
-  isOpen,
-  index,
-  onToggle,
-  onCheck,
-  onComplete,
-}: {
-  item: ChecklistItem;
-  isDone: boolean;
-  isOpen: boolean;
-  index: number;
-  onToggle: () => void;
-  onCheck: () => void;
-  onComplete: () => void;
-}) {
+function StatCard({ title, value, hint }: { title: string; value: string | number; hint: string }) {
   return (
-    <li
-      className="anim-fade-in"
-      style={{ animationDelay: `${200 + index * 60}ms` }}
-    >
-      <button
-        onClick={onToggle}
-        className="flex w-full items-center gap-4 px-6 py-4 text-left transition hover:bg-muted/30 hover-slide-right"
-      >
-        <span
-          onClick={(e) => {
-            e.stopPropagation();
-            onCheck();
-          }}
-          className={
-            "grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-dashed transition " +
-            (isDone ? "border-transparent" : "border-border hover:border-foreground")
-          }
-          style={isDone ? { background: "var(--emerald)", borderStyle: "solid" } : undefined}
-        >
-          {isDone && <Check className="h-3.5 w-3.5 text-white" />}
-        </span>
-        <span className="flex-1">
-          <span
-            className={
-              "block font-medium " +
-              (isDone ? "text-muted-foreground line-through" : "")
-            }
-          >
-            {item.title}
-          </span>
-        </span>
-        {isOpen ? (
-          <ChevronDown className="h-4 w-4 text-muted-foreground" />
-        ) : (
-          <ChevronRight className="h-4 w-4 text-muted-foreground" />
-        )}
-      </button>
-      {isOpen && !isDone && (
-        <div className="grid gap-4 px-6 pb-6 pl-16 md:grid-cols-[1fr_auto] md:items-center anim-fade-in-down">
-          <p className="text-sm text-muted-foreground">{item.desc}</p>
-          <button
-            onClick={onComplete}
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90 hover-scale"
-          >
-            {item.cta}
-          </button>
-        </div>
-      )}
-    </li>
-  );
-}
-
-function EmptyStat({ title, value, hint, delay }: { title: string; value: string; hint: string; delay: number }) {
-  return (
-    <div
-      className="rounded-2xl border border-border bg-card p-5 anim-scale-in"
-      style={{ animationDelay: `${300 + delay * 100}ms` }}
-    >
-      <div className="text-xs text-muted-foreground">{title}</div>
-      <div className="mt-1 font-display text-3xl">{value}</div>
+    <div className="rounded-2xl border border-border bg-card p-5">
+      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{title}</div>
+      <div className="mt-2 font-display text-3xl text-foreground font-extrabold">{value}</div>
       <p className="mt-2 text-xs text-muted-foreground">{hint}</p>
     </div>
   );
 }
 
 export default DashboardLayoutWrapper;
+

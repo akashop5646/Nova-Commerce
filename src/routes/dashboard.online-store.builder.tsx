@@ -42,6 +42,7 @@ import { useDesignEngine } from "@/lib/design-engine/engine";
 import { getAllSections, getSectionDefinition } from "@/lib/design-engine/sections";
 import { getTemplates, templateToDesignState } from "@/lib/design-engine/templates";
 import type { SectionType, InspectorField, DeviceMode } from "@/lib/design-engine/types";
+import { PlatformSDK } from "@klin/platform";
 
 // ─── Icon resolver ─────────────────────────────────────────
 
@@ -61,63 +62,16 @@ export default function DesignStudioPage() {
   const engine = useDesignEngine();
   const navigate = useNavigate();
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const initRef = useRef(false);
 
-  // Load design on mount, handling ?preset=id parameter
+  // Load design on mount
   useEffect(() => {
+    if (initRef.current) return;
+    initRef.current = true;
     document.title = "Design Studio · Kiln";
-    
-    const initializeBuilder = async () => {
-      const params = new URLSearchParams(window.location.search);
-      const presetId = params.get("preset");
-      
-      const token = localStorage.getItem("kiln.auth.token");
-      if (!token) {
-        engine.load();
-        return;
-      }
-
-      if (presetId) {
-        try {
-          const checkRes = await fetch("/api/store-design", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-
-          if (checkRes.ok) {
-            const { design: existingDesign } = await checkRes.json();
-            // If the requested preset is different from the current one, prompt for confirmation
-            if (existingDesign && existingDesign.templateId !== presetId) {
-              const confirmApply = window.confirm(
-                "Applying a new theme will replace your current design draft. Do you want to proceed?"
-              );
-              if (confirmApply) {
-                const tpl = getTemplates().find((t) => t.id === presetId);
-                if (tpl) {
-                  const ds = templateToDesignState(tpl);
-                  await engine.createFromTemplate(ds);
-                  return;
-                }
-              }
-            }
-          } else if (checkRes.status === 404) {
-            // No design yet — auto apply requested preset
-            const tpl = getTemplates().find((t) => t.id === presetId);
-            if (tpl) {
-              const ds = templateToDesignState(tpl);
-              await engine.createFromTemplate(ds);
-              return;
-            }
-          }
-        } catch (err) {
-          console.error("Error checking preset on mount:", err);
-        }
-      }
-
-      // Default load
-      engine.load();
-    };
-
-    initializeBuilder();
+    engine.load();
   }, []);
+
 
   // Sync design to preview iframe
   useEffect(() => {

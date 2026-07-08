@@ -2,6 +2,7 @@ export * from "./core/BlockLifecycle";
 export * from "./core/BlockContext";
 export * from "./core/BlockFactory";
 export * from "./core/BlockManager";
+export * from "./core/BlocksEngine";
 
 export * from "./contracts/BlockManifest";
 export * from "./contracts/BlockSchema";

@@ -21,7 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@klin/platform": ["./packages/platform/src/index.ts"],
+      "@klin/web": ["./apps/web/src/index.tsx"],
+      "@klin/commerce": ["./packages/commerce/src/index.ts"]
     }
   }
 }

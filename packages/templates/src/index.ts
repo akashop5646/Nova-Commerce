@@ -3,6 +3,7 @@ export type { TemplateLifecycleState, TemplateLifecycleListener } from "./core/T
 export type { TemplateContext } from "./core/TemplateContext";
 export { TemplateInstance, TemplateFactory } from "./core/TemplateFactory";
 export { TemplateManager } from "./core/TemplateManager";
+export { TemplatesEngine } from "./core/TemplatesEngine";
 
 export type { TemplateManifest } from "./contracts/TemplateManifest";
 export type { TemplateSchema } from "./contracts/TemplateSchema";
@@ -20,19 +21,19 @@ export { TemplateInheritance } from "./inheritance/TemplateInheritance";
 export { TemplateRenderer } from "./runtime/TemplateRenderer";
 export type { TemplateRendererProps } from "./runtime/TemplateRenderer";
 export { TemplateValidator } from "./runtime/TemplateValidator";
-export { TemplateHooks } from "./runtime/TemplateHooks.ts";
-export type { TemplateHookFn, TemplateHookContext, TemplateHookName } from "./runtime/TemplateHooks.ts";
-export { TEMPLATE_EVENTS, createTemplateEvent } from "./runtime/TemplateEvents.ts";
-export type { TemplateEventType, TemplateEventPayload } from "./runtime/TemplateEvents.ts";
+export { TemplateHooks } from "./runtime/TemplateHooks";
+export type { TemplateHookFn, TemplateHookContext, TemplateHookName } from "./runtime/TemplateHooks";
+export { TEMPLATE_EVENTS, createTemplateEvent } from "./runtime/TemplateEvents";
+export type { TemplateEventType, TemplateEventPayload } from "./runtime/TemplateEvents";
 
-export type { TemplateVariant, TemplateVariantDefinition } from "./variants/TemplateVariantEngine.ts";
-export { TemplateVariantEngine } from "./variants/TemplateVariantEngine.ts";
+export type { TemplateVariant, TemplateVariantDefinition } from "./variants/TemplateVariantEngine";
+export { TemplateVariantEngine } from "./variants/TemplateVariantEngine";
 
-export { TemplatePreview, PREVIEW_VIEWPORTS } from "./preview/TemplatePreview.ts";
-export type { PreviewViewport, PreviewConfig, PreviewSnapshot } from "./preview/TemplatePreview.ts";
+export { TemplatePreview, PREVIEW_VIEWPORTS } from "./preview/TemplatePreview";
+export type { PreviewViewport, PreviewConfig, PreviewSnapshot } from "./preview/TemplatePreview";
 
-export type { TemplateVersionDescriptor, VersionedTemplate } from "./version/TemplateVersion.ts";
-export { createVersion, isVersionCompatible } from "./version/TemplateVersion.ts";
+export type { TemplateVersionDescriptor, VersionedTemplate } from "./version/TemplateVersion";
+export { createVersion, isVersionCompatible } from "./version/TemplateVersion";
 export { MigrationEngine } from "./version/MigrationEngine";
 export type { MigrationStep, MigrationFn } from "./version/MigrationEngine";
 export { TemplateSerializer } from "./serialization/TemplateSerializer";
