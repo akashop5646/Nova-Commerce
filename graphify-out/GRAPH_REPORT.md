@@ -1,16 +1,16 @@
-# Graph Report - Kiln  (2026-07-07)
+# Graph Report - Kiln  (2026-07-08)
 
 ## Corpus Check
-- 595 files · ~161,699 words
+- 1704 files · ~241,464 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 3332 nodes · 4516 edges · 335 communities (274 shown, 61 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
+- 8030 nodes · 11924 edges · 843 communities (453 shown, 390 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fced720c`
+- Built from commit: `f90dab6d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -174,7 +174,6 @@
 - [[_COMMUNITY_Community 166|Community 166]]
 - [[_COMMUNITY_Community 167|Community 167]]
 - [[_COMMUNITY_Community 168|Community 168]]
-- [[_COMMUNITY_Community 169|Community 169]]
 - [[_COMMUNITY_Community 170|Community 170]]
 - [[_COMMUNITY_Community 171|Community 171]]
 - [[_COMMUNITY_Community 172|Community 172]]
@@ -265,8 +264,14 @@
 - [[_COMMUNITY_Community 263|Community 263]]
 - [[_COMMUNITY_Community 264|Community 264]]
 - [[_COMMUNITY_Community 265|Community 265]]
+- [[_COMMUNITY_Community 270|Community 270]]
 - [[_COMMUNITY_Community 271|Community 271]]
+- [[_COMMUNITY_Community 273|Community 273]]
 - [[_COMMUNITY_Community 281|Community 281]]
+- [[_COMMUNITY_Community 282|Community 282]]
+- [[_COMMUNITY_Community 283|Community 283]]
+- [[_COMMUNITY_Community 284|Community 284]]
+- [[_COMMUNITY_Community 286|Community 286]]
 - [[_COMMUNITY_Community 287|Community 287]]
 - [[_COMMUNITY_Community 291|Community 291]]
 - [[_COMMUNITY_Community 292|Community 292]]
@@ -299,33 +304,508 @@
 - [[_COMMUNITY_Community 327|Community 327]]
 - [[_COMMUNITY_Community 328|Community 328]]
 - [[_COMMUNITY_Community 329|Community 329]]
+- [[_COMMUNITY_Community 330|Community 330]]
 - [[_COMMUNITY_Community 331|Community 331]]
 - [[_COMMUNITY_Community 332|Community 332]]
 - [[_COMMUNITY_Community 333|Community 333]]
+- [[_COMMUNITY_Community 335|Community 335]]
+- [[_COMMUNITY_Community 336|Community 336]]
+- [[_COMMUNITY_Community 337|Community 337]]
+- [[_COMMUNITY_Community 338|Community 338]]
+- [[_COMMUNITY_Community 339|Community 339]]
+- [[_COMMUNITY_Community 340|Community 340]]
+- [[_COMMUNITY_Community 341|Community 341]]
+- [[_COMMUNITY_Community 342|Community 342]]
+- [[_COMMUNITY_Community 343|Community 343]]
+- [[_COMMUNITY_Community 344|Community 344]]
+- [[_COMMUNITY_Community 345|Community 345]]
+- [[_COMMUNITY_Community 346|Community 346]]
+- [[_COMMUNITY_Community 347|Community 347]]
+- [[_COMMUNITY_Community 348|Community 348]]
+- [[_COMMUNITY_Community 349|Community 349]]
+- [[_COMMUNITY_Community 350|Community 350]]
+- [[_COMMUNITY_Community 351|Community 351]]
+- [[_COMMUNITY_Community 352|Community 352]]
+- [[_COMMUNITY_Community 353|Community 353]]
+- [[_COMMUNITY_Community 354|Community 354]]
+- [[_COMMUNITY_Community 355|Community 355]]
+- [[_COMMUNITY_Community 356|Community 356]]
+- [[_COMMUNITY_Community 357|Community 357]]
+- [[_COMMUNITY_Community 358|Community 358]]
+- [[_COMMUNITY_Community 359|Community 359]]
+- [[_COMMUNITY_Community 360|Community 360]]
+- [[_COMMUNITY_Community 361|Community 361]]
+- [[_COMMUNITY_Community 362|Community 362]]
+- [[_COMMUNITY_Community 363|Community 363]]
+- [[_COMMUNITY_Community 364|Community 364]]
+- [[_COMMUNITY_Community 365|Community 365]]
+- [[_COMMUNITY_Community 366|Community 366]]
+- [[_COMMUNITY_Community 367|Community 367]]
+- [[_COMMUNITY_Community 368|Community 368]]
+- [[_COMMUNITY_Community 369|Community 369]]
+- [[_COMMUNITY_Community 370|Community 370]]
+- [[_COMMUNITY_Community 371|Community 371]]
+- [[_COMMUNITY_Community 372|Community 372]]
+- [[_COMMUNITY_Community 373|Community 373]]
+- [[_COMMUNITY_Community 374|Community 374]]
+- [[_COMMUNITY_Community 375|Community 375]]
+- [[_COMMUNITY_Community 377|Community 377]]
+- [[_COMMUNITY_Community 378|Community 378]]
+- [[_COMMUNITY_Community 379|Community 379]]
+- [[_COMMUNITY_Community 380|Community 380]]
+- [[_COMMUNITY_Community 381|Community 381]]
+- [[_COMMUNITY_Community 382|Community 382]]
+- [[_COMMUNITY_Community 383|Community 383]]
+- [[_COMMUNITY_Community 384|Community 384]]
+- [[_COMMUNITY_Community 385|Community 385]]
+- [[_COMMUNITY_Community 386|Community 386]]
+- [[_COMMUNITY_Community 387|Community 387]]
+- [[_COMMUNITY_Community 388|Community 388]]
+- [[_COMMUNITY_Community 389|Community 389]]
+- [[_COMMUNITY_Community 390|Community 390]]
+- [[_COMMUNITY_Community 391|Community 391]]
+- [[_COMMUNITY_Community 393|Community 393]]
+- [[_COMMUNITY_Community 394|Community 394]]
+- [[_COMMUNITY_Community 395|Community 395]]
+- [[_COMMUNITY_Community 396|Community 396]]
+- [[_COMMUNITY_Community 397|Community 397]]
+- [[_COMMUNITY_Community 398|Community 398]]
+- [[_COMMUNITY_Community 399|Community 399]]
+- [[_COMMUNITY_Community 400|Community 400]]
+- [[_COMMUNITY_Community 401|Community 401]]
+- [[_COMMUNITY_Community 402|Community 402]]
+- [[_COMMUNITY_Community 403|Community 403]]
+- [[_COMMUNITY_Community 404|Community 404]]
+- [[_COMMUNITY_Community 405|Community 405]]
+- [[_COMMUNITY_Community 406|Community 406]]
+- [[_COMMUNITY_Community 407|Community 407]]
+- [[_COMMUNITY_Community 408|Community 408]]
+- [[_COMMUNITY_Community 409|Community 409]]
+- [[_COMMUNITY_Community 410|Community 410]]
+- [[_COMMUNITY_Community 411|Community 411]]
+- [[_COMMUNITY_Community 412|Community 412]]
+- [[_COMMUNITY_Community 413|Community 413]]
+- [[_COMMUNITY_Community 414|Community 414]]
+- [[_COMMUNITY_Community 415|Community 415]]
+- [[_COMMUNITY_Community 416|Community 416]]
+- [[_COMMUNITY_Community 417|Community 417]]
+- [[_COMMUNITY_Community 418|Community 418]]
+- [[_COMMUNITY_Community 419|Community 419]]
+- [[_COMMUNITY_Community 420|Community 420]]
+- [[_COMMUNITY_Community 421|Community 421]]
+- [[_COMMUNITY_Community 422|Community 422]]
+- [[_COMMUNITY_Community 423|Community 423]]
+- [[_COMMUNITY_Community 424|Community 424]]
+- [[_COMMUNITY_Community 425|Community 425]]
+- [[_COMMUNITY_Community 426|Community 426]]
+- [[_COMMUNITY_Community 427|Community 427]]
+- [[_COMMUNITY_Community 428|Community 428]]
+- [[_COMMUNITY_Community 429|Community 429]]
+- [[_COMMUNITY_Community 430|Community 430]]
+- [[_COMMUNITY_Community 431|Community 431]]
+- [[_COMMUNITY_Community 432|Community 432]]
+- [[_COMMUNITY_Community 433|Community 433]]
+- [[_COMMUNITY_Community 434|Community 434]]
+- [[_COMMUNITY_Community 435|Community 435]]
+- [[_COMMUNITY_Community 436|Community 436]]
+- [[_COMMUNITY_Community 437|Community 437]]
+- [[_COMMUNITY_Community 438|Community 438]]
+- [[_COMMUNITY_Community 439|Community 439]]
+- [[_COMMUNITY_Community 440|Community 440]]
+- [[_COMMUNITY_Community 441|Community 441]]
+- [[_COMMUNITY_Community 442|Community 442]]
+- [[_COMMUNITY_Community 443|Community 443]]
+- [[_COMMUNITY_Community 444|Community 444]]
+- [[_COMMUNITY_Community 445|Community 445]]
+- [[_COMMUNITY_Community 446|Community 446]]
+- [[_COMMUNITY_Community 447|Community 447]]
+- [[_COMMUNITY_Community 448|Community 448]]
+- [[_COMMUNITY_Community 449|Community 449]]
+- [[_COMMUNITY_Community 450|Community 450]]
+- [[_COMMUNITY_Community 451|Community 451]]
+- [[_COMMUNITY_Community 452|Community 452]]
+- [[_COMMUNITY_Community 453|Community 453]]
+- [[_COMMUNITY_Community 454|Community 454]]
+- [[_COMMUNITY_Community 455|Community 455]]
+- [[_COMMUNITY_Community 456|Community 456]]
+- [[_COMMUNITY_Community 457|Community 457]]
+- [[_COMMUNITY_Community 458|Community 458]]
+- [[_COMMUNITY_Community 459|Community 459]]
+- [[_COMMUNITY_Community 460|Community 460]]
+- [[_COMMUNITY_Community 461|Community 461]]
+- [[_COMMUNITY_Community 462|Community 462]]
+- [[_COMMUNITY_Community 463|Community 463]]
+- [[_COMMUNITY_Community 464|Community 464]]
+- [[_COMMUNITY_Community 465|Community 465]]
+- [[_COMMUNITY_Community 466|Community 466]]
+- [[_COMMUNITY_Community 467|Community 467]]
+- [[_COMMUNITY_Community 468|Community 468]]
+- [[_COMMUNITY_Community 469|Community 469]]
+- [[_COMMUNITY_Community 470|Community 470]]
+- [[_COMMUNITY_Community 471|Community 471]]
+- [[_COMMUNITY_Community 472|Community 472]]
+- [[_COMMUNITY_Community 473|Community 473]]
+- [[_COMMUNITY_Community 474|Community 474]]
+- [[_COMMUNITY_Community 475|Community 475]]
+- [[_COMMUNITY_Community 476|Community 476]]
+- [[_COMMUNITY_Community 477|Community 477]]
+- [[_COMMUNITY_Community 478|Community 478]]
+- [[_COMMUNITY_Community 479|Community 479]]
+- [[_COMMUNITY_Community 480|Community 480]]
+- [[_COMMUNITY_Community 481|Community 481]]
+- [[_COMMUNITY_Community 482|Community 482]]
+- [[_COMMUNITY_Community 483|Community 483]]
+- [[_COMMUNITY_Community 484|Community 484]]
+- [[_COMMUNITY_Community 485|Community 485]]
+- [[_COMMUNITY_Community 486|Community 486]]
+- [[_COMMUNITY_Community 487|Community 487]]
+- [[_COMMUNITY_Community 488|Community 488]]
+- [[_COMMUNITY_Community 489|Community 489]]
+- [[_COMMUNITY_Community 490|Community 490]]
+- [[_COMMUNITY_Community 491|Community 491]]
+- [[_COMMUNITY_Community 492|Community 492]]
+- [[_COMMUNITY_Community 493|Community 493]]
+- [[_COMMUNITY_Community 494|Community 494]]
+- [[_COMMUNITY_Community 495|Community 495]]
+- [[_COMMUNITY_Community 496|Community 496]]
+- [[_COMMUNITY_Community 497|Community 497]]
+- [[_COMMUNITY_Community 498|Community 498]]
+- [[_COMMUNITY_Community 499|Community 499]]
+- [[_COMMUNITY_Community 500|Community 500]]
+- [[_COMMUNITY_Community 501|Community 501]]
+- [[_COMMUNITY_Community 502|Community 502]]
+- [[_COMMUNITY_Community 503|Community 503]]
+- [[_COMMUNITY_Community 504|Community 504]]
+- [[_COMMUNITY_Community 505|Community 505]]
+- [[_COMMUNITY_Community 506|Community 506]]
+- [[_COMMUNITY_Community 507|Community 507]]
+- [[_COMMUNITY_Community 508|Community 508]]
+- [[_COMMUNITY_Community 509|Community 509]]
+- [[_COMMUNITY_Community 510|Community 510]]
+- [[_COMMUNITY_Community 511|Community 511]]
+- [[_COMMUNITY_Community 512|Community 512]]
+- [[_COMMUNITY_Community 513|Community 513]]
+- [[_COMMUNITY_Community 514|Community 514]]
+- [[_COMMUNITY_Community 515|Community 515]]
+- [[_COMMUNITY_Community 516|Community 516]]
+- [[_COMMUNITY_Community 517|Community 517]]
+- [[_COMMUNITY_Community 518|Community 518]]
+- [[_COMMUNITY_Community 519|Community 519]]
+- [[_COMMUNITY_Community 520|Community 520]]
+- [[_COMMUNITY_Community 521|Community 521]]
+- [[_COMMUNITY_Community 522|Community 522]]
+- [[_COMMUNITY_Community 523|Community 523]]
+- [[_COMMUNITY_Community 524|Community 524]]
+- [[_COMMUNITY_Community 525|Community 525]]
+- [[_COMMUNITY_Community 526|Community 526]]
+- [[_COMMUNITY_Community 527|Community 527]]
+- [[_COMMUNITY_Community 528|Community 528]]
+- [[_COMMUNITY_Community 529|Community 529]]
+- [[_COMMUNITY_Community 530|Community 530]]
+- [[_COMMUNITY_Community 531|Community 531]]
+- [[_COMMUNITY_Community 532|Community 532]]
+- [[_COMMUNITY_Community 533|Community 533]]
+- [[_COMMUNITY_Community 534|Community 534]]
+- [[_COMMUNITY_Community 535|Community 535]]
+- [[_COMMUNITY_Community 536|Community 536]]
+- [[_COMMUNITY_Community 537|Community 537]]
+- [[_COMMUNITY_Community 538|Community 538]]
+- [[_COMMUNITY_Community 539|Community 539]]
+- [[_COMMUNITY_Community 540|Community 540]]
+- [[_COMMUNITY_Community 541|Community 541]]
+- [[_COMMUNITY_Community 542|Community 542]]
+- [[_COMMUNITY_Community 543|Community 543]]
+- [[_COMMUNITY_Community 544|Community 544]]
+- [[_COMMUNITY_Community 545|Community 545]]
+- [[_COMMUNITY_Community 546|Community 546]]
+- [[_COMMUNITY_Community 547|Community 547]]
+- [[_COMMUNITY_Community 548|Community 548]]
+- [[_COMMUNITY_Community 549|Community 549]]
+- [[_COMMUNITY_Community 550|Community 550]]
+- [[_COMMUNITY_Community 551|Community 551]]
+- [[_COMMUNITY_Community 552|Community 552]]
+- [[_COMMUNITY_Community 553|Community 553]]
+- [[_COMMUNITY_Community 554|Community 554]]
+- [[_COMMUNITY_Community 555|Community 555]]
+- [[_COMMUNITY_Community 556|Community 556]]
+- [[_COMMUNITY_Community 557|Community 557]]
+- [[_COMMUNITY_Community 558|Community 558]]
+- [[_COMMUNITY_Community 559|Community 559]]
+- [[_COMMUNITY_Community 560|Community 560]]
+- [[_COMMUNITY_Community 561|Community 561]]
+- [[_COMMUNITY_Community 562|Community 562]]
+- [[_COMMUNITY_Community 563|Community 563]]
+- [[_COMMUNITY_Community 564|Community 564]]
+- [[_COMMUNITY_Community 565|Community 565]]
+- [[_COMMUNITY_Community 566|Community 566]]
+- [[_COMMUNITY_Community 567|Community 567]]
+- [[_COMMUNITY_Community 568|Community 568]]
+- [[_COMMUNITY_Community 569|Community 569]]
+- [[_COMMUNITY_Community 570|Community 570]]
+- [[_COMMUNITY_Community 571|Community 571]]
+- [[_COMMUNITY_Community 572|Community 572]]
+- [[_COMMUNITY_Community 573|Community 573]]
+- [[_COMMUNITY_Community 574|Community 574]]
+- [[_COMMUNITY_Community 575|Community 575]]
+- [[_COMMUNITY_Community 576|Community 576]]
+- [[_COMMUNITY_Community 577|Community 577]]
+- [[_COMMUNITY_Community 578|Community 578]]
+- [[_COMMUNITY_Community 579|Community 579]]
+- [[_COMMUNITY_Community 580|Community 580]]
+- [[_COMMUNITY_Community 581|Community 581]]
+- [[_COMMUNITY_Community 582|Community 582]]
+- [[_COMMUNITY_Community 583|Community 583]]
+- [[_COMMUNITY_Community 584|Community 584]]
+- [[_COMMUNITY_Community 585|Community 585]]
+- [[_COMMUNITY_Community 586|Community 586]]
+- [[_COMMUNITY_Community 587|Community 587]]
+- [[_COMMUNITY_Community 588|Community 588]]
+- [[_COMMUNITY_Community 589|Community 589]]
+- [[_COMMUNITY_Community 590|Community 590]]
+- [[_COMMUNITY_Community 591|Community 591]]
+- [[_COMMUNITY_Community 592|Community 592]]
+- [[_COMMUNITY_Community 593|Community 593]]
+- [[_COMMUNITY_Community 594|Community 594]]
+- [[_COMMUNITY_Community 595|Community 595]]
+- [[_COMMUNITY_Community 596|Community 596]]
+- [[_COMMUNITY_Community 597|Community 597]]
+- [[_COMMUNITY_Community 598|Community 598]]
+- [[_COMMUNITY_Community 599|Community 599]]
+- [[_COMMUNITY_Community 600|Community 600]]
+- [[_COMMUNITY_Community 601|Community 601]]
+- [[_COMMUNITY_Community 602|Community 602]]
+- [[_COMMUNITY_Community 603|Community 603]]
+- [[_COMMUNITY_Community 604|Community 604]]
+- [[_COMMUNITY_Community 605|Community 605]]
+- [[_COMMUNITY_Community 606|Community 606]]
+- [[_COMMUNITY_Community 607|Community 607]]
+- [[_COMMUNITY_Community 608|Community 608]]
+- [[_COMMUNITY_Community 609|Community 609]]
+- [[_COMMUNITY_Community 610|Community 610]]
+- [[_COMMUNITY_Community 611|Community 611]]
+- [[_COMMUNITY_Community 612|Community 612]]
+- [[_COMMUNITY_Community 613|Community 613]]
+- [[_COMMUNITY_Community 614|Community 614]]
+- [[_COMMUNITY_Community 615|Community 615]]
+- [[_COMMUNITY_Community 616|Community 616]]
+- [[_COMMUNITY_Community 617|Community 617]]
+- [[_COMMUNITY_Community 618|Community 618]]
+- [[_COMMUNITY_Community 619|Community 619]]
+- [[_COMMUNITY_Community 620|Community 620]]
+- [[_COMMUNITY_Community 621|Community 621]]
+- [[_COMMUNITY_Community 622|Community 622]]
+- [[_COMMUNITY_Community 623|Community 623]]
+- [[_COMMUNITY_Community 624|Community 624]]
+- [[_COMMUNITY_Community 625|Community 625]]
+- [[_COMMUNITY_Community 626|Community 626]]
+- [[_COMMUNITY_Community 627|Community 627]]
+- [[_COMMUNITY_Community 628|Community 628]]
+- [[_COMMUNITY_Community 629|Community 629]]
+- [[_COMMUNITY_Community 630|Community 630]]
+- [[_COMMUNITY_Community 631|Community 631]]
+- [[_COMMUNITY_Community 632|Community 632]]
+- [[_COMMUNITY_Community 633|Community 633]]
+- [[_COMMUNITY_Community 634|Community 634]]
+- [[_COMMUNITY_Community 635|Community 635]]
+- [[_COMMUNITY_Community 636|Community 636]]
+- [[_COMMUNITY_Community 637|Community 637]]
+- [[_COMMUNITY_Community 638|Community 638]]
+- [[_COMMUNITY_Community 639|Community 639]]
+- [[_COMMUNITY_Community 640|Community 640]]
+- [[_COMMUNITY_Community 641|Community 641]]
+- [[_COMMUNITY_Community 642|Community 642]]
+- [[_COMMUNITY_Community 643|Community 643]]
+- [[_COMMUNITY_Community 644|Community 644]]
+- [[_COMMUNITY_Community 645|Community 645]]
+- [[_COMMUNITY_Community 646|Community 646]]
+- [[_COMMUNITY_Community 647|Community 647]]
+- [[_COMMUNITY_Community 648|Community 648]]
+- [[_COMMUNITY_Community 649|Community 649]]
+- [[_COMMUNITY_Community 650|Community 650]]
+- [[_COMMUNITY_Community 651|Community 651]]
+- [[_COMMUNITY_Community 652|Community 652]]
+- [[_COMMUNITY_Community 653|Community 653]]
+- [[_COMMUNITY_Community 654|Community 654]]
+- [[_COMMUNITY_Community 655|Community 655]]
+- [[_COMMUNITY_Community 656|Community 656]]
+- [[_COMMUNITY_Community 657|Community 657]]
+- [[_COMMUNITY_Community 658|Community 658]]
+- [[_COMMUNITY_Community 659|Community 659]]
+- [[_COMMUNITY_Community 660|Community 660]]
+- [[_COMMUNITY_Community 661|Community 661]]
+- [[_COMMUNITY_Community 662|Community 662]]
+- [[_COMMUNITY_Community 663|Community 663]]
+- [[_COMMUNITY_Community 664|Community 664]]
+- [[_COMMUNITY_Community 665|Community 665]]
+- [[_COMMUNITY_Community 666|Community 666]]
+- [[_COMMUNITY_Community 667|Community 667]]
+- [[_COMMUNITY_Community 668|Community 668]]
+- [[_COMMUNITY_Community 669|Community 669]]
+- [[_COMMUNITY_Community 670|Community 670]]
+- [[_COMMUNITY_Community 671|Community 671]]
+- [[_COMMUNITY_Community 672|Community 672]]
+- [[_COMMUNITY_Community 673|Community 673]]
+- [[_COMMUNITY_Community 674|Community 674]]
+- [[_COMMUNITY_Community 675|Community 675]]
+- [[_COMMUNITY_Community 676|Community 676]]
+- [[_COMMUNITY_Community 677|Community 677]]
+- [[_COMMUNITY_Community 678|Community 678]]
+- [[_COMMUNITY_Community 679|Community 679]]
+- [[_COMMUNITY_Community 680|Community 680]]
+- [[_COMMUNITY_Community 681|Community 681]]
+- [[_COMMUNITY_Community 682|Community 682]]
+- [[_COMMUNITY_Community 683|Community 683]]
+- [[_COMMUNITY_Community 684|Community 684]]
+- [[_COMMUNITY_Community 685|Community 685]]
+- [[_COMMUNITY_Community 686|Community 686]]
+- [[_COMMUNITY_Community 687|Community 687]]
+- [[_COMMUNITY_Community 688|Community 688]]
+- [[_COMMUNITY_Community 689|Community 689]]
+- [[_COMMUNITY_Community 690|Community 690]]
+- [[_COMMUNITY_Community 691|Community 691]]
+- [[_COMMUNITY_Community 692|Community 692]]
+- [[_COMMUNITY_Community 693|Community 693]]
+- [[_COMMUNITY_Community 694|Community 694]]
+- [[_COMMUNITY_Community 695|Community 695]]
+- [[_COMMUNITY_Community 696|Community 696]]
+- [[_COMMUNITY_Community 697|Community 697]]
+- [[_COMMUNITY_Community 698|Community 698]]
+- [[_COMMUNITY_Community 699|Community 699]]
+- [[_COMMUNITY_Community 700|Community 700]]
+- [[_COMMUNITY_Community 701|Community 701]]
+- [[_COMMUNITY_Community 702|Community 702]]
+- [[_COMMUNITY_Community 703|Community 703]]
+- [[_COMMUNITY_Community 704|Community 704]]
+- [[_COMMUNITY_Community 705|Community 705]]
+- [[_COMMUNITY_Community 706|Community 706]]
+- [[_COMMUNITY_Community 707|Community 707]]
+- [[_COMMUNITY_Community 708|Community 708]]
+- [[_COMMUNITY_Community 709|Community 709]]
+- [[_COMMUNITY_Community 710|Community 710]]
+- [[_COMMUNITY_Community 711|Community 711]]
+- [[_COMMUNITY_Community 712|Community 712]]
+- [[_COMMUNITY_Community 713|Community 713]]
+- [[_COMMUNITY_Community 714|Community 714]]
+- [[_COMMUNITY_Community 715|Community 715]]
+- [[_COMMUNITY_Community 716|Community 716]]
+- [[_COMMUNITY_Community 717|Community 717]]
+- [[_COMMUNITY_Community 718|Community 718]]
+- [[_COMMUNITY_Community 719|Community 719]]
+- [[_COMMUNITY_Community 720|Community 720]]
+- [[_COMMUNITY_Community 721|Community 721]]
+- [[_COMMUNITY_Community 722|Community 722]]
+- [[_COMMUNITY_Community 723|Community 723]]
+- [[_COMMUNITY_Community 724|Community 724]]
+- [[_COMMUNITY_Community 725|Community 725]]
+- [[_COMMUNITY_Community 726|Community 726]]
+- [[_COMMUNITY_Community 727|Community 727]]
+- [[_COMMUNITY_Community 728|Community 728]]
+- [[_COMMUNITY_Community 729|Community 729]]
+- [[_COMMUNITY_Community 730|Community 730]]
+- [[_COMMUNITY_Community 731|Community 731]]
+- [[_COMMUNITY_Community 732|Community 732]]
+- [[_COMMUNITY_Community 733|Community 733]]
+- [[_COMMUNITY_Community 734|Community 734]]
+- [[_COMMUNITY_Community 735|Community 735]]
+- [[_COMMUNITY_Community 736|Community 736]]
+- [[_COMMUNITY_Community 737|Community 737]]
+- [[_COMMUNITY_Community 738|Community 738]]
+- [[_COMMUNITY_Community 739|Community 739]]
+- [[_COMMUNITY_Community 740|Community 740]]
+- [[_COMMUNITY_Community 741|Community 741]]
+- [[_COMMUNITY_Community 742|Community 742]]
+- [[_COMMUNITY_Community 743|Community 743]]
+- [[_COMMUNITY_Community 744|Community 744]]
+- [[_COMMUNITY_Community 745|Community 745]]
+- [[_COMMUNITY_Community 746|Community 746]]
+- [[_COMMUNITY_Community 747|Community 747]]
+- [[_COMMUNITY_Community 748|Community 748]]
+- [[_COMMUNITY_Community 749|Community 749]]
+- [[_COMMUNITY_Community 750|Community 750]]
+- [[_COMMUNITY_Community 751|Community 751]]
+- [[_COMMUNITY_Community 752|Community 752]]
+- [[_COMMUNITY_Community 753|Community 753]]
+- [[_COMMUNITY_Community 754|Community 754]]
+- [[_COMMUNITY_Community 755|Community 755]]
+- [[_COMMUNITY_Community 756|Community 756]]
+- [[_COMMUNITY_Community 757|Community 757]]
+- [[_COMMUNITY_Community 758|Community 758]]
+- [[_COMMUNITY_Community 759|Community 759]]
+- [[_COMMUNITY_Community 760|Community 760]]
+- [[_COMMUNITY_Community 761|Community 761]]
+- [[_COMMUNITY_Community 762|Community 762]]
+- [[_COMMUNITY_Community 763|Community 763]]
+- [[_COMMUNITY_Community 764|Community 764]]
+- [[_COMMUNITY_Community 765|Community 765]]
+- [[_COMMUNITY_Community 766|Community 766]]
+- [[_COMMUNITY_Community 767|Community 767]]
+- [[_COMMUNITY_Community 768|Community 768]]
+- [[_COMMUNITY_Community 769|Community 769]]
+- [[_COMMUNITY_Community 770|Community 770]]
+- [[_COMMUNITY_Community 771|Community 771]]
+- [[_COMMUNITY_Community 772|Community 772]]
+- [[_COMMUNITY_Community 773|Community 773]]
+- [[_COMMUNITY_Community 774|Community 774]]
+- [[_COMMUNITY_Community 775|Community 775]]
+- [[_COMMUNITY_Community 776|Community 776]]
+- [[_COMMUNITY_Community 777|Community 777]]
+- [[_COMMUNITY_Community 778|Community 778]]
+- [[_COMMUNITY_Community 779|Community 779]]
+- [[_COMMUNITY_Community 780|Community 780]]
+- [[_COMMUNITY_Community 781|Community 781]]
+- [[_COMMUNITY_Community 782|Community 782]]
+- [[_COMMUNITY_Community 783|Community 783]]
+- [[_COMMUNITY_Community 784|Community 784]]
+- [[_COMMUNITY_Community 792|Community 792]]
+- [[_COMMUNITY_Community 793|Community 793]]
+- [[_COMMUNITY_Community 794|Community 794]]
+- [[_COMMUNITY_Community 795|Community 795]]
+- [[_COMMUNITY_Community 807|Community 807]]
+- [[_COMMUNITY_Community 809|Community 809]]
+- [[_COMMUNITY_Community 810|Community 810]]
+- [[_COMMUNITY_Community 811|Community 811]]
+- [[_COMMUNITY_Community 812|Community 812]]
+- [[_COMMUNITY_Community 813|Community 813]]
+- [[_COMMUNITY_Community 815|Community 815]]
+- [[_COMMUNITY_Community 818|Community 818]]
+- [[_COMMUNITY_Community 819|Community 819]]
+- [[_COMMUNITY_Community 821|Community 821]]
+- [[_COMMUNITY_Community 822|Community 822]]
+- [[_COMMUNITY_Community 823|Community 823]]
+- [[_COMMUNITY_Community 829|Community 829]]
+- [[_COMMUNITY_Community 830|Community 830]]
+- [[_COMMUNITY_Community 833|Community 833]]
+- [[_COMMUNITY_Community 834|Community 834]]
+- [[_COMMUNITY_Community 835|Community 835]]
+- [[_COMMUNITY_Community 836|Community 836]]
+- [[_COMMUNITY_Community 837|Community 837]]
+- [[_COMMUNITY_Community 838|Community 838]]
+- [[_COMMUNITY_Community 840|Community 840]]
+- [[_COMMUNITY_Community 841|Community 841]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Result` - 88 edges
-2. `cn()` - 69 edges
-3. `Command` - 55 edges
-4. `CommandContext` - 46 edges
-5. `KlinEvent` - 39 edges
-6. `BuilderStore` - 37 edges
-7. `EventBus` - 35 edges
-8. `Ok` - 32 edges
-9. `DesignState` - 31 edges
-10. `EventService` - 30 edges
+1. `Result` - 186 edges
+2. `Entry` - 74 edges
+3. `Ok` - 69 edges
+4. `cn()` - 69 edges
+5. `Err` - 55 edges
+6. `RenderTree` - 52 edges
+7. `PageDefinition` - 47 edges
+8. `CommandContext` - 46 edges
+9. `RendererContext` - 46 edges
+10. `EventBus` - 43 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `BindingContextConfig` --references--> `Entry`  [EXTRACTED]
+  packages/data/src/binding/BindingContext.ts → packages/data/src/entities/Entry.ts
+- `QueryResultConfig` --references--> `Entry`  [EXTRACTED]
+  packages/data/src/query/QueryResult.ts → packages/data/src/entities/Entry.ts
 - `EventRecord` --references--> `KlinEvent`  [EXTRACTED]
   packages/event-bus/src/history/EventHistory.ts → packages/event-bus/src/events/KlinEvent.ts
 - `BreadcrumbSeparator()` --calls--> `cn()`  [EXTRACTED]
   src/components/ui/breadcrumb.tsx → src/lib/utils.ts
 - `BreadcrumbEllipsis()` --calls--> `cn()`  [EXTRACTED]
   src/components/ui/breadcrumb.tsx → src/lib/utils.ts
-- `CommandShortcut()` --calls--> `cn()`  [EXTRACTED]
-  src/components/ui/command.tsx → src/lib/utils.ts
-- `ContextMenuShortcut()` --calls--> `cn()`  [EXTRACTED]
-  src/components/ui/context-menu.tsx → src/lib/utils.ts
 
 ## Import Cycles
 - 1-file cycle: `apps/dashboard/src/index.tsx -> apps/dashboard/src/index.tsx`
@@ -349,15 +829,15 @@
 - 1-file cycle: `packages/observability/src/index.ts -> packages/observability/src/index.ts`
 - 1-file cycle: `packages/permissions/src/index.ts -> packages/permissions/src/index.ts`
 
-## Communities (335 total, 61 thin omitted)
+## Communities (843 total, 390 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.03
 Nodes (61): dependencies, class-variance-authority, clsx, cmdk, cors, date-fns, dotenv, embla-carousel-react (+53 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.12
-Nodes (3): DashboardLayout(), navItems, router
+Cohesion: 0.07
+Nodes (12): DashboardLayout(), navItems, ContentItem, initialContent, CustomerInfo, initialCustomers, DiscountInfo, initialDiscounts (+4 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.05
@@ -376,8 +856,8 @@ Cohesion: 0.22
 Nodes (8): 4.1 Animation Mood, 4.2 Delightful Micro-Moments, 4.3 Pricing Trust Signals, 4. Emotional Design, Appendix A: Animation Timing Reference, Appendix B: Color Tokens for Motion, Appendix C: Component Animation Checklist, Kiln — UX Architecture & Motion Specification
 
 ### Community 6 - "Community 6"
-Cohesion: 0.06
-Nodes (31): devDependencies, concurrently, eslint, eslint-config-prettier, @eslint/js, eslint-plugin-prettier, eslint-plugin-react-hooks, eslint-plugin-react-refresh (+23 more)
+Cohesion: 0.11
+Nodes (18): devDependencies, concurrently, eslint, eslint-config-prettier, @eslint/js, eslint-plugin-prettier, eslint-plugin-react-hooks, eslint-plugin-react-refresh (+10 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.15
@@ -396,8 +876,8 @@ Cohesion: 0.12
 Nodes (24): cn(), AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter(), AlertDialogHeader(), AlertDialogOverlay (+16 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.10
-Nodes (19): compilerOptions, allowImportingTsExtensions, jsx, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+11 more)
+Cohesion: 0.09
+Nodes (22): compilerOptions, allowImportingTsExtensions, jsx, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+14 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.25
@@ -448,8 +928,8 @@ Cohesion: 0.20
 Nodes (9): DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut(), DropdownMenuSubContent (+1 more)
 
 ### Community 24 - "Community 24"
-Cohesion: 0.08
-Nodes (35): buttonBuilderConfig, buttonDefaults, ButtonProps, buttonMetadata, buttonSchema, ButtonShape, ButtonShapeType, ButtonSize (+27 more)
+Cohesion: 0.18
+Nodes (18): buttonBuilderConfig, ButtonProps, buttonMetadata, buttonSchema, ButtonShape, ButtonShapeType, ButtonSize, ButtonSizeType (+10 more)
 
 ### Community 25 - "Community 25"
 Cohesion: 0.22
@@ -476,8 +956,8 @@ Cohesion: 0.33
 Nodes (5): ToggleGroup, ToggleGroupContext, ToggleGroupItem, Toggle, toggleVariants
 
 ### Community 31 - "Community 31"
-Cohesion: 0.05
-Nodes (19): IDisposable, IdPrefix, generateNanoID(), ILifecycle, LifecycleState, LifecycleTracker, ConsoleTransport, ILogger (+11 more)
+Cohesion: 0.24
+Nodes (4): ConsoleTransport, ILogger, Logger, LoggerTransport
 
 ### Community 32 - "Community 32"
 Cohesion: 0.40
@@ -496,36 +976,32 @@ Cohesion: 0.50
 Nodes (3): TabsContent, TabsList, TabsTrigger
 
 ### Community 39 - "Community 39"
-Cohesion: 0.12
-Nodes (6): CommandContext, CommandHooks, HookManager, PublishProjectCommand, UpdateThemeCommand, RenameWorkspaceCommand
+Cohesion: 0.02
+Nodes (46): AIContext, AIConversation, AIConversationMessage, AIPrompt, ApiRouter, PlatformGateway, CanvasComment, CommentManager (+38 more)
 
 ### Community 47 - "Community 47"
-Cohesion: 0.07
-Nodes (23): componentLoader, KlinComponentLoader, KlinComponentManifestSystem, manifestSystem, KlinRegistry, cliMock, KlinCliMock, KlinSdkValidator (+15 more)
+Cohesion: 0.09
+Nodes (17): componentLoader, KlinComponentLoader, KlinComponentManifestSystem, manifestSystem, KlinRegistry, cliMock, KlinCliMock, KlinSdkValidator (+9 more)
 
 ### Community 48 - "Community 48"
 Cohesion: 0.07
 Nodes (27): author, category, dependencies, @klin/theme, deprecated, description, documentation, examples (+19 more)
 
-### Community 49 - "Community 49"
-Cohesion: 0.12
-Nodes (4): Command, HistoryManager, CommandQueue, CommandRegistry
-
 ### Community 50 - "Community 50"
-Cohesion: 0.10
-Nodes (12): BUILDER, ERROR_CODES, EVENTS, PACKAGE_SCOPES, ROUTES, THEME, BuilderError, ConfigurationError (+4 more)
+Cohesion: 0.19
+Nodes (7): ERROR_CODES, BuilderError, ConfigurationError, KlinError, RegistryError, RendererError, ValidationError
 
 ### Community 51 - "Community 51"
-Cohesion: 0.12
-Nodes (5): RegistryBootstrap, RegistryContext, RegistryEngine, RegistryLifecycle, RegistryLifecycleState
+Cohesion: 0.15
+Nodes (3): RegistryBootstrap, RegistryContext, RegistryEngine
 
 ### Community 52 - "Community 52"
-Cohesion: 0.11
-Nodes (11): ComponentManifest, SchemaField, SchemaFieldType, ComponentContext, defaultComponentContext, ComponentFactory, ComponentInstance, ComponentLifecycle (+3 more)
+Cohesion: 0.22
+Nodes (7): ComponentManifest, ComponentContext, defaultComponentContext, ComponentFactory, ComponentInstance, ComponentLifecycle, ComponentLifecycleState
 
 ### Community 53 - "Community 53"
 Cohesion: 0.10
-Nodes (5): ICON_MAP, SECTION_RENDERERS, StorefrontRenderer(), themeToCSS(), S
+Nodes (6): ICON_MAP, SECTION_RENDERERS, StorefrontRenderer(), themeToCSS(), DesignState, S
 
 ### Community 54 - "Community 54"
 Cohesion: 0.09
@@ -537,11 +1013,15 @@ Nodes (13): DEFAULT_CONFIG, getEnvironmentConfig(), DEFAULT_FEATURES, FeatureFla
 
 ### Community 56 - "Community 56"
 Cohesion: 0.11
-Nodes (16): empty, hydrate(), listeners, OnboardingState, persist(), resetOnboarding(), setOnboarding(), syncProfileFromServer() (+8 more)
+Nodes (19): empty, hydrate(), listeners, OnboardingState, persist(), resetOnboarding(), setOnboarding(), syncProfileFromServer() (+11 more)
 
 ### Community 57 - "Community 57"
 Cohesion: 0.10
 Nodes (20): dependencies, @klin/config, @klin/core, @klin/event-bus, @klin/registry, @klin/schemas, @klin/shared, @klin/theme (+12 more)
+
+### Community 58 - "Community 58"
+Cohesion: 0.10
+Nodes (6): CommandExecutor, Command, ExecutionPipeline, CommandQueue, CommandLifecycleState, CommandResult
 
 ### Community 59 - "Community 59"
 Cohesion: 0.10
@@ -549,11 +1029,11 @@ Nodes (19): 10. Accessibility Rules, 11. Animation System, 12. Preview System, 1
 
 ### Community 60 - "Community 60"
 Cohesion: 0.06
-Nodes (10): Deserializer, ImportPipeline, ManifestLoader, PackageManifest, Err, SerializedPage, Serializer, AdapterValidator (+2 more)
+Nodes (11): CommandBridge, WebsiteManager, Deserializer, ExportOutput, ExportPipeline, ImportPipeline, PipelineStage, PipelineStage (+3 more)
 
 ### Community 61 - "Community 61"
-Cohesion: 0.19
-Nodes (8): KlinPuckHistory, KlinPuckIntegration, puckIntegration, KlinTemplateEngine, HistoryItem, PuckHistoryStack, PuckIntegrationConfig, DesignState
+Cohesion: 0.13
+Nodes (11): aiRulesEngine, KlinAiRulesEngine, KlinPuckHistory, KlinPuckIntegration, puckIntegration, PuckPluginContext, KlinTemplateEngine, HistoryItem (+3 more)
 
 ### Community 62 - "Community 62"
 Cohesion: 0.16
@@ -564,12 +1044,8 @@ Cohesion: 0.23
 Nodes (3): EventRegistry, MemoryTransport, Transport
 
 ### Community 64 - "Community 64"
-Cohesion: 0.11
-Nodes (19): DEFAULT_DESIGN, DEFAULT_EDITOR, DEFAULT_THEME, DesignEngine, AnimationPreset, DeviceMode, EditorState, PageConfig (+11 more)
-
-### Community 65 - "Community 65"
-Cohesion: 0.13
-Nodes (5): EventChannel, RetryStrategy, EventFilter, Subscription, SubscriptionManager
+Cohesion: 0.09
+Nodes (29): DEFAULT_DESIGN, DEFAULT_EDITOR, DEFAULT_THEME, DesignEngine, generateId(), getTemplates(), makeFooter(), makeHeader() (+21 more)
 
 ### Community 66 - "Community 66"
 Cohesion: 0.16
@@ -588,8 +1064,8 @@ Cohesion: 0.23
 Nodes (9): BlockContract, ComponentContract, RegistryContract, StoreContract, TemplateContract, ThemeContract, WorkspaceContract, ComponentStatus (+1 more)
 
 ### Community 71 - "Community 71"
-Cohesion: 0.28
-Nodes (4): CommandExecutor, ExecutionPipeline, CommandLifecycleState, CommandResult
+Cohesion: 0.08
+Nodes (17): AIPageMetadata, PageManifest, PageMetadata, DiffItem, DraftComparer, DraftManager, PageDraft, PageContext (+9 more)
 
 ### Community 72 - "Community 72"
 Cohesion: 0.13
@@ -612,27 +1088,27 @@ Cohesion: 0.15
 Nodes (4): EventHistory, EventRecord, Inspector, ReplayEngine
 
 ### Community 77 - "Community 77"
-Cohesion: 0.19
-Nodes (10): generateId(), getTemplates(), makeFooter(), makeHeader(), TEMPLATES, templateToDesignState(), DesignState, ThemeConfig (+2 more)
+Cohesion: 0.02
+Nodes (42): FileHashCache, RegistryCache, CodeGenerator, ComponentExporter, ReactGenerator, RouteGenerator, ConfigurationLoader, ComponentScanner (+34 more)
 
 ### Community 78 - "Community 78"
-Cohesion: 0.19
-Nodes (10): KlinThemeResolver, KlinThemeValidator, themeValidator, AnimationPreset, ThemeButtons, ThemeCards, ThemeColors, ThemeConfig (+2 more)
+Cohesion: 0.18
+Nodes (11): KlinThemeResolver, themeResolver, KlinThemeValidator, themeValidator, AnimationPreset, ThemeButtons, ThemeCards, ThemeColors (+3 more)
 
 ### Community 80 - "Community 80"
 Cohesion: 0.13
 Nodes (14): dependencies, @klin/core, @klin/event-bus, @klin/schemas, @klin/shared, main, name, private (+6 more)
 
 ### Community 81 - "Community 81"
-Cohesion: 0.22
-Nodes (5): EventBus, EventDispatcher, Middleware, BuilderContext, EventPublisher
+Cohesion: 0.19
+Nodes (6): EventBus, EventDispatcher, RetryStrategy, Middleware, BuilderContext, EventPublisher
 
 ### Community 82 - "Community 82"
-Cohesion: 0.13
-Nodes (14): compilerOptions, allowJs, esModuleInterop, forceConsistentCasingInFileNames, isolatedModules, jsx, lib, module (+6 more)
+Cohesion: 0.12
+Nodes (15): compilerOptions, allowImportingTsExtensions, allowJs, esModuleInterop, forceConsistentCasingInFileNames, isolatedModules, jsx, lib (+7 more)
 
 ### Community 83 - "Community 83"
-Cohesion: 0.25
+Cohesion: 0.22
 Nodes (3): ThemeContext, ThemeRuntimeInstance, ThemeRuntimeManager
 
 ### Community 84 - "Community 84"
@@ -641,19 +1117,19 @@ Nodes (13): dependencies, @klin/core, @klin/schemas, @klin/shared, main, name, p
 
 ### Community 85 - "Community 85"
 Cohesion: 0.22
-Nodes (8): KlinRendererProps, astParser, KlinAstParser, themeResolver, AstNode, RendererOptions, RenderingContext, ComponentInstance
+Nodes (7): KlinRendererProps, astParser, KlinAstParser, AstNode, RendererOptions, RenderingContext, ComponentInstance
 
 ### Community 86 - "Community 86"
-Cohesion: 0.17
-Nodes (7): aiRulesEngine, KlinAiRulesEngine, PuckPluginContext, templateEngine, KlinTemplateMetadata, KlinTemplatePackage, PageConfig
+Cohesion: 0.09
+Nodes (10): DependencyCache, PipelineCache, ValidationCache, ResolvedDependencies, DiagnosticsReport, Inspector, ValidationPipeline, ValidationError (+2 more)
 
 ### Community 87 - "Community 87"
 Cohesion: 0.19
 Nodes (9): ApiResponse, PaginationRequest, PaginationResponse, SearchRequest, SaveDraftRequest, SaveDraftResponse, ValidateTemplateRequest, ValidateTemplateResponse (+1 more)
 
 ### Community 88 - "Community 88"
-Cohesion: 0.21
-Nodes (8): componentValidator, KlinComponentValidator, KlinPublishPipeline, publishPipeline, PublishManifest, PublishPipelineEvent, PublishStatus, RollbackOptions
+Cohesion: 0.14
+Nodes (12): componentValidator, KlinComponentValidator, KlinPublishPipeline, publishPipeline, templateEngine, PublishManifest, PublishPipelineEvent, PublishStatus (+4 more)
 
 ### Community 89 - "Community 89"
 Cohesion: 0.15
@@ -688,8 +1164,8 @@ Cohesion: 0.17
 Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
 
 ### Community 98 - "Community 98"
-Cohesion: 0.17
-Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
+Cohesion: 0.10
+Nodes (20): dependencies, @klin/builder-core, @klin/core, @klin/event-bus, @klin/registry, @klin/schemas, @klin/shared, @klin/theme (+12 more)
 
 ### Community 99 - "Community 99"
 Cohesion: 0.12
@@ -700,8 +1176,8 @@ Cohesion: 0.17
 Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
 
 ### Community 101 - "Community 101"
-Cohesion: 0.17
-Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
+Cohesion: 0.10
+Nodes (19): dependencies, @klin/blocks, @klin/core, @klin/event-bus, @klin/pages, @klin/registry, @klin/schemas, @klin/shared (+11 more)
 
 ### Community 102 - "Community 102"
 Cohesion: 0.17
@@ -748,16 +1224,16 @@ Cohesion: 0.11
 Nodes (18): dependencies, @klin/command-engine, @klin/core, @klin/event-bus, @klin/registry, @measured/puck, main, name (+10 more)
 
 ### Community 113 - "Community 113"
-Cohesion: 0.17
-Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
+Cohesion: 0.10
+Nodes (19): dependencies, @klin/core, @klin/event-bus, @klin/pages, @klin/registry, @klin/schemas, @klin/shared, @klin/theme (+11 more)
 
 ### Community 114 - "Community 114"
 Cohesion: 0.17
 Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
 
 ### Community 115 - "Community 115"
-Cohesion: 0.17
-Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
+Cohesion: 0.12
+Nodes (16): dependencies, @klin/builder, @klin/commerce, @klin/core, @klin/data, @klin/platform, @klin/renderer, @klin/runtime (+8 more)
 
 ### Community 116 - "Community 116"
 Cohesion: 0.17
@@ -768,8 +1244,8 @@ Cohesion: 0.17
 Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
 
 ### Community 118 - "Community 118"
-Cohesion: 0.17
-Nodes (11): dependencies, @klin/core, main, name, private, scripts, build, lint (+3 more)
+Cohesion: 0.10
+Nodes (19): dependencies, @klin/blocks, @klin/builder-core, @klin/core, @klin/event-bus, @klin/registry, @klin/schemas, @klin/shared (+11 more)
 
 ### Community 119 - "Community 119"
 Cohesion: 0.17
@@ -801,14 +1277,14 @@ Nodes (10): dependencies, main, name, private, scripts, build, lint, test (+2 mo
 
 ### Community 126 - "Community 126"
 Cohesion: 0.18
-Nodes (10): dependencies, @klin/core, name, private, scripts, build, dev, lint (+2 more)
+Nodes (10): dependencies, @klin/core, name, private, version, scripts, build, dev (+2 more)
 
 ### Community 127 - "Community 127"
 Cohesion: 0.18
 Nodes (10): 1. Platform Vision, 2. Platform Layers, 3. Dependency Rules, 4. Package Responsibilities Matrix, 5. Event Flow Pipeline, 6. Command Execution Flow, 7. Registry Flow, 8. Golden Rules (+2 more)
 
 ### Community 128 - "Community 128"
-Cohesion: 0.22
+Cohesion: 0.19
 Nodes (4): KlinEvent, LoggingMiddleware, MetricsMiddleware, ValidationMiddleware
 
 ### Community 129 - "Community 129"
@@ -823,13 +1299,17 @@ Nodes (10): 3. Per-Page Animation Spec, 3c. Signup (`/signup`), 3d. Onboarding (
 Cohesion: 0.22
 Nodes (9): 8. Implementation Checklist, Phase 1 — Foundation (styles.css), Phase 2 — Scroll-Triggered Entrances (Landing Page), Phase 3 — Hero Entrance (Landing Page), Phase 4 — Micro-Interactions, Phase 5 — Dashboard Animations, Phase 6 — Signup & Onboarding, Phase 7 — Page Transitions (+1 more)
 
+### Community 134 - "Community 134"
+Cohesion: 0.06
+Nodes (25): GenerationHints, LayoutIntent, BreadcrumbBuilder, BreadcrumbItem, DependencyGraphNode, PageTree, PageTreeNode, RedirectConfig (+17 more)
+
 ### Community 135 - "Community 135"
-Cohesion: 0.09
-Nodes (5): BuilderContainer, BuilderKernel, ThemeEngine, RegistryService, ThemeService
+Cohesion: 0.10
+Nodes (9): BuilderAPI, HistoryAPI, BuilderBootstrap, BuilderContainer, BuilderCore, BuilderKernel, CommandEngine, CommandService (+1 more)
 
 ### Community 136 - "Community 136"
-Cohesion: 0.08
-Nodes (10): ShortcutManager, PanelManager, PanelDefinition, PanelRegistry, BuilderAPI, BuilderExtension, BuilderPlugin, ShortcutCallback (+2 more)
+Cohesion: 0.18
+Nodes (6): BuilderAPI, BuilderExtension, BuilderPlugin, ShortcutCallback, ToolbarAction, ToolbarRegistry
 
 ### Community 139 - "Community 139"
 Cohesion: 0.25
@@ -844,12 +1324,12 @@ Cohesion: 0.25
 Nodes (8): 4. Micro-Interactions, Buttons, Cards (Pillars, Pricing, Testimonials, Stat Cards), Form Inputs (Signup, Dashboard search), Links (Underline Slide-In), Pricing Tier Hover, Sidebar Nav Items (Dashboard), Social Login Buttons (Signup)
 
 ### Community 142 - "Community 142"
-Cohesion: 0.25
-Nodes (7): name, private, scripts, build, lint, test, version
+Cohesion: 0.02
+Nodes (39): AIAction, AISuggestedEdit, BuilderHints, SelectionContext, FolderManager, UploadManager, AlignmentEngine, AutoLayout (+31 more)
 
 ### Community 143 - "Community 143"
-Cohesion: 0.08
-Nodes (11): AddSectionCommand, DeleteSectionCommand, MoveSectionCommand, UpdatePropsCommand, CommandBridge, ExportOutput, ExportPipeline, ComponentLoader (+3 more)
+Cohesion: 0.05
+Nodes (13): AddSectionCommand, DeleteSectionCommand, MoveSectionCommand, UpdatePropsCommand, CommandContext, CommandHooks, HookManager, generateId() (+5 more)
 
 ### Community 144 - "Community 144"
 Cohesion: 0.25
@@ -889,7 +1369,7 @@ Nodes (7): name, private, scripts, build, lint, test, version
 
 ### Community 153 - "Community 153"
 Cohesion: 0.11
-Nodes (6): AutosaveManager, ShortcutManager, SelectionManager, EventService, ShortcutHandler, ViewportManager
+Nodes (6): AutosaveManager, HistoryManager, ShortcutManager, PluginHost, EventService, ShortcutHandler
 
 ### Community 154 - "Community 154"
 Cohesion: 0.25
@@ -1080,8 +1560,8 @@ Cohesion: 0.33
 Nodes (5): 1. Core Architecture, 2. Command Lifecycles, 3. Sub-Categorized Commands, 4. Usage Example, @klin/command-engine
 
 ### Community 205 - "Community 205"
-Cohesion: 0.33
-Nodes (6): scripts, build, dev, format, lint, test
+Cohesion: 0.02
+Nodes (33): ConversionAnalytics, CustomerAnalytics, FunnelAnalytics, ProductAnalytics, SalesAnalytics, DiscountAutomation, CreditLimit, PurchaseOrder (+25 more)
 
 ### Community 206 - "Community 206"
 Cohesion: 0.33
@@ -1092,8 +1572,8 @@ Cohesion: 0.33
 Nodes (5): Playbook: Create Component, Step 1: Initialize Package Folder, Step 2: Create Configurations, Step 3: Implement Visual Code, Step 4: Validate
 
 ### Community 208 - "Community 208"
-Cohesion: 0.12
-Nodes (5): Inspector, DragDropManager, DropIndicator, SelectionOverlay, EditorState
+Cohesion: 0.06
+Nodes (10): Inspector, ClipboardManager, DragDropManager, DropIndicator, RuntimeBridge, SelectionManager, SelectionOverlay, EditorState (+2 more)
 
 ### Community 209 - "Community 209"
 Cohesion: 0.33
@@ -1128,8 +1608,12 @@ Cohesion: 0.40
 Nodes (5): 1. Design Tokens & Global Easing, CSS Implementation Location, Duration Tokens, Easing Curves, Stagger Tokens
 
 ### Community 217 - "Community 217"
-Cohesion: 0.40
-Nodes (4): 15-Phase Development Roadmap, Allowed Dependency Mappings, Klin Platform Architecture & Dependency Guidelines, The Klin Golden Rules
+Cohesion: 0.20
+Nodes (9): 1. Engine Diagram, 2. Dependency Graph, 3. Runtime Flow, 4. Builder Flow, 5. Renderer Flow, 6. Publishing Flow, 7. Workspace Flow, 8. Dependency Rules (+1 more)
+
+### Community 218 - "Community 218"
+Cohesion: 0.05
+Nodes (16): Entry, EntryConfig, DataExporter, ComputedField, DataHooks, DataHookType, DataImporter, DataMiddleware (+8 more)
 
 ### Community 219 - "Community 219"
 Cohesion: 0.40
@@ -1199,41 +1683,61 @@ Nodes (3): Guidelines, Package File Structure, UI Component Standard
 Cohesion: 0.50
 Nodes (3): AccordionContent, AccordionItem, AccordionTrigger
 
+### Community 270 - "Community 270"
+Cohesion: 0.08
+Nodes (16): ComponentResolver, AIMetadata, BlockManifest, BlockMetadata, BlockContext, BlockFactory, BlockInstance, BlockManager (+8 more)
+
 ### Community 271 - "Community 271"
 Cohesion: 0.27
 Nodes (3): BuilderCoreEvents, BuilderPluginInstance, StoreListener
 
-### Community 281 - "Community 281"
-Cohesion: 0.23
-Nodes (4): BuilderEvents, BuilderEventType, EditorStateData, EditorStateListener
+### Community 273 - "Community 273"
+Cohesion: 0.05
+Nodes (20): EntryStatus, EntryRevision, EntryRevisionConfig, DataEvents, DataEventType, DataMutationEvent, EventStore, LocalizationManager (+12 more)
+
+### Community 282 - "Community 282"
+Cohesion: 0.01
+Nodes (72): AccessibilityRuntime, FocusManager, KeyboardNavigation, FontDefinition, FontResolver, IconResolver, ImageRuntime, LazyLoader (+64 more)
+
+### Community 283 - "Community 283"
+Cohesion: 0.05
+Nodes (13): IEngine, KlinRuntime, RuntimeConfig, RuntimeConfigOptions, RuntimeContainer, LifecycleHook, RuntimeLifecycle, RuntimeState (+5 more)
+
+### Community 284 - "Community 284"
+Cohesion: 0.04
+Nodes (10): DataContextConfig, ProviderRegistry, GraphQLProvider, IDataProvider, MongoProvider, RESTProvider, SeedGenerator, BulkOperation (+2 more)
+
+### Community 286 - "Community 286"
+Cohesion: 0.13
+Nodes (17): AITemplateMetadata, MarketplaceMetadata, TemplateMetadata, TemplateLifecycleListener, TemplateLifecycleState, PREVIEW_VIEWPORTS, PreviewConfig, PreviewSnapshot (+9 more)
 
 ### Community 306 - "Community 306"
-Cohesion: 0.12
-Nodes (5): GuideManager, InspectorManager, Inspector, PluginHost, BuilderStore
+Cohesion: 0.14
+Nodes (5): GuideManager, InspectorManager, Inspector, SelectionManager, BuilderStore
 
 ### Community 307 - "Community 307"
-Cohesion: 0.15
-Nodes (3): CommandEngine, HistoryManager, CommandService
+Cohesion: 0.08
+Nodes (15): CollectionAPI, EntryAPI, DataContext, DataEngine, DataLifecycle, LifecycleState, CollectionConfig, InstallProfile (+7 more)
 
 ### Community 308 - "Community 308"
-Cohesion: 0.21
-Nodes (9): ComponentSchema, BuilderSchemaMapper, PuckFieldMapper, BuilderField, BuilderFieldType, BuilderSchema, BuilderUIHints, BuilderValidation (+1 more)
+Cohesion: 0.18
+Nodes (10): ComponentSchema, BuilderSchemaMapper, PuckFieldMapper, BuilderField, BuilderFieldType, BuilderSchema, BuilderUIHints, BuilderValidation (+2 more)
 
 ### Community 309 - "Community 309"
-Cohesion: 0.18
-Nodes (4): BuilderAPI, HistoryAPI, BuilderBootstrap, BuilderCore
-
-### Community 310 - "Community 310"
-Cohesion: 0.18
-Nodes (3): BuilderAdapter, IBuilderAdapter, RegistryWatcher
+Cohesion: 0.07
+Nodes (13): ContentType, ContentTypeConfig, ContentTypeRegistry, Collection, Field, FieldDefinition, FieldType, FieldRegistry (+5 more)
 
 ### Community 312 - "Community 312"
-Cohesion: 0.24
-Nodes (6): BuilderContext, BuilderSnapshot, BuilderState, HistoryState, SelectionState, ViewportState
+Cohesion: 0.27
+Nodes (5): BuilderSnapshot, BuilderState, HistoryState, SelectionState, ViewportState
+
+### Community 314 - "Community 314"
+Cohesion: 0.06
+Nodes (22): AssetResolver, RendererManifest, RenderResult, RenderTarget, IRenderer, RendererContext, RendererFactory, RendererKernel (+14 more)
 
 ### Community 315 - "Community 315"
-Cohesion: 0.29
-Nodes (3): ComponentMapper, ReactRenderer, RendererAdapter
+Cohesion: 0.15
+Nodes (6): IBuilderAdapter, ComponentMapper, RegistryWatcher, ReactRenderer, RendererAdapter, DropCalculator
 
 ### Community 316 - "Community 316"
 Cohesion: 0.28
@@ -1255,25 +1759,605 @@ Nodes (6): 1. IBuilderAdapter & BuilderAdapter, 2. EditorState & BuilderSession,
 Cohesion: 0.29
 Nodes (6): 1. Ingestion & Discovery, 2. Schema Transformation, 3. Editor Interaction, 4. Serialization, Data Flow Architecture, Lifecycle Stages
 
+### Community 324 - "Community 324"
+Cohesion: 0.15
+Nodes (9): TemplateManifest, TemplateContext, TemplateFactory, TemplateInstance, TemplateManager, TemplateRenderer, TemplateRendererProps, TemplateValidator (+1 more)
+
+### Community 330 - "Community 330"
+Cohesion: 0.08
+Nodes (13): CartManager, CatalogManager, Product, SEOData, Variant, CheckoutManager, CheckoutSession, Customer (+5 more)
+
+### Community 332 - "Community 332"
+Cohesion: 0.14
+Nodes (6): MenuBuilder, MenuItem, NavigationGraph, NavigationNode, NavigationManager, WebsiteContext
+
+### Community 335 - "Community 335"
+Cohesion: 0.16
+Nodes (8): AssetManager, AssetReference, AssetProvider, CloudinaryProvider, LocalProvider, S3Provider, SupabaseProvider, VercelBlobProvider
+
+### Community 336 - "Community 336"
+Cohesion: 0.09
+Nodes (12): AccessibilityPass, ARIAResolver, ContrastValidator, RenderTreeCache, RenderNode, RenderProps, RenderSlots, RenderTreeOptimizer (+4 more)
+
+### Community 338 - "Community 338"
+Cohesion: 0.12
+Nodes (6): BlockDefinition, OverrideResolver, PageDependencyResolver, PagePipeline, PageRenderer, PageValidator
+
+### Community 339 - "Community 339"
+Cohesion: 0.12
+Nodes (6): MiddlewareRegistry, RendererMiddleware, PluginManager, RendererPipeline, RendererPlugin, RendererRegistry
+
+### Community 340 - "Community 340"
+Cohesion: 0.10
+Nodes (19): dependencies, @klin/blocks, @klin/builder-core, @klin/core, @klin/event-bus, @klin/registry, @klin/schemas, @klin/shared (+11 more)
+
+### Community 341 - "Community 341"
+Cohesion: 0.17
+Nodes (4): LayoutNode, LayoutTree, SectionManager, TemplateInheritance
+
+### Community 342 - "Community 342"
+Cohesion: 0.06
+Nodes (7): DeploymentProviderRegistry, CloudProvider, DeploymentProvider, DockerProvider, EdgeProvider, NodeProvider, StaticProvider
+
+### Community 343 - "Community 343"
+Cohesion: 0.18
+Nodes (10): MigrationEngine, TemplateSerializer, compareSemver(), MigrationFn, MigrationStep, compareSemver(), createVersion(), isVersionCompatible() (+2 more)
+
+### Community 344 - "Community 344"
+Cohesion: 0.14
+Nodes (13): turbo, dependsOn, outputs, cache, persistent, outputs, $schema, tasks (+5 more)
+
+### Community 345 - "Community 345"
+Cohesion: 0.13
+Nodes (9): MigrationEngine, Err, PageSerializer, compareSemver(), createDocumentVersion(), DocumentVersion, VersionedDocument, PageMigrationFn (+1 more)
+
+### Community 346 - "Community 346"
+Cohesion: 0.15
+Nodes (12): 10. Validation Pipeline, 11. AI Readiness Contracts, 1. Package Responsibility, 2. Core Hierarchy, 3. WebsiteManager, 4. PipelineRegistry, 5. RenderTree Cache, 6. Website Navigation Manager (+4 more)
+
+### Community 347 - "Community 347"
+Cohesion: 0.15
+Nodes (12): 10. Diagnostics, 11. Extension Guide, 1. Subsystem Architecture, 2. Lifecycle States, 3. Rendering Pipeline, 4. Component Resolution, 5. Theme Resolution, 6. Hydration Islands System (+4 more)
+
+### Community 349 - "Community 349"
+Cohesion: 0.09
+Nodes (13): CLI, Command, CommandOption, CommandRegistry, CompletionCommand, ConfigCommand, DoctorCommand, HelpCommand (+5 more)
+
+### Community 350 - "Community 350"
+Cohesion: 0.21
+Nodes (3): HydrationManager, HydrationIsland, HydrationManifest
+
+### Community 351 - "Community 351"
+Cohesion: 0.22
+Nodes (5): PageIndex, PageIndexEntry, PageSearch, SearchFilter, SearchOptions
+
+### Community 352 - "Community 352"
+Cohesion: 0.18
+Nodes (5): BUILDER, EVENTS, PACKAGE_SCOPES, ROUTES, THEME
+
+### Community 354 - "Community 354"
+Cohesion: 0.27
+Nodes (3): ILifecycle, LifecycleState, LifecycleTracker
+
+### Community 355 - "Community 355"
+Cohesion: 0.07
+Nodes (13): BlocksEngine, BrowserSDK, CMSSDK, CommerceSDK, DevToolsSDK, KlinSDK, NodeSDK, ProjectSDK (+5 more)
+
+### Community 357 - "Community 357"
+Cohesion: 0.10
+Nodes (6): DevToolsEngine, DevToolsManager, DevToolsRuntime, DevToolsState, DevToolsStateName, DevToolsSDK
+
+### Community 358 - "Community 358"
+Cohesion: 0.28
+Nodes (3): BlockLifecycle, BlockLifecycleListener, BlockLifecycleState
+
+### Community 359 - "Community 359"
+Cohesion: 0.13
+Nodes (7): QueryAPI, QueryBuilder, QueryFilter, QueryCache, QueryExecutor, QueryResult, QueryResultConfig
+
+### Community 360 - "Community 360"
+Cohesion: 0.33
+Nodes (4): MetaGenerator, MetaTag, SEOManager, SEOPayload
+
+### Community 361 - "Community 361"
+Cohesion: 0.39
+Nodes (3): RendererOptions, RendererDeserializer, RendererSerializer
+
+### Community 362 - "Community 362"
+Cohesion: 0.07
+Nodes (10): ManifestLoader, PackageManifest, PipelineRegistry, RenderPipeline, ComponentManifest, ManifestLoader, Ok, SerializedPage (+2 more)
+
+### Community 363 - "Community 363"
+Cohesion: 0.50
+Nodes (3): PublishContext, PublishingPipeline, PublishingStage
+
+### Community 364 - "Community 364"
+Cohesion: 0.19
+Nodes (4): TemplateSchema, TemplateVariant, TemplateVariantDefinition, TemplateVariantEngine
+
+### Community 365 - "Community 365"
+Cohesion: 0.46
+Nodes (7): equals(), greaterThan(), lessThan(), parseVersion(), satisfies(), upgradePath(), Version
+
+### Community 368 - "Community 368"
+Cohesion: 0.10
+Nodes (7): CacheInvalidator, FragmentCache, PageCache, CacheScope, MemoryCacheProvider, RenderCache, RenderCacheProvider
+
+### Community 371 - "Community 371"
+Cohesion: 0.32
+Nodes (3): IDisposable, PACKAGE, PackageInfo
+
+### Community 372 - "Community 372"
+Cohesion: 0.29
+Nodes (6): 1. Architectural Role, 2. Template Lifecycle, 3. Template Inheritance, 4. Template Variants, 5. Serialization and Migration, Klin Template Architecture
+
+### Community 373 - "Community 373"
+Cohesion: 0.29
+Nodes (6): compilerOptions, baseUrl, paths, extends, include, @/*
+
+### Community 374 - "Community 374"
+Cohesion: 0.29
+Nodes (6): ComponentInstanceSchema, DesignStateSchema, KlinComponentManifestSchema, KlinTemplateMetadataSchema, PageConfigSchema, ThemeConfigSchema
+
+### Community 377 - "Community 377"
+Cohesion: 0.11
+Nodes (10): AnalyticsModule, AutomationModule, CatalogModule, CheckoutModule, CommerceModule, CustomerModule, InventoryModule, OrderModule (+2 more)
+
+### Community 380 - "Community 380"
+Cohesion: 0.15
+Nodes (7): PageLifecycle, PageLifecycleListener, PageLifecycleState, PageHookContext, PageHookFn, PageHookName, PageHooks
+
+### Community 384 - "Community 384"
+Cohesion: 0.10
+Nodes (7): BindingContext, BindingContextConfig, BindingEngine, BindingExpression, BindingResolver, DataManager, LiveBindingManager
+
+### Community 386 - "Community 386"
+Cohesion: 0.06
+Nodes (13): RenderContext, RenderContextConfig, RendererConfig, RendererConfigOptions, RendererEngine, RendererLifecycle, RendererLifecycleListener, RendererLifecycleState (+5 more)
+
+### Community 387 - "Community 387"
+Cohesion: 0.40
+Nodes (4): 1. Composition Model, 2. Block Lifecycle Stages, 3. Package Folder Standard, Klin Block Architecture
+
+### Community 388 - "Community 388"
+Cohesion: 0.14
+Nodes (8): BlueprintNode, ComponentBlueprint, ComponentManager, ReusableComponent, PageTemplate, PageTemplateLibrary, SectionLibrary, SectionTemplate
+
+### Community 390 - "Community 390"
+Cohesion: 0.12
+Nodes (9): CatalogProjection, CommerceAggregate, CommerceEvent, CommerceEvents, CommerceEventStore, CustomerProjection, InventoryProjection, OrderProjection (+1 more)
+
+### Community 393 - "Community 393"
+Cohesion: 0.13
+Nodes (9): CashOnDelivery, ManualPayment, PaymentManager, PaymentProvider, PayPalProvider, PaymentProviderRegistry, RazorpayProvider, StripeProvider (+1 more)
+
+### Community 394 - "Community 394"
+Cohesion: 0.10
+Nodes (5): BillingModule, DeploymentModule, PlatformModule, PublishingModule, WorkspaceModule
+
+### Community 395 - "Community 395"
+Cohesion: 0.08
+Nodes (25): dependencies, @klin/blocks, @klin/builder, @klin/commerce, @klin/core, @klin/data, @klin/event-bus, @klin/pages (+17 more)
+
+### Community 396 - "Community 396"
+Cohesion: 0.12
+Nodes (5): CacheProvider, DistributedCacheProvider, MemoryCacheProvider, PlatformCache, RedisCacheProvider
+
+### Community 397 - "Community 397"
+Cohesion: 0.13
+Nodes (9): Breakpoint, BreakpointDevice, BreakpointManager, BuilderContextConfig, Preferences, PreferenceSettings, ResponsiveInspector, BuilderContext (+1 more)
+
+### Community 398 - "Community 398"
+Cohesion: 0.09
+Nodes (22): dependencies, @klin/blocks, @klin/builder, @klin/commerce, @klin/core, @klin/data, @klin/event-bus, @klin/pages (+14 more)
+
+### Community 399 - "Community 399"
+Cohesion: 0.18
+Nodes (9): ThemeValidator, BlockValidator, DependencyValidator, PerformanceBudgets, PerformanceValidator, PluginValidator, ValidationError, Validator (+1 more)
+
+### Community 400 - "Community 400"
+Cohesion: 0.18
+Nodes (12): ForgotPassword(), Login(), Signup(), WebsiteWizard(), Onboarding(), SessionContext, SessionContextType, SessionProvider() (+4 more)
+
+### Community 401 - "Community 401"
+Cohesion: 0.10
+Nodes (20): dependencies, @klin/blocks, @klin/core, @klin/data, @klin/event-bus, @klin/pages, @klin/renderer, @klin/templates (+12 more)
+
+### Community 402 - "Community 402"
+Cohesion: 0.16
+Nodes (7): PlatformProjection, ProjectionEngine, AnalyticsProjection, BillingProjection, DeploymentProjection, ProjectProjection, WorkspaceProjection
+
+### Community 403 - "Community 403"
+Cohesion: 0.10
+Nodes (20): dependencies, @klin/builder, @klin/core, @klin/data, @klin/event-bus, @klin/pages, @klin/renderer, @klin/templates (+12 more)
+
+### Community 404 - "Community 404"
+Cohesion: 0.12
+Nodes (4): ClipboardState, HistoryState, SelectionState, StudioState
+
+### Community 405 - "Community 405"
+Cohesion: 0.16
+Nodes (5): CommerceEngine, CommerceLifecycle, CommerceRuntime, CommerceState, CommerceStateName
+
+### Community 406 - "Community 406"
+Cohesion: 0.10
+Nodes (20): 12. Routing & Slug Engine (src/routing/), 18. Seed Engine (src/seeds/), 19. Import / Export (src/import/ & src/export/), 1. Monorepo Configuration, 20. Transactions (src/transactions/), 21. Multilingual & Localization (src/localization/), 22. Editor History & Undo/Redo (src/history/), 7. Workflow Engine (src/workflow/) (+12 more)
+
+### Community 407 - "Community 407"
+Cohesion: 0.17
+Nodes (7): Order, OrderHistory, OrderItem, OrderManager, OrderStatus, initialOrders, orderMgr
+
+### Community 408 - "Community 408"
+Cohesion: 0.22
+Nodes (7): Task, TaskContext, TaskStatus, TaskExecutor, TaskPipeline, TaskReporter, TaskRunner
+
+### Community 409 - "Community 409"
+Cohesion: 0.11
+Nodes (18): dependencies, @klin/core, @klin/data, @klin/event-bus, @klin/platform, @klin/renderer, @klin/theme, main (+10 more)
+
+### Community 410 - "Community 410"
+Cohesion: 0.13
+Nodes (3): ThemeEngine, BuilderContext, ThemeService
+
+### Community 412 - "Community 412"
+Cohesion: 0.22
+Nodes (13): buttonDefaults, Button(), renderButtonHTML(), getAriaAttributes(), animationConfigs, AnimationPreset, getAnimationStyle(), getButtonActiveStyles() (+5 more)
+
+### Community 413 - "Community 413"
+Cohesion: 0.20
+Nodes (4): PlatformJob, TaskScheduler, JobQueue, JobWorker
+
+### Community 414 - "Community 414"
+Cohesion: 0.21
+Nodes (4): BuilderIntegration, HistoryBridge, PageNode, TemplateSerializer
+
+### Community 415 - "Community 415"
+Cohesion: 0.18
+Nodes (3): PlatformEngine, PlatformRuntime, PlatformState
+
+### Community 416 - "Community 416"
+Cohesion: 0.18
+Nodes (5): Job, JobConfig, JobStatus, JobQueue, JobWorker
+
+### Community 417 - "Community 417"
+Cohesion: 0.13
+Nodes (14): bin, klin, dependencies, @klin/core, @klin/runtime, @klin/sdk, main, name (+6 more)
+
+### Community 418 - "Community 418"
+Cohesion: 0.18
+Nodes (3): PanelManager, PanelDefinition, PanelRegistry
+
+### Community 419 - "Community 419"
+Cohesion: 0.22
+Nodes (4): AssetLibrary, AssetSearch, AssetReference, AssetReferenceConfig
+
+### Community 420 - "Community 420"
+Cohesion: 0.20
+Nodes (8): StudioCanvas(), BottomStatusBar(), LeftSidebar(), RightSidebar(), StudioLayout(), StudioLayoutProps, TopToolbar(), TopToolbarProps
+
+### Community 421 - "Community 421"
+Cohesion: 0.27
+Nodes (7): AnalyticsMetrics, BillingMetrics, DeploymentMetrics, PublishMetrics, QueueMetrics, WorkspaceMetrics, PlatformMetrics
+
+### Community 422 - "Community 422"
+Cohesion: 0.14
+Nodes (3): Registry, SearchEngine, SearchQuery
+
+### Community 423 - "Community 423"
+Cohesion: 0.23
+Nodes (5): AmazonAdapter, eBayAdapter, FlipkartAdapter, MarketplaceAdapter, ShopifyAdapter
+
+### Community 424 - "Community 424"
+Cohesion: 0.25
+Nodes (4): PluginManager, PluginRegistry, Plugin, PluginManifest
+
+### Community 425 - "Community 425"
+Cohesion: 0.24
+Nodes (4): TransactionManager, CompensationStep, PlatformTransaction, TransactionStep
+
+### Community 426 - "Community 426"
+Cohesion: 0.15
+Nodes (12): cliDest, cliSrc, copyDirSync(), copyFileSync(), manifest, packages, packagesTargetDir, RELEASE_DIR (+4 more)
+
+### Community 427 - "Community 427"
+Cohesion: 0.28
+Nodes (4): Cart, CartCalculator, CartItem, SavedCart
+
+### Community 428 - "Community 428"
+Cohesion: 0.27
+Nodes (12): args, handleBuild(), handleCreate(), handleDev(), handleDoctor(), handlePackage(), handlePreview(), handlePublish() (+4 more)
+
+### Community 429 - "Community 429"
+Cohesion: 0.23
+Nodes (4): CompletionProvider, DiagnosticItem, DiagnosticsProvider, LanguageServer
+
+### Community 430 - "Community 430"
+Cohesion: 0.26
+Nodes (4): Marketplace, MarketplaceItem, MarketplaceType, MarketplaceInstaller
+
+### Community 431 - "Community 431"
+Cohesion: 0.24
+Nodes (5): DiffEngine, PatchOperation, PatchEngine, VNode, VNodeFactory
+
+### Community 432 - "Community 432"
+Cohesion: 0.24
+Nodes (4): ASTNode, ASTParser, ConverterReport, ConvertManager
+
+### Community 433 - "Community 433"
+Cohesion: 0.26
+Nodes (3): AssetWatcher, FileWatcher, WorkspaceWatcher
+
+### Community 434 - "Community 434"
+Cohesion: 0.17
+Nodes (11): Build System, CLI Command Framework, Core Design Principles, Key Subsystems, @klin/devtools — Developer Tools Engine Architecture, Language Server Protocol, Lifecycle Flow, Overview (+3 more)
+
+### Community 436 - "Community 436"
+Cohesion: 0.27
+Nodes (4): ReferenceField, ReferenceFieldConfig, RelationManager, RelationResolver
+
+### Community 439 - "Community 439"
+Cohesion: 0.29
+Nodes (3): ServiceDescriptor, ServiceDiscovery, ServiceResolver
+
+### Community 440 - "Community 440"
+Cohesion: 0.18
+Nodes (11): 23. Security, Search & Helpers, [NEW] [ConstraintValidator.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/validation/ConstraintValidator.ts), [NEW] [DATA_ENGINE_ARCHITECTURE.md](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/DATA_ENGINE_ARCHITECTURE.md), [NEW] [DataEvents.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/events/DataEvents.ts), [NEW] [DataSerializer.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/serialization/DataSerializer.ts), [NEW] [index.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/index.ts), [NEW] [Metrics.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/diagnostics/Metrics.ts), [NEW] [PermissionResolver.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/permissions/PermissionResolver.ts) (+3 more)
+
+### Community 441 - "Community 441"
+Cohesion: 0.33
+Nodes (3): Deployment, DeploymentHistory, DeploymentManager
+
+### Community 443 - "Community 443"
+Cohesion: 0.29
+Nodes (4): ClientRuntime, EdgeRuntime, RenderRuntime, ServerRuntime
+
+### Community 444 - "Community 444"
+Cohesion: 0.31
+Nodes (3): Saga, SagaCompensation, SagaStep
+
+### Community 445 - "Community 445"
+Cohesion: 0.31
+Nodes (3): DistributedLock, LockManager, ResourceLock
+
+### Community 446 - "Community 446"
+Cohesion: 0.27
+Nodes (4): AssetOptimizer, OptimizationPipeline, StyleOptimizer, TreeOptimizer
+
+### Community 447 - "Community 447"
+Cohesion: 0.20
+Nodes (10): scripts, build, build:framework, dev, doctor, format, lint, package (+2 more)
+
+### Community 448 - "Community 448"
+Cohesion: 0.33
+Nodes (3): PluginRegistry, PluginSandbox, PlatformPlugin
+
+### Community 449 - "Community 449"
+Cohesion: 0.24
+Nodes (7): APPS_DIR, dependencyMap, getFilesRecursive(), packages, PACKAGES_DIR, reportError(), scanForIllegalImports()
+
+### Community 451 - "Community 451"
+Cohesion: 0.33
+Nodes (3): AssetBrowser, MediaAsset, AssetPicker
+
+### Community 452 - "Community 452"
+Cohesion: 0.28
+Nodes (5): ConstraintResolver, Constraints, ElementConstraints, HorizontalConstraint, VerticalConstraint
+
+### Community 453 - "Community 453"
+Cohesion: 0.28
+Nodes (3): EventChannel, EventFilter, Subscription
+
+### Community 454 - "Community 454"
+Cohesion: 0.31
+Nodes (3): PlatformEventReplay, PlatformEventStore, StoredEvent
+
+### Community 455 - "Community 455"
+Cohesion: 0.33
+Nodes (3): Timeline, TimelineKeyframe, TimelineEditor
+
+### Community 456 - "Community 456"
+Cohesion: 0.36
+Nodes (6): DashboardOverview(), Project, ProjectCard(), ProjectCardProps, ProjectList(), ProjectListProps
+
+### Community 457 - "Community 457"
+Cohesion: 0.28
+Nodes (3): ThemeEditor, PresetTokens, ThemePreset
+
+### Community 459 - "Community 459"
+Cohesion: 0.22
+Nodes (8): 1. High-Level Modular Design, 2.1 CQRS Command & Query Bus, 2.2 Transactions & Saga Compensation, 2.3 Runtimes, Sessions & Locks, 2.4 Service Discovery & DI Container, 2.5 Event Sourcing & Projections, 2. Core Architectural Blocks, Klin Platform Engine Architecture (@klin/platform)
+
+### Community 460 - "Community 460"
+Cohesion: 0.22
+Nodes (8): 1. Render Session & Context, 2. Rendering Pipeline, 3. Progressive Hydration & Islands, 4. Dependency Tracing Graph, 5. AI Traceability & Diagnostics, Architecture Diagram, Key Modules, Renderer Engine Architecture (@klin/renderer)
+
+### Community 461 - "Community 461"
+Cohesion: 0.25
+Nodes (7): dependencies, @klin/core, @klin/runtime, @klin/sdk, name, private, version
+
+### Community 462 - "Community 462"
+Cohesion: 0.25
+Nodes (7): dependencies, @klin/core, @klin/runtime, @klin/sdk, name, private, version
+
+### Community 464 - "Community 464"
+Cohesion: 0.25
+Nodes (7): @klin/runtime, @klin/sdk, dependencies, @klin/core, name, private, version
+
+### Community 465 - "Community 465"
+Cohesion: 0.25
+Nodes (8): 15. Storage Providers (src/providers/), [NEW] [GraphQLProvider.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/providers/GraphQLProvider.ts), [NEW] [IDataProvider.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/providers/IDataProvider.ts), [NEW] [MemoryProvider.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/providers/MemoryProvider.ts), [NEW] [MongoProvider.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/providers/MongoProvider.ts), [NEW] [ProviderRegistry.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/providers/ProviderRegistry.ts), [NEW] [RESTProvider.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/providers/RESTProvider.ts), [NEW] [SupabaseProvider.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/providers/SupabaseProvider.ts)
+
+### Community 467 - "Community 467"
+Cohesion: 0.25
+Nodes (7): dependencies, @klin/core, @klin/runtime, @klin/sdk, name, private, version
+
+### Community 468 - "Community 468"
+Cohesion: 0.39
+Nodes (3): Extension, ExtensionConfig, ExtensionManager
+
+### Community 469 - "Community 469"
+Cohesion: 0.32
+Nodes (3): BuildPlan, BuildPlanner, BuildScheduler
+
+### Community 471 - "Community 471"
+Cohesion: 0.25
+Nodes (7): dependencies, @klin/core, @klin/runtime, @klin/sdk, name, private, version
+
+### Community 472 - "Community 472"
+Cohesion: 0.32
+Nodes (3): BlockLibrary, BlockMeta, BlockSearch
+
+### Community 473 - "Community 473"
+Cohesion: 0.25
+Nodes (7): dependencies, @klin/core, @klin/runtime, @klin/sdk, name, private, version
+
+### Community 476 - "Community 476"
+Cohesion: 0.25
+Nodes (7): name, private, scripts, build, lint, test, version
+
+### Community 477 - "Community 477"
+Cohesion: 0.25
+Nodes (7): compilerOptions, baseUrl, jsx, paths, extends, include, @/*
+
+### Community 479 - "Community 479"
+Cohesion: 0.29
+Nodes (6): compilerOptions, baseUrl, paths, extends, include, @/*
+
+### Community 480 - "Community 480"
+Cohesion: 0.29
+Nodes (6): compilerOptions, baseUrl, paths, extends, include, @/*
+
+### Community 481 - "Community 481"
+Cohesion: 0.29
+Nodes (6): compilerOptions, baseUrl, paths, extends, include, @/*
+
+### Community 484 - "Community 484"
+Cohesion: 0.29
+Nodes (7): 8. Dynamic Fields & Formulas (src/fields/), [NEW] [AssetReference.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/fields/AssetReference.ts), [NEW] [ComputedField.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/fields/ComputedField.ts), [NEW] [FieldDefinition.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/fields/FieldDefinition.ts), [NEW] [FieldRegistry.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/fields/FieldRegistry.ts), [NEW] [FieldValidator.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/fields/FieldValidator.ts), [NEW] [FormulaField.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/fields/FormulaField.ts)
+
+### Community 485 - "Community 485"
+Cohesion: 0.29
+Nodes (6): compilerOptions, baseUrl, paths, extends, include, @/*
+
+### Community 488 - "Community 488"
+Cohesion: 0.43
+Nodes (3): PluginLoader, PluginCapability, PluginManifest
+
+### Community 490 - "Community 490"
+Cohesion: 0.29
+Nodes (6): compilerOptions, baseUrl, paths, extends, include, @/*
+
+### Community 491 - "Community 491"
+Cohesion: 0.48
+Nodes (3): TaxEngine, TaxProvider, ExternalTaxProvider
+
+### Community 510 - "Community 510"
+Cohesion: 0.33
+Nodes (5): Dynamic Bindings, Execution Flows, Hierarchy, Klin Data Engine Architecture, Website Instances vs Templates
+
+### Community 511 - "Community 511"
+Cohesion: 0.33
+Nodes (5): Automated Tests, Implementation Plan — Data Engine (Enterprise v2.2), Integration Assertions, User Review Required, Verification Plan
+
+### Community 512 - "Community 512"
+Cohesion: 0.33
+Nodes (6): 11. Dynamic Bindings & Live Updating (src/binding/ & src/live/), [NEW] [BindingContext.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/binding/BindingContext.ts), [NEW] [BindingEngine.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/binding/BindingEngine.ts), [NEW] [BindingExpression.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/binding/BindingExpression.ts), [NEW] [BindingResolver.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/binding/BindingResolver.ts), [NEW] [LiveBindingManager.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/live/LiveBindingManager.ts)
+
+### Community 513 - "Community 513"
+Cohesion: 0.33
+Nodes (6): 4. Schema & Collections (src/collections/), [NEW] [CollectionDefinition.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/collections/CollectionDefinition.ts), [NEW] [CollectionManager.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/collections/CollectionManager.ts), [NEW] [CollectionPreset.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/collections/CollectionPreset.ts), [NEW] [CollectionSchema.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/collections/CollectionSchema.ts), [NEW] [CollectionVersion.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/collections/CollectionVersion.ts)
+
+### Community 520 - "Community 520"
+Cohesion: 0.33
+Nodes (5): dependencies, @klin/sdk, name, private, version
+
+### Community 522 - "Community 522"
+Cohesion: 0.33
+Nodes (3): DevToolsMiddleware, DevToolsMiddlewareContext, MiddlewareNext
+
+### Community 524 - "Community 524"
+Cohesion: 0.33
+Nodes (3): DIContainer, Lifetime, ServiceDescriptor
+
+### Community 526 - "Community 526"
+Cohesion: 0.33
+Nodes (3): DIContainer, Lifetime, ServiceDescriptor
+
+### Community 527 - "Community 527"
+Cohesion: 0.33
+Nodes (3): DIContainer, Lifetime, ServiceDescriptor
+
+### Community 557 - "Community 557"
+Cohesion: 0.40
+Nodes (4): 1. Directory Blueprint, 2. Dynamic Workflows, 3. Sandboxing & Integrations, Commerce Engine Architecture (@klin/commerce)
+
+### Community 561 - "Community 561"
+Cohesion: 0.40
+Nodes (5): 10. Query Engine (src/query/), [NEW] [QueryBuilder.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/query/QueryBuilder.ts), [NEW] [QueryCache.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/query/QueryCache.ts), [NEW] [QueryExecutor.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/query/QueryExecutor.ts), [NEW] [QueryResult.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/query/QueryResult.ts)
+
+### Community 562 - "Community 562"
+Cohesion: 0.40
+Nodes (5): 16. Runtime & Sync (src/sync/), [NEW] [ChangeTracker.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/sync/ChangeTracker.ts), [NEW] [DataRuntime.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/sync/DataRuntime.ts), [NEW] [SyncManager.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/sync/SyncManager.ts), [NEW] [Watcher.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/sync/Watcher.ts)
+
+### Community 563 - "Community 563"
+Cohesion: 0.40
+Nodes (5): 17. Starter Content & Installation (src/starter/ & src/install/), [NEW] [InstallProfile.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/install/InstallProfile.ts), [NEW] [StarterContent.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/starter/StarterContent.ts), [NEW] [StarterContentInstaller.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/starter/StarterContentInstaller.ts), [NEW] [WebsiteInstaller.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/install/WebsiteInstaller.ts)
+
+### Community 564 - "Community 564"
+Cohesion: 0.40
+Nodes (5): 2. Core Architecture (src/core/), [NEW] [DataContext.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/core/DataContext.ts), [NEW] [DataEngine.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/core/DataEngine.ts), [NEW] [DataLifecycle.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/core/DataLifecycle.ts), [NEW] [DataManager.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/core/DataManager.ts)
+
+### Community 565 - "Community 565"
+Cohesion: 0.40
+Nodes (5): 6. Content Entries (src/entries/), [NEW] [Entry.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/entries/Entry.ts), [NEW] [EntryManager.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/entries/EntryManager.ts), [NEW] [EntryRevision.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/entries/EntryRevision.ts), [NEW] [EntryState.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/entries/EntryState.ts)
+
+### Community 603 - "Community 603"
+Cohesion: 0.50
+Nodes (3): 1. Design Overview, 2. Core Modules, Visual Builder Engine Architecture
+
+### Community 610 - "Community 610"
+Cohesion: 0.50
+Nodes (4): 14. Data API Layer (src/api/), [NEW] [CollectionAPI.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/api/CollectionAPI.ts), [NEW] [EntryAPI.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/api/EntryAPI.ts), [NEW] [QueryAPI.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/api/QueryAPI.ts)
+
+### Community 611 - "Community 611"
+Cohesion: 0.50
+Nodes (4): 3. Website Data Model (src/models/), [NEW] [WebsiteContent.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/models/WebsiteContent.ts), [NEW] [WebsiteData.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/models/WebsiteData.ts), [NEW] [WebsiteSettings.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/models/WebsiteSettings.ts)
+
+### Community 612 - "Community 612"
+Cohesion: 0.50
+Nodes (4): 9. Entity Relations (src/relations/), [NEW] [ReferenceField.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/relations/ReferenceField.ts), [NEW] [RelationManager.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/relations/RelationManager.ts), [NEW] [RelationResolver.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/relations/RelationResolver.ts)
+
+### Community 652 - "Community 652"
+Cohesion: 0.50
+Nodes (3): CORE_PACKAGES, PACKAGES_DIR, ROOT_PACKAGES
+
+### Community 705 - "Community 705"
+Cohesion: 0.67
+Nodes (3): 13. Builder Integration (src/schema/), [NEW] [DataBindingSchema.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/schema/DataBindingSchema.ts), [NEW] [InspectorBinding.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/src/schema/InspectorBinding.ts)
+
+### Community 706 - "Community 706"
+Cohesion: 0.67
+Nodes (3): 5. Content Types System (src/content-types/), [NEW] [ContentType.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/content-types/ContentType.ts), [NEW] [ContentTypeRegistry.ts](file:///c:/Users/Mujahid%20Islam%20Khan/Desktop/Nova/packages/data/src/content-types/ContentTypeRegistry.ts)
+
 ## Knowledge Gaps
-- **1427 isolated node(s):** `name`, `version`, `private`, `build`, `lint` (+1422 more)
+- **1941 isolated node(s):** `name`, `version`, `private`, `build`, `lint` (+1936 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **61 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **390 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Result` connect `Community 143` to `Community 65`, `Community 66`, `Community 130`, `Community 134`, `Community 71`, `Community 135`, `Community 39`, `Community 81`, `Community 307`, `Community 51`, `Community 309`, `Community 310`, `Community 58`, `Community 60`, `Community 62`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `EventBus` connect `Community 81` to `Community 128`, `Community 153`, `Community 135`, `Community 39`, `Community 76`, `Community 271`, `Community 307`, `Community 83`, `Community 309`, `Community 52`, `Community 51`, `Community 312`, `Community 310`, `Community 58`, `Community 63`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Why does `Ok` connect `Community 58` to `Community 65`, `Community 66`, `Community 143`, `Community 309`, `Community 310`, `Community 60`, `Community 62`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `ThemeEngine` connect `Community 410` to `Community 66`, `Community 355`, `Community 135`, `Community 271`, `Community 83`, `Community 314`?**
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
+- **Why does `CommerceEngine` connect `Community 405` to `Community 330`, `Community 355`?**
+  _High betweenness centrality (0.091) - this node is a cross-community bridge._
+- **Why does `DevToolsEngine` connect `Community 357` to `Community 355`, `Community 77`?**
+  _High betweenness centrality (0.071) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _1427 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1941 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.03278688524590164 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.1168091168091168 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07130124777183601 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05087881591119334 - nodes in this community are weakly interconnected._
